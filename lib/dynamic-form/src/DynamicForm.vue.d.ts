@@ -1,5 +1,5 @@
 import { ComponentInternalInstance } from 'vue';
-import { DyForm } from './';
+import { DyForm } from './types';
 
 type BtnsShow = {
     clearAll: 0 | 1;

@@ -1,3 +1,4 @@
-import { default as DynamicForm } from './src/DynamicForm.vue';
+import { default as DynamicForm } from './src';
 
+export { useFullScreenDyForm } from './src';
 export default DynamicForm;

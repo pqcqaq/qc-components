@@ -1,5 +1,5 @@
 import { CSSProperties } from 'vue';
-import { DyForm } from '..';
+import { DyForm } from '../types';
 
 type propType = {
     schema: DyForm;

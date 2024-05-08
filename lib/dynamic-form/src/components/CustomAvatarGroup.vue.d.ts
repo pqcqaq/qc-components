@@ -1,4 +1,4 @@
-import { AvatarGroupItem } from '../index';
+import { AvatarGroupItem } from '../types';
 
 type PropType = {
     avatarGroupValue: AvatarGroupItem[] | undefined;
