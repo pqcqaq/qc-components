@@ -8,7 +8,6 @@ import {
 import { Rule } from "ant-design-vue/es/form";
 import { Dayjs } from "dayjs";
 import { CSSProperties, Component, Slot, VNode } from "vue";
-import { componentsMap } from "../dynamic-form/cpnsMap";
 
 export type Options = Array<{
 	label: string;
@@ -43,10 +42,32 @@ export type UploadEvents = {
 	reject?: (file: File) => void;
 };
 
+export type InnerComponent =
+	| "Text"
+	| "Password"
+	| "Textarea"
+	| "Number"
+	| "Select"
+	| "Radio"
+	| "Checkbox"
+	| "DatePicker"
+	| "Rate"
+	| "Slider"
+	| "Switch"
+	| "Upload"
+	| "TreeSelect"
+	| "TimePicker"
+	| "AutoComplete"
+	| "Tag"
+	| "Mentions"
+	| "Divider"
+	| "AvatarGroup"
+	| "Corn";
+
 export type DyFormItem = {
 	label: string;
 	field: string;
-	component: keyof typeof componentsMap | Component;
+	component: InnerComponent | Component;
 	componentProps?: {
 		style?: Partial<CSSStyleDeclaration>;
 		className?: string;
