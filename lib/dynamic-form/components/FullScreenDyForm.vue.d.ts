@@ -1,6 +1,10 @@
-import { CSSProperties } from 'vue';
+import { CSSProperties, Ref } from 'vue';
 import { DyForm } from '../../types';
 
+type MousePosition = {
+    x: number;
+    y: number;
+} | null;
 type propType = {
     schema: DyForm;
     showBtns: {
@@ -17,6 +21,8 @@ type propType = {
     title?: string;
     fadeInOut?: boolean;
     fadeTime?: number;
+    mousePosition: MousePosition;
+    goClose: Ref<boolean>;
 };
 declare const _default: import('vue').DefineComponent<__VLS_TypePropsToRuntimeProps<propType>, {}, unknown, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<__VLS_TypePropsToRuntimeProps<propType>>>, {}, {}>;
 export default _default;
