@@ -10,16 +10,7 @@ import {
 	TimePicker,
 	Mentions,
 } from "ant-design-vue";
-
-import type { Rule } from "ant-design-vue/es/form/interface";
-import type {
-	MentionsProps,
-	TimePickerProps,
-	TreeSelectProps,
-	UploadChangeParam,
-	UploadProps,
-} from "ant-design-vue";
-import { CSSProperties, Component, Slot, VNode } from "vue";
+import { Component } from "vue";
 import AutoCompleteInput from "./components/AutoCompleteInput.vue";
 import CustomSwitch from "./components/CustomSwitch.vue";
 import TagShow from "./components/TagShow.vue";
@@ -29,7 +20,6 @@ import CustomDivider from "./components/CustomDivider.vue";
 import CustomAvatarGroup from "./components/CustomAvatarGroup.vue";
 import CustomUpload from "./components/CustomUpload.vue";
 import CronInput from "./components/CronInput.vue";
-import { Dayjs } from "dayjs";
 
 // 表单域组件类型
 export const componentsMap: Record<
