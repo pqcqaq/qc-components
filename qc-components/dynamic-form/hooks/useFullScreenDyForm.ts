@@ -1,6 +1,6 @@
-import { createApp } from "vue";
-import FullScreenDyForm from "./components/FullScreenDyForm.vue";
-import { FormConfig } from "./types";
+import { App, createApp } from "vue";
+import FullScreenDyForm from "../components/FullScreenDyForm.vue";
+import { FormConfig } from "../../types";
 export function useFullScreenDyForm(config: FormConfig) {
 	const handleClose = () => {
 		app.unmount();
@@ -36,13 +36,3 @@ export function useFullScreenDyForm(config: FormConfig) {
 	});
 	app.mount(div);
 }
-
-import type { App } from 'vue'
-import DynamicForm from './DynamicForm.vue'
-
-// 使用install方法，在app.use挂载
-DynamicForm.install = (app: App) => {
-  app.component(DynamicForm.__name as string, DynamicForm)
-}
-
-export default DynamicForm

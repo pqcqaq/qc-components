@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import { AvatarGroup } from "ant-design-vue";
 import { Avatar } from "ant-design-vue";
-import { AvatarGroupItem } from "../types";
+import { AvatarGroupItem } from "../../types";
 type PropType = {
 	avatarGroupValue: AvatarGroupItem[] | undefined;
 	groupProps: Record<string, any> | undefined;

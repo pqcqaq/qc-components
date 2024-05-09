@@ -39,7 +39,7 @@
 
 <script setup lang="ts">
 import { CSSProperties, Directive, onMounted, ref } from "vue";
-import { DyForm } from "../types";
+import { DyForm } from "../../types";
 import DynamicForm from "../DynamicForm.vue";
 import AButton from "ant-design-vue/es/button";
 import { Modal } from "ant-design-vue";

@@ -94,6 +94,12 @@
 	</div>
 </template>
 
+<script lang="ts">
+export default {
+	name: "dynamic-form",
+};
+</script>
+
 <script lang="ts" setup>
 import {
 	ref,
@@ -106,8 +112,8 @@ import {
 	getCurrentInstance,
 	ComponentInternalInstance,
 } from "vue";
-import type { DyForm, DyFormItem } from "./types";
-import { componentsMap } from "./types";
+import type { DyForm, DyFormItem } from "../types";
+import { componentsMap } from "./cpnsMap";
 import { FormInstance } from "ant-design-vue/es/form/Form";
 import { StyleValue } from "vue";
 import { message } from "ant-design-vue";

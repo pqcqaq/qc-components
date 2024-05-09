@@ -1,5 +1,5 @@
 import { UploadProps } from 'ant-design-vue';
-import { UploadEvents, UploadType } from '../types';
+import { UploadEvents, UploadType } from '../../types';
 
 type PropType = {
     value: File[] | undefined;

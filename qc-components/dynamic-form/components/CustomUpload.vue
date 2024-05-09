@@ -46,7 +46,7 @@
 <script setup lang="ts">
 import { UploadChangeParam, UploadProps, message } from "ant-design-vue";
 import { computed, ref } from "vue";
-import { UploadEvents, UploadType } from "../types";
+import { UploadEvents, UploadType } from "../../types";
 import { FileType } from "ant-design-vue/es/upload/interface";
 import UploadOutlined from "@ant-design/icons-vue/UploadOutlined";
 import LoadingOutlined from "@ant-design/icons-vue/LoadingOutlined";
