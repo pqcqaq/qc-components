@@ -14,7 +14,7 @@
 	],
   "repository": {
     "type": "git",
-    "url": "git://github.com/neohan666/wxmp-rsa.git"
+    "url": "https://github.com/pqcqaq/qc-components.git"
   },
 	"scripts": {
 		"dev": "vite",
