@@ -230,7 +230,7 @@ const vScaleIn: Directive = {
 		el.style.transformOrigin = `${offsetX}px ${offsetY}px`;
 		// 设置所有动画都在下一个事件循环中执行
 		setTimeout(() => {
-			el.style.transition = "all " + config.fadeTime + "ms ease";
+			el.style.transition = "scale " + config.fadeTime + "ms ease";
 			el.style.scale = "1";
 		}, 10);
 	},
