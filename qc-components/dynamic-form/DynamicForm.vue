@@ -33,10 +33,16 @@
 					"
 				>
 					<component
-						:is="componentsMap[item.component]?.component"
+						:is="
+							typeof item.component === 'string'
+								? componentsMap[item.component]?.component
+								: item.component
+						"
 						v-bind="{
 							...item.componentProps,
-							...componentsMap[item.component]?.defaultProps,
+							...(typeof item.component === 'string'
+								? componentsMap[item.component]?.defaultProps
+								: item.componentProps?.customProps),
 						}"
 						v-model:value="formModel[item.field]"
 						:class="

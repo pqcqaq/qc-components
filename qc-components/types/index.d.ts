@@ -7,7 +7,7 @@ import {
 } from "ant-design-vue";
 import { Rule } from "ant-design-vue/es/form";
 import { Dayjs } from "dayjs";
-import { CSSProperties, Slot, VNode } from "vue";
+import { CSSProperties, Component, Slot, VNode } from "vue";
 import { componentsMap } from "../dynamic-form/cpnsMap";
 
 export type Options = Array<{
@@ -46,7 +46,7 @@ export type UploadEvents = {
 export type DyFormItem = {
 	label: string;
 	field: string;
-	component: keyof typeof componentsMap;
+	component: keyof typeof componentsMap | Component;
 	componentProps?: {
 		style?: Partial<CSSStyleDeclaration>;
 		className?: string;
@@ -168,6 +168,9 @@ export type DyFormItem = {
 		picker?: "date" | "week" | "month" | "quarter" | "year";
 		popupStyle?: Partial<CSSStyleDeclaration>;
 		presets?: { label: Slot; value: Dayjs }[];
+		customProps?: {
+			[T: string]: any;
+		};
 	};
 	componentEvent?: {
 		[T: string]: Function;
@@ -200,6 +203,7 @@ export type DyFormItem = {
 		| number[]
 		| File
 		| File[]
+		| Record<string, any>
 		| null;
 	next?: (
 		modelValue:
