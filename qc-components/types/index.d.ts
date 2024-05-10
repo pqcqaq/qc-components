@@ -69,7 +69,7 @@ export type CustomBtn = {
 	text: string;
 	onClick: (model: Record<string, any>, event?: PointerEvent) => void;
 	props?: ButtonProps;
-	style?: StyleValue;
+	style?: CSSProperties;
 };
 
 export type DyFormItem = {
@@ -277,6 +277,7 @@ export type DyForm = {
 	};
 	className?: string;
 	customBtns?: CustomBtn[];
+	customBtnsStyle?: CSSProperties;
 };
 
 export type FormConfig = {

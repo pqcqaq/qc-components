@@ -96,11 +96,28 @@
 					>提交</a-button
 				>
 			</div>
-			<div class="custombtns">
+			<div
+				class="custombtns"
+				:style="{
+					...{
+						display: 'flex',
+						justifyContent: 'center',
+						marginTop: '20px',
+						gap: '20px',
+					},
+					...props.schema.customBtnsStyle,
+				}"
+			>
 				<div
 					v-for="btn in props.schema.customBtns"
 					:key="btn.text"
-					:style="btn.style || {}"
+					:style="{
+						...{
+							display: 'inline',
+							justifyContent: 'center',
+						},
+						...btn.style,
+					}"
 				>
 					<a-button
 						@click="
