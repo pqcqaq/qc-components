@@ -75,7 +75,7 @@ type propType = {
 const props = defineProps<propType>();
 const formModel = ref<Record<string, any>>({});
 const isLoading = ref(false);
-const schema = ref(props.schema);
+const schema = ref<DyForm>(props.schema) as Ref<DyForm>;
 
 onMounted(() => {
 	if (Object.keys(props.init).length > 0) {

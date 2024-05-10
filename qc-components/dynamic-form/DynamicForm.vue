@@ -32,7 +32,7 @@
 						item.formItemProps?.className || 'dynamic-form-item'
 					"
 				>
-					<component
+				<component
 						:is="
 							typeof item.component === 'string'
 								? componentsMap[item.component]?.component
@@ -95,6 +95,24 @@
 					:loading="props.disabled || loading"
 					>提交</a-button
 				>
+			</div>
+			<div class="custombtns">
+				<div
+					v-for="btn in props.schema.customBtns"
+					:key="btn.text"
+					:style="btn.style || {}"
+				>
+					<a-button
+						@click="
+							() => {
+								btn.onClick?.(formModel);
+							}
+						"
+						v-bind="btn.props"
+					>
+						{{ btn.text }}
+					</a-button>
+				</div>
 			</div>
 		</a-form>
 	</div>

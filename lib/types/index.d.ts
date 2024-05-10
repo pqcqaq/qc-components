@@ -1,4 +1,5 @@
 import {
+	ButtonProps,
 	MentionsProps,
 	TimePickerProps,
 	TreeSelectProps,
@@ -7,7 +8,7 @@ import {
 } from "ant-design-vue";
 import { Rule } from "ant-design-vue/es/form";
 import { Dayjs } from "dayjs";
-import { CSSProperties, Component, Slot, VNode } from "vue";
+import { CSSProperties, Component, Slot, StyleValue, VNode } from "vue";
 
 export type Options = Array<{
 	label: string;
@@ -63,6 +64,13 @@ export type InnerComponent =
 	| "Divider"
 	| "AvatarGroup"
 	| "Corn";
+
+export type CustomBtn = {
+	text: string;
+	onClick: (model: Record<string, any>, event?: PointerEvent) => void;
+	props?: ButtonProps;
+	style?: StyleValue;
+};
 
 export type DyFormItem = {
 	label: string;
@@ -268,6 +276,7 @@ export type DyForm = {
 		validate?: () => void;
 	};
 	className?: string;
+	customBtns?: CustomBtn[];
 };
 
 export type FormConfig = {
