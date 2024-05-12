@@ -1,8 +1,8 @@
 /* __placeholder__ */
 // import DynamicForm from "../../../dynamic-form/src/DynamicForm.vue";
-import { useFullScreenDyForm } from "../lib";
+import { useFullScreenDyForm } from "../";
 // import { useFullScreenDyForm } from "../../../dynamic-form/src";
-import { DynamicForm } from "../lib";
+import { DynamicForm } from "../";
 // import { useFullScreenDyForm } from "qc-components/lib/dynamic-form/hooks/useFullScreenDyForm";
 import { ref } from "vue";
 import { message } from "ant-design-vue";
