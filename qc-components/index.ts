@@ -1,10 +1,13 @@
 import type { App } from "vue";
 import DynamicForm from "./dynamic-form";
+import EasyTable from "./easy-table";
 export { useFullScreenDyForm } from "./dynamic-form";
-export default DynamicForm;
+export { DynamicForm };
+export { EasyTable };
+export * from "./types";
 
 // // 所有组件列表
-// const components = [DynamicForm];
+// const components = [ DynamicForm, EasyTable ];
 
 // // 定义 install 方法
 // const install = (app: App): void => {
@@ -18,12 +21,11 @@ export default DynamicForm;
 //     解决方式二：使用类型断言 尖括号语法(component.__name) 或 as语法(component.__name as string)
 //   */
 // 	components.forEach((component) =>
-// 		app.component(component.__name as string, component)
+// 		app.component(component.name as string, component)
 // 	);
 // };
 
 // // export default DynamicForm;
-// export { DynamicForm, useFullScreenDyForm };
 
 // const QcComponents = {
 // 	install,

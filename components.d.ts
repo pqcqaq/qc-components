@@ -23,6 +23,5 @@ declare module 'vue' {
     ATabs: typeof import('ant-design-vue/es')['Tabs']
     AUpload: typeof import('ant-design-vue/es')['Upload']
     AUploadDragger: typeof import('ant-design-vue/es')['UploadDragger']
-    HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
   }
 }

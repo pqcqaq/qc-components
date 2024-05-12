@@ -12,10 +12,10 @@
 	"files": [
 		"lib"
 	],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/pqcqaq/qc-components.git"
-  },
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/pqcqaq/qc-components.git"
+	},
 	"scripts": {
 		"dev": "vite",
 		"build": "vue-tsc && vite build",
@@ -32,6 +32,7 @@
 		"vue": "^3.4.21"
 	},
 	"devDependencies": {
+		"@types/node": "^20.12.11",
 		"@vitejs/plugin-vue": "^5.0.4",
 		"sass": "^1.77.0",
 		"terser": "^5.31.0",
