@@ -199,7 +199,8 @@ export type DyFormItem = {
 		presets?: { label: Slot; value: Dayjs }[];
 		customProps?: {
 			[T: string]: any;
-		};
+        };
+        showTime?: boolean | TimePickerProps["showTime"];
 	};
 	componentEvent?: {
 		[T: string]: Function;
