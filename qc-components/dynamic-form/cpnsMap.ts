@@ -10,7 +10,7 @@ import {
 	TimePicker,
 	Mentions,
 } from "ant-design-vue";
-import { Component } from "vue";
+import { Component, reactive, markRaw } from "vue";
 import AutoCompleteInput from "./components/AutoCompleteInput.vue";
 import CustomSwitch from "./components/CustomSwitch.vue";
 import TagShow from "./components/TagShow.vue";
@@ -28,68 +28,76 @@ export const componentsMap: Record<
 		component: Component;
 		defaultProps?: Record<string, any>;
 	}
-> = {
+> = reactive<
+	Record<
+		string,
+		{
+			component: Component;
+			defaultProps?: Record<string, any>;
+		}
+	>
+>({
 	Text: {
-		component: Input,
+		component: markRaw(Input),
 	},
 	Password: {
-		component: Input,
+		component: markRaw(Input),
 		defaultProps: {
 			type: "password",
 		},
 	},
 	Textarea: {
-		component: Textarea,
+		component: markRaw(Textarea),
 	},
 	Number: {
-		component: InputNumber,
+		component: markRaw(InputNumber),
 	},
 	Select: {
-		component: Select,
+		component: markRaw(Select),
 	},
 	Radio: {
-		component: AsyncRadio,
+		component: markRaw(AsyncRadio),
 	},
 	Checkbox: {
-		component: AsyncCheckBox,
+		component: markRaw(AsyncCheckBox),
 	},
 	DatePicker: {
-		component: DatePicker,
+		component: markRaw(DatePicker),
 	},
 	Rate: {
-		component: Rate,
+		component: markRaw(Rate),
 	},
 	Slider: {
-		component: Slider,
+		component: markRaw(Slider),
 	},
 	Switch: {
-		component: CustomSwitch,
+		component: markRaw(CustomSwitch),
 	},
 	Upload: {
-		component: CustomUpload,
+		component: markRaw(CustomUpload),
 	},
 	TreeSelect: {
-		component: TreeSelect,
+		component: markRaw(TreeSelect),
 	},
 	TimePicker: {
-		component: TimePicker,
+		component: markRaw(TimePicker),
 	},
 	AutoComplete: {
-		component: AutoCompleteInput,
+		component: markRaw(AutoCompleteInput),
 	},
 	Tag: {
-		component: TagShow,
+		component: markRaw(TagShow),
 	},
 	Mentions: {
-		component: Mentions,
+		component: markRaw(Mentions),
 	},
 	Divider: {
-		component: CustomDivider,
+		component: markRaw(CustomDivider),
 	},
 	AvatarGroup: {
-		component: CustomAvatarGroup,
+		component: markRaw(CustomAvatarGroup),
 	},
 	Corn: {
-		component: CronInput,
+		component: markRaw(CronInput),
 	},
-};
+});
