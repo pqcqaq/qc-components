@@ -163,6 +163,7 @@ export type DyFormItem = {
         customProps?: {
             [T: string]: any;
         };
+        showTime?: boolean | TimePickerProps["showTime"];
     };
     componentEvent?: {
         [T: string]: Function;
