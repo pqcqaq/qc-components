@@ -184,13 +184,7 @@ type dynamicType = {
 
 const props = defineProps<dynamicType>();
 const btnShow = computed(() => {
-	if (!props.showBtns) {
-		return {
-			clearAll: 0,
-			reset: 1,
-			submit: 1,
-		};
-	}
+	// 若传入的是布尔值，则根据布尔值显示
 	if (typeof props.showBtns === "boolean") {
 		if (props.showBtns) {
 			return {
@@ -202,6 +196,15 @@ const btnShow = computed(() => {
 			return null;
 		}
 	}
+	// 若传入的是对象，并且值不存在，则默认显示
+	if (!props.showBtns) {
+		return {
+			clearAll: 0,
+			reset: 1,
+			submit: 1,
+		};
+	}
+	// 若传入的是对象，则根据对象显示
 	return props.showBtns;
 });
 const formRef = ref<FormInstance | null>(null);

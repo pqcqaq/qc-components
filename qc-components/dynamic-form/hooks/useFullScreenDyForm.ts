@@ -45,7 +45,7 @@ export function useFullScreenDyForm(config: FormConfig) {
 	};
 	const app = createApp(FullScreenDyForm, {
 		schema: schemaWithDefaultValues,
-		showBtns: config.showBtns || { clearAll: 1, reset: 1, submit: 1 },
+		showBtns: config.showBtns,
 		init: config.init || {},
 		onCancel: handleClose,
 		allowDirectClose: config.allowDirectClose || false,
