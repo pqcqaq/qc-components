@@ -289,7 +289,7 @@ export type FormConfig = {
 		clearAll: 0 | 1;
 		reset: 0 | 1;
 		submit: 0 | 1;
-	};
+	} | boolean;
 	init?: Record<string, any>;
 	allowDirectClose?: boolean;
 	submit?: (values: Record<string, any>, close: Function) => void;

@@ -55,6 +55,7 @@ const testCustomBtns = () => {
 		init: {
 			name: "test init",
 		},
+		showBtns: false,
 		submit: async (model, close) => {
 			const data = await new Promise((resolve) => {
 				setTimeout(() => {

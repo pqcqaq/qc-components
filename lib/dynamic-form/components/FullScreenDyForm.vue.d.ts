@@ -11,7 +11,7 @@ type propType = {
         clearAll: 0 | 1;
         reset: 0 | 1;
         submit: 0 | 1;
-    };
+    } | boolean;
     init: Record<string, any>;
     onCancel: () => void;
     allowDirectClose: boolean;
