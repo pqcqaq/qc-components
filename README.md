@@ -1,9 +1,13 @@
-# Vue 3 + TypeScript + Vite
+# QC-Components
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## 一款基于AntdV的 高效开发组件库
 
-## Recommended Setup
+- 引入：[@pqcqcqc/qc-components - npm](https://www.npmjs.com/package/@pqcqcqc/qc-components)
+- 使用
+    - 组件：DynamicForm
+    - 函数式调用：useFullScreenDyForm(config*:* FormConfig)
+    - 示例站点：[Study Demos (prod) (zust.online)](https://study-demos.zust.online/#/dynamic-form)
 
-- [VS Code](https://code.visualstudio.com/) + [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (previously Volar) and disable Vetur
 
-- Use [vue-tsc](https://github.com/vuejs/language-tools/tree/master/packages/tsc) for performing the same type checking from the command line, or for generating d.ts files for SFCs.
+
+更多文档待完善..........
