@@ -37,13 +37,53 @@
 					<CloseOutlined
 				/></a-button>
 			</div>
+			<!-- 自定义按钮显示在下面，横向排列居中 -->
+			<div
+				v-if="props.customBtns && props.customBtns.length > 0"
+				class="custombtns"
+				:style="{
+					...{
+						display: 'flex',
+						justifyContent: 'center',
+						marginTop: '20px',
+						gap: '20px',
+					},
+					...schema.customBtnsStyle,
+				}"
+			>
+				<div
+					v-for="btn in props.customBtns"
+					:key="btn.text"
+					:style="{
+						...{
+							display: 'inline',
+							justifyContent: 'center',
+						},
+						...btn.outterStyle,
+					}"
+				>
+					<a-button
+						@click="
+							() => {
+								btn.onClick?.(formModel);
+							}
+						"
+						v-bind="btn.props"
+						:style="{
+							...btn.style,
+						}"
+					>
+						{{ btn.text }}
+					</a-button>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
 import { CSSProperties, Directive, Ref, onMounted, ref, watch } from "vue";
-import { DyForm } from "../../types";
+import { CustomBtn, DyForm } from "../../types";
 import DynamicForm from "../DynamicForm.vue";
 import AButton from "ant-design-vue/es/button";
 import { Modal } from "ant-design-vue";
@@ -70,6 +110,7 @@ type propType = {
 	fadeTime?: number;
 	mousePosition: MousePosition;
 	goClose: Ref<boolean>;
+	customBtns?: CustomBtn[];
 };
 
 const props = defineProps<propType>();

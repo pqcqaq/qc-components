@@ -20,6 +20,7 @@ import CustomDivider from "./components/CustomDivider.vue";
 import CustomAvatarGroup from "./components/CustomAvatarGroup.vue";
 import CustomUpload from "./components/CustomUpload.vue";
 import CronInput from "./components/CronInput.vue";
+import AsyncSelect from './components/AsyncSelect.vue'
 
 // 表单域组件类型
 export const componentsMap: Record<
@@ -53,7 +54,7 @@ export const componentsMap: Record<
 		component: markRaw(InputNumber),
 	},
 	Select: {
-		component: markRaw(Select),
+		component: markRaw(AsyncSelect),
 	},
 	Radio: {
 		component: markRaw(AsyncRadio),

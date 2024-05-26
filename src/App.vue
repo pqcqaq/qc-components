@@ -7,6 +7,7 @@
 		<a-button @click="testAvatars" size="large">测试头像组</a-button>
 		<a-button @click="testCorn" size="large">测试Corn表达式</a-button>
 		<a-button @click="testInlineLayout" size="large">测试横向布局</a-button>
+		<a-button @click="testCustomBtns" size="large">测试弹出的自定义按钮</a-button>
 	</div>
 	<div style="padding: 50px">
 		<DynamicForm
@@ -38,6 +39,53 @@ import {
 	testAvatarGroup,
 	testInline,
 } from "./schema";
+
+const testCustomBtns = () => {
+	useFullScreenDyForm({
+		schema: {
+			title: "test",
+			items: [
+				{
+					label: "姓名",
+					field: "name",
+					component: "Text",
+				},
+			],
+		},
+		init: {
+			name: "test init",
+		},
+		submit: async (model, close) => {
+			const data = await new Promise((resolve) => {
+				setTimeout(() => {
+					console.log("model", model);
+					resolve(model);
+				}, 1500);
+			});
+			message.success("提交成功" + JSON.stringify(data));
+			close();
+		},
+		style: {
+			backgroundColor: "rgba(255,255,255,0.8)",
+			backdropFilter: "blur(10px)",
+		},
+		draggable: true,
+		customBtns: [
+			{
+				text: "自定义按钮",
+				onClick: (model) => {
+					console.log("自定义按钮", model);
+				},
+				props: {
+					type: "primary",
+				},
+				style: {
+					margin: "0 10px",
+				},
+			},
+		],
+	});
+};
 
 const testInlineLayout = () => {
 	useFullScreenDyForm({
@@ -202,6 +250,38 @@ const changeSchema = () => {
 						},
 					};
 				}
+			},
+		},
+		// 测试下拉选择
+		{
+			label: "性别",
+			field: "sex",
+			component: "Select",
+			componentProps: {
+				options: () => {
+					return new Promise((resolve) => {
+						setTimeout(() => {
+							resolve([
+								{ label: "男", value: 1 },
+								{ label: "女", value: 2 },
+							]);
+						}, 1000);
+					});
+				},
+			},
+			formItemProps: {
+				rules: [
+					{
+						required: true,
+						message: "请选择性别",
+						type: "number",
+						trigger: "change",
+					},
+				],
+			},
+			value: 1,
+			onShow: (model: any) => {
+				return model.name !== "百里守约";
 			},
 		},
 	];

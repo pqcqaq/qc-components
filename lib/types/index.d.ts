@@ -35,6 +35,7 @@ export type CustomBtn = {
     text: string;
     onClick: (model: Record<string, any>, event?: PointerEvent) => void;
     props?: ButtonProps;
+    outterStyle?: CSSProperties;
     style?: CSSProperties;
 };
 export type DyFormItem = {
@@ -197,6 +198,7 @@ export type DyFormItem = {
     value?: string | number | boolean | string[] | number[] | File | File[] | Record<string, any> | null;
     next?: (modelValue: Record<string, any> | string | number | boolean | File | string[] | number[] | File[]) => DyForm | undefined | null;
     nextFormStyle?: Partial<CSSStyleDeclaration>;
+    onShow?: (modelValue: Record<string, any>) => boolean;
 };
 export type DyForm = {
     title?: string;
@@ -251,4 +253,5 @@ export type FormConfig = {
     defaultValues?: Record<string, any>;
     fadeInOut?: boolean;
     fadeTime?: number;
+    customBtns?: CustomBtn[];
 };

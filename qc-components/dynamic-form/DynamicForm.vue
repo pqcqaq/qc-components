@@ -23,6 +23,7 @@
 				class="items"
 				:key="item.field"
 				v-for="item in props.schema.items"
+				v-show="item.onShow ? item.onShow(formModel) : true"
 			>
 				<a-form-item
 					:name="item.field"
@@ -97,6 +98,7 @@
 				>
 			</div>
 			<div
+				v-if="props.schema.customBtns && props.schema.customBtns.length > 0"
 				class="custombtns"
 				:style="{
 					...{
@@ -116,7 +118,7 @@
 							display: 'inline',
 							justifyContent: 'center',
 						},
-						...btn.style,
+						...btn.outterStyle,
 					}"
 				>
 					<a-button
@@ -126,6 +128,9 @@
 							}
 						"
 						v-bind="btn.props"
+						:style="{
+							...btn.style,
+						}"
 					>
 						{{ btn.text }}
 					</a-button>

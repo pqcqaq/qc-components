@@ -69,6 +69,7 @@ export type CustomBtn = {
 	text: string;
 	onClick: (model: Record<string, any>, event?: PointerEvent) => void;
 	props?: ButtonProps;
+	outterStyle?: CSSProperties;
 	style?: CSSProperties;
 };
 
@@ -247,6 +248,7 @@ export type DyFormItem = {
 			| File[]
 	) => DyForm | undefined | null;
 	nextFormStyle?: Partial<CSSStyleDeclaration>;
+	onShow?: (modelValue: Record<string, any>) => boolean;
 };
 
 export type DyForm = {
@@ -297,4 +299,5 @@ export type FormConfig = {
 	defaultValues?: Record<string, any>;
 	fadeInOut?: boolean;
 	fadeTime?: number;
+	customBtns?: CustomBtn[];
 };

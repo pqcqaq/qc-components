@@ -291,11 +291,18 @@ export const schema: DyForm = {
 			component: "Select",
 			componentProps: {
 				allowClear: true,
-				options: [
-					{ value: 1, label: "中国" },
-					{ value: 2, label: "美国" },
-					{ value: 3, label: "俄罗斯" },
-				],
+				options: () => {
+					return new Promise<Options>((resolve) => {
+						setTimeout(() => {
+							resolve([
+								{ value: "中国", label: "中国" },
+								{ value: "美国", label: "美国" },
+								{ value: "日本", label: "日本" },
+								{ value: "韩国", label: "韩国" },
+							]);
+						}, 1000);
+					});
+				}
 			},
 		},
 		// textarea

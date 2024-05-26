@@ -8,6 +8,52 @@ import { ref } from "vue";
 import { message } from "ant-design-vue";
 import { schema as formSchema, test, cornSchema, testAvatarGroup, testInline, } from "./schema";
 const { defineProps, defineSlots, defineEmits, defineExpose, defineModel, defineOptions, withDefaults, } = await import('vue');
+const testCustomBtns = () => {
+    useFullScreenDyForm({
+        schema: {
+            title: "test",
+            items: [
+                {
+                    label: "姓名",
+                    field: "name",
+                    component: "Text",
+                },
+            ],
+        },
+        init: {
+            name: "test init",
+        },
+        submit: async (model, close) => {
+            const data = await new Promise((resolve) => {
+                setTimeout(() => {
+                    console.log("model", model);
+                    resolve(model);
+                }, 1500);
+            });
+            message.success("提交成功" + JSON.stringify(data));
+            close();
+        },
+        style: {
+            backgroundColor: "rgba(255,255,255,0.8)",
+            backdropFilter: "blur(10px)",
+        },
+        draggable: true,
+        customBtns: [
+            {
+                text: "自定义按钮",
+                onClick: (model) => {
+                    console.log("自定义按钮", model);
+                },
+                props: {
+                    type: "primary",
+                },
+                style: {
+                    margin: "0 10px",
+                },
+            },
+        ],
+    });
+};
 const testInlineLayout = () => {
     useFullScreenDyForm({
         schema: testInline,
@@ -163,6 +209,38 @@ const changeSchema = () => {
                         },
                     };
                 }
+            },
+        },
+        // 测试下拉选择
+        {
+            label: "性别",
+            field: "sex",
+            component: "Select",
+            componentProps: {
+                options: () => {
+                    return new Promise((resolve) => {
+                        setTimeout(() => {
+                            resolve([
+                                { label: "男", value: 1 },
+                                { label: "女", value: 2 },
+                            ]);
+                        }, 1000);
+                    });
+                },
+            },
+            formItemProps: {
+                rules: [
+                    {
+                        required: true,
+                        message: "请选择性别",
+                        type: "number",
+                        trigger: "change",
+                    },
+                ],
+            },
+            value: 1,
+            onShow: (model) => {
+                return model.name !== "百里守约";
             },
         },
     ];
@@ -336,9 +414,28 @@ function __VLS_template() {
     (__VLS_40.slots).default;
     const __VLS_40 = __VLS_pickFunctionalComponentCtx(__VLS_36, __VLS_38);
     let __VLS_39;
+    const __VLS_42 = {}.AButton;
+    const __VLS_43 = __VLS_asFunctionalComponent(__VLS_42, new __VLS_42({ ...{ 'onClick': {}, }, size: ("large"), }));
+    ({}.AButton);
+    ({}.AButton);
+    __VLS_components.AButton;
+    __VLS_components.aButton;
+    __VLS_components.AButton;
+    __VLS_components.aButton;
+    // @ts-ignore
+    [AButton, AButton,];
+    const __VLS_44 = __VLS_43({ ...{ 'onClick': {}, }, size: ("large"), }, ...__VLS_functionalComponentArgsRest(__VLS_43));
+    ({}({ ...{ 'onClick': {}, }, size: ("large"), }));
+    let __VLS_47 = { 'click': __VLS_pickEvent(__VLS_45['click'], {}.onClick) };
+    __VLS_47 = { click: (__VLS_ctx.testCustomBtns) };
+    // @ts-ignore
+    [testCustomBtns,];
+    (__VLS_46.slots).default;
+    const __VLS_46 = __VLS_pickFunctionalComponentCtx(__VLS_42, __VLS_44);
+    let __VLS_45;
     __VLS_elementAsFunction(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({ style: ({}), });
-    const __VLS_42 = {}.DynamicForm;
-    const __VLS_43 = __VLS_asFunctionalComponent(__VLS_42, new __VLS_42({ schema: ((__VLS_ctx.schema)), modelValue: ((__VLS_ctx.model)), class: ("custom"), showBtns: (({
+    const __VLS_48 = {}.DynamicForm;
+    const __VLS_49 = __VLS_asFunctionalComponent(__VLS_48, new __VLS_48({ schema: ((__VLS_ctx.schema)), modelValue: ((__VLS_ctx.model)), class: ("custom"), showBtns: (({
             reset: 1,
             clearAll: 1,
             submit: 1,
@@ -347,11 +444,11 @@ function __VLS_template() {
     __VLS_components.DynamicForm;
     // @ts-ignore
     [DynamicForm,];
-    const __VLS_44 = __VLS_43({ schema: ((__VLS_ctx.schema)), modelValue: ((__VLS_ctx.model)), class: ("custom"), showBtns: (({
+    const __VLS_50 = __VLS_49({ schema: ((__VLS_ctx.schema)), modelValue: ((__VLS_ctx.model)), class: ("custom"), showBtns: (({
             reset: 1,
             clearAll: 1,
             submit: 1,
-        })), }, ...__VLS_functionalComponentArgsRest(__VLS_43));
+        })), }, ...__VLS_functionalComponentArgsRest(__VLS_49));
     ({}({ schema: ((__VLS_ctx.schema)), modelValue: ((__VLS_ctx.model)), class: ("custom"), showBtns: (({
             reset: 1,
             clearAll: 1,
@@ -359,7 +456,7 @@ function __VLS_template() {
         })), }));
     // @ts-ignore
     [schema, model,];
-    const __VLS_46 = __VLS_pickFunctionalComponentCtx(__VLS_42, __VLS_44);
+    const __VLS_52 = __VLS_pickFunctionalComponentCtx(__VLS_48, __VLS_50);
     if (typeof __VLS_styleScopedClasses === 'object' && !Array.isArray(__VLS_styleScopedClasses)) {
         __VLS_styleScopedClasses["change"];
         __VLS_styleScopedClasses["custom"];
@@ -371,6 +468,7 @@ const __VLS_internalComponent = (await import('vue')).defineComponent({
     setup() {
         return {
             DynamicForm: DynamicForm,
+            testCustomBtns: testCustomBtns,
             testInlineLayout: testInlineLayout,
             testCorn: testCorn,
             testPopup: testPopup,

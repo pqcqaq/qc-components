@@ -63,6 +63,7 @@ export function useFullScreenDyForm(config: FormConfig) {
 		fadeTime: config.fadeTime,
 		mousePosition,
 		goClose,
+		customBtns: config.customBtns,
 	});
 	app.mount(div);
 }

@@ -53,6 +53,12 @@ const getData = async () => {
 			const optionsPromise = await props.options();
 			Realoptions.value = optionsPromise;
 		} else {
+			if (props.options && !Array.isArray(props.options)) {
+				console.error(
+					"options must be an array or a function that returns an array"
+				);
+				return;
+			}
 			Realoptions.value = props.options;
 		}
 	} catch (error) {
