@@ -7,7 +7,7 @@ import {
 	UploadProps,
 } from "ant-design-vue";
 import { Rule } from "ant-design-vue/es/form";
-import { Dayjs } from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 import { CSSProperties, Component, Slot, StyleValue, VNode } from "vue";
 
 export type Options = Array<{
@@ -200,8 +200,8 @@ export type DyFormItem = {
 		presets?: { label: Slot; value: Dayjs }[];
 		customProps?: {
 			[T: string]: any;
-        };
-        showTime?: boolean | TimePickerProps["showTime"];
+		};
+		showTime?: boolean | TimePickerProps["showTime"];
 	};
 	componentEvent?: {
 		[T: string]: Function;
@@ -235,6 +235,7 @@ export type DyFormItem = {
 		| File
 		| File[]
 		| Record<string, any>
+		| dayjs.Dayjs
 		| null;
 	next?: (
 		modelValue:
@@ -285,11 +286,13 @@ export type DyForm = {
 
 export type FormConfig = {
 	schema: DyForm;
-	showBtns?: {
-		clearAll: 0 | 1;
-		reset: 0 | 1;
-		submit: 0 | 1;
-	} | boolean;
+	showBtns?:
+		| {
+				clearAll: 0 | 1;
+				reset: 0 | 1;
+				submit: 0 | 1;
+		  }
+		| boolean;
 	init?: Record<string, any>;
 	allowDirectClose?: boolean;
 	submit?: (values: Record<string, any>, close: Function) => void;
