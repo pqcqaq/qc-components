@@ -7,7 +7,9 @@
 		<a-button @click="testAvatars" size="large">测试头像组</a-button>
 		<a-button @click="testCorn" size="large">测试Corn表达式</a-button>
 		<a-button @click="testInlineLayout" size="large">测试横向布局</a-button>
-		<a-button @click="testCustomBtns" size="large">测试弹出的自定义按钮</a-button>
+		<a-button @click="testCustomBtns" size="large"
+			>测试弹出的自定义按钮</a-button
+		>
 	</div>
 	<div style="padding: 50px">
 		<DynamicForm
@@ -76,6 +78,7 @@ const testCustomBtns = () => {
 				text: "自定义按钮",
 				onClick: (model) => {
 					console.log("自定义按钮", model);
+					message.success("点击了自定义按钮" + JSON.stringify(model));
 				},
 				props: {
 					type: "primary",
