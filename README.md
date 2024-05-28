@@ -241,6 +241,76 @@ export type InnerComponent =
 
 ### Text组件
 
+##### 示例
+
+- ```ts
+    		// input
+    		{
+    			label: "姓名",
+    			field: "name",
+    			component: "Text",
+    			componentProps: {
+    				allowClear: true,
+    				showCount: true,
+    				maxlength: 20,
+    				style: {
+    					width: "400px",
+    				},
+    			},
+    			formItemProps: {
+    				rules: [
+    					{
+    						required: true,
+    						message: "请输入姓名",
+    						trigger: "blur",
+    					},
+    				],
+    				colon: false,
+    				tooltip: "在这里输入姓名",
+    			},
+    			value: "百里守约",
+                // 动态下一级表单
+    			next: (model: any): DyForm | undefined => {
+    				if (model == "百里守约") {
+    					return {
+    						items: [
+    							{
+    								label: "武器",
+    								field: "weapon",
+    								component: "Text",
+    								componentProps: {
+    									allowClear: true,
+    									showCount: true,
+    									maxlength: 80,
+    									style: {
+    										width: "350px",
+    									},
+    								},
+    								formItemProps: {
+    									rules: [
+    										{
+    											required: true,
+    											message: "武器只能是ABCDE中的一个",
+    											trigger: "blur",
+    											type: "enum",
+    											enum: ["A", "B", "C", "D", "E"],
+    										},
+    									],
+    									style: {
+    										marginTop: "10px",
+    									},
+    									labelCol: { span: 3 },
+    								},
+    							},
+    						],
+    					};
+    				}
+    			},
+    		},
+    ```
+
+- 
+
 ​	Input [#](https://www.antdv.com/components/input#input)
 
 | Property       | Description                                                  | Type                 | Default                 | Version |
@@ -277,9 +347,103 @@ export type InnerComponent =
 
 - 与Text组件相同，但指定了type一定为password
 
+- ##### 示例
+
+    - ```ts
+        let qspassword = ""
+        
+        const commonComponentProps = {
+          allowClear: true,
+          showCount: true,
+          maxlength: 30
+        }
+        
+        const passwordAndConfirmPassword: DyFormItem[] = [
+          {
+            label: "密码",
+            field: "password",
+            component: "Password",
+            formItemProps: {
+              rules: [
+                { required: true, message: "请输入密码" },
+                {
+                  min: 5,
+                  max: 30,
+                  message: "密码长度为5-30位"
+                },
+                {
+                  validator: (_rule: any, value: any) => {
+                    qspassword = value
+                    return Promise.resolve()
+                  }
+                }
+              ]
+            },
+            componentProps: commonComponentProps
+          },
+          {
+            label: "确认密码",
+            field: "confirmPassword",
+            component: "Password",
+            formItemProps: {
+              rules: [
+                { required: true, message: "请输入确认密码" },
+                {
+                  min: 5,
+                  max: 30,
+                  message: "密码长度为5-30位"
+                },
+                {
+                  validator: (_rule: any, value: any) => {
+                    if (value !== qspassword) {
+                      return Promise.reject("两次输入密码不一致")
+                    }
+                    return Promise.resolve()
+                  }
+                }
+              ]
+            },
+            componentProps: commonComponentProps
+          }
+        ]
+        ```
+
+    - 
+
+
 
 
 ### Textarea组件
+
+##### 示例
+
+- ```ts
+    {
+    			label: "简介",
+    			field: "desc",
+    			component: "Textarea",
+    			componentProps: {
+    				allowClear: true,
+    				autoSize: {
+    					minRows: 4,
+    					maxRows: 4,
+    				},
+    				maxlength: 200,
+    				showCount: true,
+    			},
+    			formItemProps: {
+    				rules: [
+    					{
+    						required: true,
+    						message: "请输入简介",
+    						trigger: "blur",
+    					},
+    				],
+    			},
+    		},
+    ```
+
+- 
 
 ### TextArea [#](https://www.antdv.com/components/input#textarea)
 
@@ -300,6 +464,34 @@ export type InnerComponent =
 
 
 ### Number组件
+
+##### 示例
+
+- ```ts
+    // number 
+    		{
+    			label: "年龄",
+    			field: "age",
+    			component: "Number",
+    			componentProps: {
+    				allowClear: true,
+    				style: {
+    					width: "400px",
+    				},
+    			},
+    			formItemProps: {
+    				rules: [
+    					{
+    						required: true,
+    						message: "请输入年龄",
+    						trigger: "blur",
+    					},
+    				],
+    			},
+    		},
+    ```
+
+- 
 
 ## API[#](https://www.antdv.com/components/input-number/#api)
 
@@ -343,6 +535,50 @@ export type InnerComponent =
 ### Select
 
 - ### 注意，下面的文档来自Antd，在本项目中，options可以传入一个异步函数，返回值为选项列表，在组件加载时将会自动调用该函数获取参数
+
+- ##### 示例
+
+    - ```ts
+        		// select
+        		{
+        			label: "固定国家选择",
+        			field: "country",
+        			component: "Select",
+        			componentProps: {
+        				allowClear: true,
+        				options: [
+        					{ value: "中国", label: "中国" },
+        					{ value: "美国", label: "美国" },
+        					{ value: "日本", label: "日本" },
+        					{ value: "韩国", label: "韩国" },
+        				],
+        			},
+        		},
+        		// async select 
+        		{
+        			label: "异步国家选择",
+        			field: "async-country",
+        			component: "Select",
+        			componentProps: {
+        				allowClear: true,
+        				options: () => {
+        					return new Promise<Options>((resolve) => {
+        						setTimeout(() => {
+        							resolve([
+        								{ value: "中国", label: "中国" },
+        								{ value: "美国", label: "美国" },
+        								{ value: "日本", label: "日本" },
+        								{ value: "韩国", label: "韩国" },
+        							]);
+        						}, 1000);
+        					});
+        				},
+        			},
+        		},
+        ```
+
+    - 
+
 
 ### Select props [#](https://www.antdv.com/components/select#select-props)
 
@@ -418,15 +654,119 @@ export type InnerComponent =
 
 - 与Select相似，参考antd文档，同样支持options传入异步函数获取列表
 
+- 示例
+
+    - ```ts
+        		// radio
+        		{
+        			label: "性别",
+        			field: "sex",
+        			component: "Radio",
+        			componentProps: {
+        				options: [
+        					{ value: 1, label: "男" },
+        					{ value: 2, label: "女" },
+        					{ value: 3, label: "保密" },
+        				],
+        			},
+        			formItemProps: {
+        				rules: [
+        					{
+        						required: true,
+        						message: "请选择性别",
+        						trigger: "blur",
+        					},
+        				],
+        				hidden: false,
+        			},
+        			value: 1,
+        		},
+        		// async radio
+        		{
+        			label: "异步选择",
+        			field: "async-test",
+        			component: "Radio",
+        			componentProps: {
+        				options: async () => await getOptionApi(),
+        			},
+        			formItemProps: {
+        				rules: [
+        					{
+        						required: true,
+        						message: "请选择性别",
+        						trigger: "blur",
+        					},
+        				],
+        			},
+        			value: 1,
+        		},
+        ```
+
+    - 
+
+
 
 
 ### CheckBox
 
 - 同上，类似Radio
 
+##### 示例
 
+- ```ts
+    		// checkbox
+    		{
+    			label: "兴趣",
+    			field: "hobby",
+    			component: "Checkbox",
+    			componentProps: {
+    				options: [
+    					{ value: 1, label: "足球" },
+    					{ value: 2, label: "篮球" },
+    					{ value: 3, label: "排球" },
+    				],
+    			},
+    		},
+    		// async checkbox
+    		{
+    			label: "异步多选",
+    			field: "async-checkbox",
+    			component: "Checkbox",
+    			componentProps: {
+    				options: async () => await getOptionApi(),
+    			},
+    		},
+    ```
+
+- 
 
 ### DatePicker
+
+##### 示例
+
+- ```ts
+    		// datepicker
+    		{
+    			label: "生日",
+    			field: "birthday",
+    			component: "DatePicker",
+    			formItemProps: {
+    				rules: [
+    					{
+    						required: true,
+    						message: "生日日期不能为空",
+    						trigger: "blur",
+    					},
+    				],
+    			},
+    			componentProps: {
+    				format: "YYYY-MM-DD",
+    				valueFormat: "YYYY-MM-DD",
+    			},
+    		},
+    ```
+
+- 
 
 ### Common API [#](https://www.antdv.com/components/date-picker#common-api)
 
@@ -551,6 +891,33 @@ The following APIs are shared by DatePicker, RangePicker.
 
 ### TimePicker
 
+##### 示例
+
+- ```ts
+    		// timepicker
+    		{
+    			label: "时间",
+    			field: "time",
+    			component: "TimePicker",
+    			componentProps: {
+    				format: "HH:mm:ss",
+    				valueFormat: "HH:mm:ss",
+    				tooltips: ["选择时间"],
+    			},
+    			formItemProps: {
+    				rules: [
+    					{
+    						required: true,
+    						message: "请选择时间",
+    						trigger: "blur",
+    					},
+    				],
+    			},
+    		},
+    ```
+
+- 
+
 ## API[#](https://www.antdv.com/components/time-picker#api)
 
 \#
@@ -604,6 +971,47 @@ type DisabledTime = (now: Dayjs) => {
 
 ### Slider
 
+##### 示例
+
+- ```ts
+    		// slider
+    		{
+    			label: "滑块",
+    			field: "slider",
+    			component: "Slider",
+    			componentProps: {
+    				min: 0,
+    				max: 100,
+    				marks: {
+    					0: "0%",
+    					50: "50%",
+    					100: "100%",
+    				},
+    			},
+    			next: (model): DyForm | undefined => {
+    				if (((model as number) || 0) > 50) {
+    					return {
+    						items: [
+    							{
+    								label: "提示信息",
+    								field: "tip",
+    								component: "Tag",
+    								componentProps: {
+    									bordered: true,
+    									color: "red",
+    									size: "large",
+    								},
+    								value: "你选中的值已经超过50",
+    							},
+    						],
+    					};
+    				}
+    			},
+    		},
+    ```
+
+- 
+
 ## API[#](https://www.antdv.com/components/slider#api)
 
 \#
@@ -641,6 +1049,24 @@ type DisabledTime = (now: Dayjs) => {
 
 ### Switch
 
+##### 示例
+
+- ```ts
+    		// switch
+    		{
+    			label: "是否开启",
+    			field: "switch",
+    			component: "Switch",
+    			componentProps: {
+    				checkedChildren: "开",
+    				unCheckedChildren: "关",
+    			},
+    			value: true,
+            }
+    ```
+
+- 
+
 ## API[#](https://www.antdv.com/components/switch#api)
 
 \#
@@ -667,6 +1093,101 @@ type DisabledTime = (now: Dayjs) => {
 
 
 ### Upload
+
+##### 示例
+
+- ```ts
+    		// avatar upload
+    		{
+    			label: "头像",
+    			field: "avatar",
+    			component: "Upload",
+    			componentProps: {
+    				uploadProps: {
+    					accept: "image/*",
+    					action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
+    					maxCount: 1,
+    					multiple: false,
+    					listType: "picture-card",
+    					customRequest: (info: any) => {
+    						setTimeout(() => {
+    							info.onSuccess("ok", info.file);
+    						}, 1000);
+    					},
+    				},
+    				uploadType: "Image",
+    			},
+    			value: [],
+    		},
+    ```
+
+- ```ts
+    		// images
+    		{
+    			label: "图片",
+    			field: "images",
+    			component: "Upload",
+    			componentProps: {
+    				uploadProps: {
+    					accept: "image/*",
+    					action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
+    					maxCount: 5,
+    					multiple: true,
+    					listType: "picture",
+    				},
+    				uploadType: "Dragger",
+    			},
+    		},
+    ```
+
+- ```ts
+    		// 头像
+    		{
+    			label: "头像",
+    			field: "avatar",
+    			component: "Upload",
+    			componentProps: {
+    				uploadProps: {
+    					accept: "image/*",
+    					maxCount: 1,
+    					multiple: false,
+    					listType: "picture-card",
+    					customRequest: async (info) => {
+    						new Promise<string>((resolve) => {
+    							const fr = new FileReader();
+    							fr.onload = (e) => {
+    								resolve(e.target?.result as string);
+    							};
+    							fr.readAsDataURL(info.file as File);
+    						})
+    							.then((data) => {
+    								console.log("base64: ", data);
+    								if (
+    									testAvatarGroup.items[0]?.componentProps
+    										?.avatarGroupValue?.[0]
+    								) {
+    									testAvatarGroup.items[0].componentProps.avatarGroupValue[0].src =
+    										data;
+    								}
+    								info.onSuccess?.(data);
+    							})
+    							.catch((e) => {
+    								info.onError?.(e);
+    							});
+    					},
+    				},
+    				uploadType: "Image",
+    				// 将元素居中放置
+    				style: {
+    					display: "flex",
+    					justifyContent: "center",
+    				},
+    			},
+    			value: [],
+    		},
+    ```
+
+- 
 
 自定义参数
 
@@ -780,6 +1301,86 @@ When uploading state change, it returns:
 
 ## 注意，此处对treeData参数进行了增强，可以传入异步函数，在表单加载时自动获取数据
 
+
+
+##### 示例
+
+- ```ts
+    		// treedata
+    		{
+    			label: "树形选择",
+    			field: "tree",
+    			component: "TreeSelect",
+    			componentProps: {
+    				treeData: [
+    					{
+    						title: "Node1",
+    						value: "0-0",
+    						children: [
+    							{
+    								title: "Child Node1",
+    								value: "0-0-0",
+    							},
+    						],
+    					},
+    					{
+    						title: "Node2",
+    						value: "0-1",
+    						children: [
+    							{
+    								title: "Child Node3",
+    								value: "0-1-0",
+    							},
+    						],
+    					},
+    				],
+    				multiple: true,
+    			},
+    		},
+    ```
+
+- ```ts
+    		// async treeSelect
+    		{
+    			label: "异步树形选择",
+    			field: "async-tree",
+    			component: "TreeSelect",
+    			componentProps: {
+    				treeData: () => {
+    					return new Promise((resolve) => {
+    						setTimeout(() => {
+    							resolve([
+    								{
+    									title: "Node1",
+    									value: "0-0",
+    									children: [
+    										{
+    											title: "Child Node1",
+    											value: "0-0-0",
+    										},
+    									],
+    								},
+    								{
+    									title: "Node2",
+    									value: "0-1",
+    									children: [
+    										{
+    											title: "Child Node3",
+    											value: "0-1-0",
+    										},
+    									],
+    								},
+    							]);
+    						}, 1000);
+    					});
+    				},
+    				multiple: true,
+    			},
+    		},
+    ```
+
+- 
+
 ## API[#](https://www.antdv.com/components/tree-select#api)
 
 ### Tree props [#](https://www.antdv.com/components/tree-select#tree-props)
@@ -841,62 +1442,100 @@ When uploading state change, it returns:
 
 
 
-### TimePicker
-
-## API[#](https://www.antdv.com/components/time-picker#api)
-
-\#
-
-| Property            | Description                                                  | Type                                                         | Default         | Version |
-| :------------------ | :----------------------------------------------------------- | :----------------------------------------------------------- | :-------------- | :------ |
-| allowClear          | Whether allow clearing text                                  | boolean                                                      | true            |         |
-| autofocus           | If get focus when component mounted                          | boolean                                                      | false           |         |
-| bordered            | Whether has border style                                     | boolean                                                      | true            |         |
-| clearIcon           | The custom clear icon                                        | v-slot:clearIcon                                             | -               |         |
-| clearText           | The clear tooltip of icon                                    | string                                                       | clear           |         |
-| disabled            | Determine whether the TimePicker is disabled                 | boolean                                                      | false           |         |
-| disabledTime        | To specify the time that cannot be selected                  | [DisabledTime](https://www.antdv.com/components/time-picker#disabledtime) | -               | 3.3.0   |
-| format              | To set the time format                                       | string                                                       | `HH:mm:ss`      |         |
-| getPopupContainer   | To set the container of the floating layer, while the default is to create a div element in body | function(trigger)                                            | -               |         |
-| hideDisabledOptions | Whether hide the options that can not be selected            | boolean                                                      | false           |         |
-| hourStep            | Interval between hours in picker                             | number                                                       | 1               |         |
-| inputReadOnly       | Set the `readonly` attribute of the input tag (avoids virtual keyboard on touch devices) | boolean                                                      | false           |         |
-| minuteStep          | Interval between minutes in picker                           | number                                                       | 1               |         |
-| open(v-model)       | Whether to popup panel                                       | boolean                                                      | false           |         |
-| placeholder         | Display when there's no value                                | string \| [string, string]                                   | `Select a time` |         |
-| placement           | The position where the selection box pops up                 | `bottomLeft` `bottomRight` `topLeft` `topRight`              | bottomLeft      |         |
-| popupClassName      | The className of panel                                       | string                                                       | -               |         |
-| popupStyle          | The style of panel                                           | CSSProperties                                                | -               |         |
-| renderExtraFooter   | Called from time picker panel to render some addon to its bottom | v-slot:renderExtraFooter                                     | -               |         |
-| secondStep          | Interval between seconds in picker                           | number                                                       | 1               |         |
-| showNow             | Whether to show `Now` button on panel                        | boolean                                                      | -               |         |
-| suffixIcon          | The custom suffix icon                                       | v-slot:suffixIcon                                            | -               |         |
-| use12Hours          | Display as 12 hours format, with default format `h:mm:ss a`  | boolean                                                      | false           |         |
-| value(v-model)      | To set time                                                  | [dayjs](https://day.js.org/)                                 | -               |         |
-| valueFormat         | optional, format of binding value. If not specified, the binding value will be a Date object | string, [date formats](https://day.js.org/docs/en/display/format) | -               |         |
-
-#### DisabledTime [#](https://www.antdv.com/components/time-picker#disabledtime)
-
-```typescript
-type DisabledTime = (now: Dayjs) => {
-  disabledHours?: () => number[];
-  disabledMinutes?: (selectedHour: number) => number[];
-  disabledSeconds?: (selectedHour: number, selectedMinute: number) => number[];
-};
-```
-
-### events [#](https://www.antdv.com/components/time-picker#events)
-
-| Events Name | Description                                                  | Arguments                                                 |
-| :---------- | :----------------------------------------------------------- | :-------------------------------------------------------- |
-| change      | a callback function, can be executed when the selected time is changing | function(time: dayjs \| string, timeString: string): void |
-| openChange  | a callback function which will be called while panel opening/closing | (open: boolean): void                                     |
-
-
-
 ### AutoComplete
 
+##### 示例
 
+- ```ts
+    //AutoComplete color
+    		{
+    			label: "自动补全",
+    			field: "autoCompleteColor",
+    			component: "AutoComplete",
+    			componentProps: {
+    				fetchList: [
+    					{
+    						value: "红色",
+    					},
+    					{
+    						value: "绿色",
+    					},
+    					{
+    						value: "蓝色",
+    					},
+    					{
+    						value: "黄色",
+    					},
+    				],
+    				enableSplit: true,
+    				splitWord: "，",
+    				title: "颜色",
+    				style: {
+    					width: "400px",
+    				},
+    				allowClear: true,
+    			},
+    			formItemProps: {
+    				rules: [
+    					{
+    						required: true,
+    						message: "请选择",
+    						trigger: "blur",
+    					},
+    				],
+    			},
+    			next: (model): DyForm | undefined => {
+    				if (((model as string) || "").includes("蓝色")) {
+    					return {
+    						items: [
+    							{
+    								label: "选择类型",
+    								field: "type",
+    								component: "AutoComplete",
+    								componentProps: {
+    									fetchList: [
+    										{
+    											value: "类型1",
+    										},
+    										{
+    											value: "类型2",
+    										},
+    										{
+    											value: "类型3",
+    										},
+    										{
+    											value: "类型4",
+    										},
+    									],
+    									enableSplit: true,
+    									splitWord: "，",
+    									title: "类型",
+    									allowClear: true,
+    									style: {
+    										width: "350px",
+    									},
+    								},
+    								formItemProps: {
+    									rules: [
+    										{
+    											required: true,
+    											message: "请选择",
+    											trigger: "blur",
+    										},
+    									],
+    									style: {
+    										width: "400px",
+    									},
+    								},
+    							},
+    						],
+    					};
+    				}
+    			},
+    		},
+    ```
+
+- 
 
 ## 提供了自动提示的输入框，以下是该组件的参数，其它参数参考antd
 
@@ -987,11 +1626,75 @@ type DisabledTime = (now: Dayjs) => {
 
 value：显示的值
 
+##### 示例
 
+- ```ts
+    							{
+    								label: "提示信息",
+    								field: "tip",
+    								component: "Tag",
+    								componentProps: {
+    									bordered: true,
+    									color: "red",
+    									size: "large",
+    								},
+    								value: "你选中的值已经超过50",
+    							},
+    ```
+
+- 
 
 ### Mentions
 
 提及输入框
+
+##### 示例
+
+- ```ts
+    		//Mentions
+    		{
+    			label: "Mentions",
+    			field: "mentions",
+    			component: "Mentions",
+    			componentProps: {
+    				allowClear: true,
+    				placeholder: "输入 @ 触发",
+    				prefix: ["@"],
+    				autofocus: true,
+    				options: [
+    					{
+    						value: "百里守约",
+    						label: "百里守约",
+    					},
+    					{
+    						value: "安琪拉",
+    						label: "安琪拉",
+    					},
+    					{
+    						value: "李白",
+    						label: "李白",
+    					},
+    					{
+    						value: "韩信",
+    						label: "韩信",
+    					},
+    				],
+    			},
+    			formItemProps: {
+    				rules: [
+    					{
+    						required: true,
+    						message: "请输入内容",
+    						trigger: "blur",
+    					},
+    				],
+    				colon: false,
+    				tooltip: "在这里输入内容",
+    			},
+    		},
+    ```
+
+- 
 
 ## API[#](https://www.antdv.com/components/mentions#api)
 
@@ -1029,6 +1732,24 @@ value：显示的值
 
 ### Divider
 
+##### 示例
+
+- ```ts
+    		// devider
+    		{
+    			label: "",
+    			field: "divider",
+    			component: "Divider",
+    			componentProps: {
+    				orientation: "center",
+    				orientationMargin: "10px",
+    				dividerText: "下面是其他信息",
+    			},
+    		},
+    ```
+
+- 
+
 ## 分割线
 
 ## API[#](https://www.antdv.com/components/divider#api)
@@ -1046,6 +1767,50 @@ value：显示的值
 
 
 ### AvatarGroup
+
+#### 示例
+
+- ```ts
+    export const testAvatarGroup: DyForm = {
+    	items: [
+    		{
+    			label: "AvatarGroup",
+    			field: "avatarGroup",
+    			component: "AvatarGroup",
+    			componentProps: {
+    				groupProps: {
+    					maxCount: 2,
+    					maxPopoverPlacement: "bottom",
+    				},
+    				avatarProps: {
+    					size: 64,
+    					shape: "square",
+    					crossOrigin: "anonymous",
+    				},
+    				avatarGroupValue: [
+    					{
+    						key: "W",
+    						src: "",
+    						label: "Lily",
+    					},
+    					{
+    						key: "A",
+    						src: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+    						label: "Lily",
+    					},
+    					{
+    						key: "B",
+    						src: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+    						label: "Lily",
+    					},
+    				],
+    			},
+    		},
+    	],
+    };
+    ```
+
+- 
 
 ## 头像组
 
@@ -1088,6 +1853,43 @@ value：显示的值
 ### Corn
 
 ## corn表达式选择器
+
+##### 示例
+
+- ```ts
+    
+    export const cornSchema: DyForm = {
+    	title: "dynamicForm",
+    	items: [
+    		{
+    			label: "Corn",
+    			field: "corn",
+    			component: "Corn",
+    			componentProps: {
+    				allowClear: true,
+    				showCount: true,
+    				maxlength: 20,
+    				style: {
+    					width: "400px",
+    				},
+    			},
+    			formItemProps: {
+    				rules: [
+    					{
+    						required: true,
+    						message: "请输入Corn",
+    						trigger: "blur",
+    					},
+    				],
+    				colon: false,
+    				tooltip: "在这里输入Corn",
+    			},
+    		},
+    	],
+    };
+    ```
+
+- 
 
 
 
