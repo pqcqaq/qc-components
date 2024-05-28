@@ -778,3 +778,329 @@ When uploading state change, it returns:
 
 ### TreeSelect
 
+## 注意，此处对treeData参数进行了增强，可以传入异步函数，在表单加载时自动获取数据
+
+## API[#](https://www.antdv.com/components/tree-select#api)
+
+### Tree props [#](https://www.antdv.com/components/tree-select#tree-props)
+
+| Property                  | Description                                                  | Type                                                         | Default                                                | Version |                          |
+| :------------------------ | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------- | :------ | :----------------------- |
+| allowClear                | Whether allow clear                                          | boolean                                                      | false                                                  |         |                          |
+| defaultValue              | To set the initial selected treeNode(s).                     | string\|string[]                                             | -                                                      |         |                          |
+| disabled                  | Disabled or not                                              | boolean                                                      | false                                                  |         |                          |
+| popupClassName            | className of dropdown menu                                   | string                                                       | -                                                      |         | 4.0                      |
+| dropdownMatchSelectWidth  | Determine whether the dropdown menu and the select input are the same width. Default set `min-width` same as input. Will ignore when value less than select width. `false` will disable virtual scroll | boolean \| number                                            | true                                                   |         |                          |
+| dropdownStyle             | To set the style of the dropdown menu                        | object                                                       | -                                                      |         |                          |
+| fieldNames                | Replace the label,value and children fields in treeNode with the corresponding fields in treeData | object                                                       | { children:'children', label:'title', value:'value' }  |         | 3.0.0                    |
+| filterTreeNode            | Whether to filter treeNodes by input value. The value of `treeNodeFilterProp` is used for filtering by default. | boolean\|Function(inputValue: string, treeNode: TreeNode) (should return boolean) | Function                                               |         |                          |
+| getPopupContainer         | To set the container of the dropdown menu. The default is to create a `div` element in `body`, you can reset it to the scrolling area and make a relative reposition. | Function(triggerNode)                                        | () => document.body                                    |         |                          |
+| labelInValue              | whether to embed label in value, turn the format of value from `string` to `{value: string, label: VNode, halfChecked: string[]}` | boolean                                                      | false                                                  |         |                          |
+| listHeight                | Config popup height                                          | number                                                       | 256                                                    |         |                          |
+| loadData                  | Load data asynchronously.                                    | function(node)                                               | -                                                      |         |                          |
+| maxTagCount               | Max tag count to show                                        | number                                                       | -                                                      |         |                          |
+| maxTagPlaceholder         | Placeholder for not showing tags                             | slot/function(omittedValues)                                 | -                                                      |         |                          |
+| multiple                  | Support multiple or not, will be `true` when enable `treeCheckable`. | boolean                                                      | false                                                  |         |                          |
+| notFoundContent           | Specify content to show when no result matches               | slot                                                         | `Not Found`                                            |         |                          |
+| placeholder               | Placeholder of the select input                              | string\|slot                                                 | -                                                      |         |                          |
+| placement                 | The position where the selection box pops up                 | `bottomLeft` `bottomRight` `topLeft` `topRight`              | bottomLeft                                             | 3.3.0   |                          |
+| replaceFields             | Replace the label,value, key and children fields in treeNode with the corresponding fields in treeData | object                                                       | { children:'children', label:'title', value: 'value' } |         | 1.6.1 (3.0.0 deprecated) |
+| searchPlaceholder         | Placeholder of the search input                              | string\|slot                                                 | -                                                      |         |                          |
+| searchValue(v-model)      | work with `search` event to make search value controlled.    | string                                                       | -                                                      |         |                          |
+| showCheckedStrategy       | The way show selected item in box. **Default:** just show child nodes. **`TreeSelect.SHOW_ALL`:** show all checked treeNodes (include parent treeNode). **`TreeSelect.SHOW_PARENT`:** show checked treeNodes (just show parent treeNode). | enum { TreeSelect.SHOW_ALL, TreeSelect.SHOW_PARENT, TreeSelect.SHOW_CHILD } | TreeSelect.SHOW_CHILD                                  |         |                          |
+| showSearch                | Whether to display a search input in the dropdown menu(valid only in the single mode) | boolean                                                      | false                                                  |         |                          |
+| size                      | To set the size of the select input, options: `large` `small` | string                                                       | 'default'                                              |         |                          |
+| status                    | Set validation status                                        | 'error' \| 'warning'                                         | -                                                      | 3.3.0   |                          |
+| suffixIcon                | The custom suffix icon                                       | VNode \| slot                                                | -                                                      |         |                          |
+| tagRender                 | Customize tag render when `multiple`                         | (props) => slot                                              | -                                                      | 3.0     |                          |
+| title                     | custom title                                                 | slot                                                         |                                                        | 3.0.0   |                          |
+| treeCheckable             | Whether to show checkbox on the treeNodes                    | boolean                                                      | false                                                  |         |                          |
+| treeCheckStrictly         | Whether to check nodes precisely (in the `checkable` mode), means parent and child nodes are not associated, and it will make `labelInValue` be true | boolean                                                      | false                                                  |         |                          |
+| treeData                  | Data of the treeNodes, manual construction work is no longer needed if this property has been set(ensure the Uniqueness of each value) | array\<{ value, title, children, [disabled, disableCheckbox, selectable] }> | []                                                     |         |                          |
+| treeDataSimpleMode        | Enable simple mode of treeData. Changes the `treeData` schema to: [{id:1, pId:0, value:'1', title:"test1",...},...] where pId is parent node's id). It is possible to replace the default `id` and `pId` keys by providing object to `treeDataSimpleMode` | false\|object\<{ id: string, pId: string, rootPId: null }>   | false                                                  |         |                          |
+| treeDefaultExpandAll      | Whether to expand all treeNodes by default                   | boolean                                                      | false                                                  |         |                          |
+| treeDefaultExpandedKeys   | Default expanded treeNodes                                   | string[] \| number[]                                         | -                                                      |         |                          |
+| treeExpandedKeys(v-model) | Set expanded keys                                            | string[] \| number[]                                         | -                                                      |         |                          |
+| treeIcon                  | Shows the icon before a TreeNode's title. There is no default style; you must set a custom style for it if set to `true` | boolean                                                      | false                                                  |         |                          |
+| treeLoadedKeys            | (Controlled) Set loaded tree nodes, work with `loadData` only | string[]                                                     | []                                                     | 3.3.0   |                          |
+| treeLine                  | Show the line. Ref [Tree - showLine](https://www.antdv.com/components/tree/#components-tree-demo-line) | boolean \| object                                            | false                                                  | 3.0     |                          |
+| treeNodeFilterProp        | Will be used for filtering if `filterTreeNode` returns true  | string                                                       | 'value'                                                |         |                          |
+| treeNodeLabelProp         | Will render as content of select                             | string                                                       | 'title'                                                |         |                          |
+| value(v-model)            | To set the current selected treeNode(s).                     | string\|string[]                                             | -                                                      |         |                          |
+| virtual                   | Disable virtual scroll when set to false                     | boolean                                                      | true                                                   | 3.0     |                          |
+
+### Events [#](https://www.antdv.com/components/tree-select#events)
+
+| Events Name           | Description                                                  | Arguments                     | Version |
+| :-------------------- | :----------------------------------------------------------- | :---------------------------- | :------ |
+| change                | A callback function, can be executed when selected treeNodes or input value change | function(value, label, extra) |         |
+| dropdownVisibleChange | Called when dropdown open                                    | function(open)                | 3.0     |
+| search                | A callback function, can be executed when the search input changes. | function(value: string)       |         |
+| select                | A callback function, can be executed when you select a treeNode. | function(value, node, extra)  |         |
+| treeExpand            | A callback function, can be executed when treeNode expanded  | function(expandedKeys)        |         |
+
+
+
+### TimePicker
+
+## API[#](https://www.antdv.com/components/time-picker#api)
+
+\#
+
+| Property            | Description                                                  | Type                                                         | Default         | Version |
+| :------------------ | :----------------------------------------------------------- | :----------------------------------------------------------- | :-------------- | :------ |
+| allowClear          | Whether allow clearing text                                  | boolean                                                      | true            |         |
+| autofocus           | If get focus when component mounted                          | boolean                                                      | false           |         |
+| bordered            | Whether has border style                                     | boolean                                                      | true            |         |
+| clearIcon           | The custom clear icon                                        | v-slot:clearIcon                                             | -               |         |
+| clearText           | The clear tooltip of icon                                    | string                                                       | clear           |         |
+| disabled            | Determine whether the TimePicker is disabled                 | boolean                                                      | false           |         |
+| disabledTime        | To specify the time that cannot be selected                  | [DisabledTime](https://www.antdv.com/components/time-picker#disabledtime) | -               | 3.3.0   |
+| format              | To set the time format                                       | string                                                       | `HH:mm:ss`      |         |
+| getPopupContainer   | To set the container of the floating layer, while the default is to create a div element in body | function(trigger)                                            | -               |         |
+| hideDisabledOptions | Whether hide the options that can not be selected            | boolean                                                      | false           |         |
+| hourStep            | Interval between hours in picker                             | number                                                       | 1               |         |
+| inputReadOnly       | Set the `readonly` attribute of the input tag (avoids virtual keyboard on touch devices) | boolean                                                      | false           |         |
+| minuteStep          | Interval between minutes in picker                           | number                                                       | 1               |         |
+| open(v-model)       | Whether to popup panel                                       | boolean                                                      | false           |         |
+| placeholder         | Display when there's no value                                | string \| [string, string]                                   | `Select a time` |         |
+| placement           | The position where the selection box pops up                 | `bottomLeft` `bottomRight` `topLeft` `topRight`              | bottomLeft      |         |
+| popupClassName      | The className of panel                                       | string                                                       | -               |         |
+| popupStyle          | The style of panel                                           | CSSProperties                                                | -               |         |
+| renderExtraFooter   | Called from time picker panel to render some addon to its bottom | v-slot:renderExtraFooter                                     | -               |         |
+| secondStep          | Interval between seconds in picker                           | number                                                       | 1               |         |
+| showNow             | Whether to show `Now` button on panel                        | boolean                                                      | -               |         |
+| suffixIcon          | The custom suffix icon                                       | v-slot:suffixIcon                                            | -               |         |
+| use12Hours          | Display as 12 hours format, with default format `h:mm:ss a`  | boolean                                                      | false           |         |
+| value(v-model)      | To set time                                                  | [dayjs](https://day.js.org/)                                 | -               |         |
+| valueFormat         | optional, format of binding value. If not specified, the binding value will be a Date object | string, [date formats](https://day.js.org/docs/en/display/format) | -               |         |
+
+#### DisabledTime [#](https://www.antdv.com/components/time-picker#disabledtime)
+
+```typescript
+type DisabledTime = (now: Dayjs) => {
+  disabledHours?: () => number[];
+  disabledMinutes?: (selectedHour: number) => number[];
+  disabledSeconds?: (selectedHour: number, selectedMinute: number) => number[];
+};
+```
+
+### events [#](https://www.antdv.com/components/time-picker#events)
+
+| Events Name | Description                                                  | Arguments                                                 |
+| :---------- | :----------------------------------------------------------- | :-------------------------------------------------------- |
+| change      | a callback function, can be executed when the selected time is changing | function(time: dayjs \| string, timeString: string): void |
+| openChange  | a callback function which will be called while panel opening/closing | (open: boolean): void                                     |
+
+
+
+### AutoComplete
+
+
+
+## 提供了自动提示的输入框，以下是该组件的参数，其它参数参考antd
+
+- title
+
+  - 内容标题，用于placeholder中显示
+
+- value：v-model
+
+  - 输入值
+
+- fetchList
+
+  - 提示列表获取
+
+  - ```ts
+    fetchList:
+    		| (() => Promise<AutoInputList[]> | AutoInputList[])
+    		| AutoInputList[]
+    		| undefined;
+    ```
+
+- style
+
+  - a-auto-complete的样式设置
+
+- enableSplit
+
+  - 是否启用分词，在启用分词之后，输入分词的字符可以进行再次提示，按下回车后自动补全
+
+- splitWord
+
+  - 分词的字符
+
+- 默认placeholder：
+
+  - ```ts
+    "`输入${title}内容${
+    			enableSplit ? '（以' + splitWord + '分割）' : ''
+    		} 或选择已有${title}`"
+    ```
+
+- 
+
+## API[#](https://www.antdv.com/components/auto-complete#api)
+
+| Property                              | Description                                                  | Type                                                         | Default                 | Version |
+| :------------------------------------ | :----------------------------------------------------------- | :----------------------------------------------------------- | :---------------------- | :------ |
+| allowClear                            | Show clear button, effective in multiple mode only.          | boolean                                                      | false                   |         |
+| autofocus                             | get focus when component mounted                             | boolean                                                      | false                   |         |
+| backfill                              | backfill selected item the input when using keyboard         | boolean                                                      | false                   |         |
+| bordered                              | Whether has border style                                     | boolean                                                      | true                    | 4.0     |
+| clearIcon                             | Use slot custom clear icon                                   | slot                                                         | `<CloseCircleFilled />` | 4.0     |
+| default (for customize input element) | customize input element                                      | slot                                                         | `<Input />`             |         |
+| defaultActiveFirstOption              | Whether active first option by default                       | boolean                                                      | true                    |         |
+| defaultOpen                           | Initial open state of dropdown                               | boolean                                                      | -                       |         |
+| disabled                              | Whether disabled select                                      | boolean                                                      | false                   |         |
+| popupClassName                        | The className of dropdown menu                               | string                                                       | -                       | 4.0     |
+| dropdownMatchSelectWidth              | Determine whether the dropdown menu and the select input are the same width. Default set `min-width` same as input. Will ignore when value less than select width. `false` will disable virtual scroll | boolean \| number                                            | true                    |         |
+| dropdownMenuStyle                     | additional style applied to dropdown menu                    | object                                                       |                         | 1.5.0   |
+| filterOption                          | If true, filter options by input, if function, filter options against it. The function will receive two arguments, `inputValue` and `option`, if the function returns `true`, the option will be included in the filtered set; Otherwise, it will be excluded. | boolean or function(inputValue, option)                      | true                    |         |
+| open                                  | Controlled open state of dropdown                            | boolean                                                      | -                       |         |
+| option                                | custom render option by slot                                 | v-slot:option="{value, label, [disabled, key, title]}"       | -                       | 3.0     |
+| options                               | Data source for autocomplete                                 | [DataSourceItemType](https://github.com/vueComponent/ant-design-vue/blob/724d53b907e577cf5880c1e6742d4c3f924f8f49/components/auto-complete/index.vue#L9)[] |                         |         |
+| placeholder                           | placeholder of input                                         | string                                                       | -                       |         |
+| status                                | Set validation status                                        | 'error' \| 'warning'                                         | -                       | 3.3.0   |
+| v-model:value                         | selected option                                              | string\|string[]\|{ key: string, label: string\|vNodes }\|Array<{ key: string, label: string\|vNodes }> | -                       |         |
+
+### events [#](https://www.antdv.com/components/auto-complete#events)
+
+| Events Name           | Description                                                  | Arguments               | Version |       |
+| :-------------------- | :----------------------------------------------------------- | :---------------------- | :------ | :---- |
+| blur                  | Called when leaving the component.                           | function()              |         |       |
+| change                | Called when select an option or input value change, or value of input is changed | function(value)         |         |       |
+| dropdownVisibleChange | Call when dropdown open                                      | function(open)          |         |       |
+| focus                 | Called when entering the component                           | function()              |         |       |
+| search                | Called when searching items.                                 | function(value)         | -       |       |
+| select                | Called when a option is selected. param is option's value and option instance. | function(value, option) |         |       |
+| clear                 | Called when clear                                            | function                | -       | 3.3.0 |
+
+
+
+
+
+### Tag
+
+## 该组件只用于标签显示
+
+value：显示的值
+
+
+
+### Mentions
+
+提及输入框
+
+## API[#](https://www.antdv.com/components/mentions#api)
+
+\#
+
+### Mention [#](https://www.antdv.com/components/mentions#mention)
+
+| Property          | Description                                        | Type                                                        | Default     |
+| :---------------- | :------------------------------------------------- | :---------------------------------------------------------- | :---------- |
+| autofocus         | Auto get focus when component mounted              | boolean                                                     | `false`     |
+| defaultValue      | Default value                                      | string                                                      |             |
+| filterOption      | Customize filter option logic                      | false \| (input: string, option: OptionProps) => boolean    |             |
+| getPopupContainer | Set the mount HTML node for suggestions            | () => HTMLElement                                           |             |
+| notFoundContent   | Set mentions content when not match                | string \| slot                                              | 'Not Found' |
+| placement         | Set popup placement                                | `top` | `bottom`                                            | `bottom`    |
+| prefix            | Set trigger prefix keyword                         | string \| string[]                                          | '@'         |
+| split             | Set split string before and after selected mention | string                                                      | ' '         |
+| status            | Set validation status                              | 'error' \| 'warning' \| 'success' \| 'validating'           | -           |
+| validateSearch    | Customize trigger search logic                     | (text: string, props: MentionsProps) => void                |             |
+| value(v-model)    | Set value of mentions                              | string                                                      |             |
+| options           | Option Configuration                               | [Options](https://www.antdv.com/components/mentions#option) | []          |
+| option            | custom option label                                | v-slot:option="option"                                      | -           |
+
+### Events [#](https://www.antdv.com/components/mentions#events)
+
+| Events Name | Description                         | Arguments                                     |
+| :---------- | :---------------------------------- | :-------------------------------------------- |
+| blur        | remove focus                        | function                                      |
+| change      | Trigger when value changed          | function(value: string)                       |
+| focus       | get focus                           | function                                      |
+| search      | Trigger when prefix hit             | function(value: string, prefix: string)       |
+| select      | Trigger when user select the option | function(option: OptionProps, prefix: string) |
+
+
+
+### Divider
+
+## 分割线
+
+## API[#](https://www.antdv.com/components/divider#api)
+
+\#
+
+| Property          | Description                                                  | Type                        | Default      | Version |
+| :---------------- | :----------------------------------------------------------- | :-------------------------- | :----------- | :------ |
+| dashed            | whether line is dashed                                       | boolean                     | false        |         |
+| orientation       | position of title inside divider                             | `left` | `right` | `center` | `center`     |         |
+| orientationMargin | The margin-left/right between the title and its closest border, while the `orientation` must be `left` or `right` | string \| number            | -            | 3.0     |
+| plain             | Divider text show as plain style                             | boolean                     | true         | 2.2.0   |
+| type              | direction type of divider                                    | `horizontal` | `vertical`   | `horizontal` |         |
+
+
+
+### AvatarGroup
+
+## 头像组
+
+这里的两种参数，在不同的参数下面
+
+## avatarProps：
+
+### Avatar [#](https://www.antdv.com/components/avatar#avatar)
+
+| Property    | Description                                                  | Type                                                         | Default   | Version |
+| :---------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :-------- | :------ |
+| alt         | This attribute defines the alternative text describing the image | string                                                       | -         |         |
+| crossOrigin | cors settings attributes                                     | `'anonymous'` | `'use-credentials'` | `''`                   | -         | 3.0     |
+| draggable   | Whether the picture is allowed to be dragged                 | boolean \| `'true'` | `'false'`                              | -         | 2.2.0   |
+| gap         | Letter type unit distance between left and right sides       | number                                                       | 4         | 2.2.0   |
+| icon        | the `Icon` type for an icon avatar, see `Icon` Component     | VNode \| slot                                                | -         |         |
+| loadError   | handler when img load error, return false to prevent default fallback behavior | () => boolean                                                | -         |         |
+| shape       | the shape of avatar                                          | `circle` | `square`                                          | `circle`  |         |
+| size        | The size of the avatar                                       | number \| `large` | `small` | `default` \| { xs: number, sm: number, ...} | `default` | 2.2.0   |
+| src         | the address of the image for an image avatar                 | string                                                       | -         |         |
+| srcset      | a list of sources to use for different screen resolutions    | string                                                       | -         |         |
+
+
+
+## groupProps：
+
+### Avatar.Group (2.2.0) [#](https://www.antdv.com/components/avatar#avatar-group-2-2-0)
+
+| Property            | Description                              | Type                                                         | Default   | Version |
+| :------------------ | :--------------------------------------- | :----------------------------------------------------------- | :-------- | :------ |
+| maxCount            | Max avatars to show                      | number                                                       | -         |         |
+| maxPopoverPlacement | The placement of excess avatar Popover   | `top` | `bottom`                                             | `top`     |         |
+| maxPopoverTrigger   | Set the trigger of excess avatar Popover | `hover` | `focus` | `click`                                  | `hover`   | 3.0     |
+| maxStyle            | The style of excess avatar style         | CSSProperties                                                | -         |         |
+| size                | The size of the avatar                   | number \| `large` | `small` | `default` \| { xs: number, sm: number, ...} | `default` |         |
+| shape               | The shape of the avatar                  | `circle` | `square`                                          | `circle`  | 4.0     |
+
+
+
+### Corn
+
+## corn表达式选择器
+
+
+
+
+
+----
+
+## 使用自定义组件
+
+
+
+1. ### 在schema的component中，使用导入的自定义组件
+
+2. ### 编写componentProps中的customProps，这里是你自己的组件参数
+
+3. ### 若要在表单中集成，需要存在value参数（v-model）作为表单输入绑定
