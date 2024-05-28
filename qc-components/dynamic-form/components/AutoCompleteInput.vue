@@ -1,9 +1,13 @@
 <template>
 	<a-auto-complete
 		v-model:value="alterData"
-		:placeholder="`输入${title}内容${
-			enableSplit ? '（以' + splitWord + '分割）' : ''
-		} 或选择已有${title}`"
+		:placeholder="
+			placeholder
+				? placeholder
+				: `输入${title}内容${
+						enableSplit ? '（以' + splitWord + '分割）' : ''
+				  } 或选择已有${title}`
+		"
 		@select="handleSelect"
 		:options="promptList"
 		@search="onSearch"
@@ -32,7 +36,9 @@ const props = defineProps<{
 	style?: Partial<CSSStyleDeclaration>;
 	enableSplit?: boolean;
 	splitWord?: string;
+	placeholder?: string;
 }>();
+
 const emit = defineEmits(["update:value"]);
 const list = ref<AutoInputList[]>([]);
 const promptList = ref<AutoInputList[]>([]);
