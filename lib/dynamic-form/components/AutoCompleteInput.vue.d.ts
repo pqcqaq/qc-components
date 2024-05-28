@@ -9,6 +9,7 @@ declare const _default: import('vue').DefineComponent<__VLS_TypePropsToRuntimePr
     style?: Partial<CSSStyleDeclaration> | undefined;
     enableSplit?: boolean | undefined;
     splitWord?: string | undefined;
+    placeholder?: string | undefined;
 }>, {}, unknown, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
     "update:value": (...args: any[]) => void;
 }, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<__VLS_TypePropsToRuntimeProps<{
@@ -18,6 +19,7 @@ declare const _default: import('vue').DefineComponent<__VLS_TypePropsToRuntimePr
     style?: Partial<CSSStyleDeclaration> | undefined;
     enableSplit?: boolean | undefined;
     splitWord?: string | undefined;
+    placeholder?: string | undefined;
 }>>> & {
     "onUpdate:value"?: ((...args: any[]) => any) | undefined;
 }, {}, {}>;

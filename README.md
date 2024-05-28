@@ -241,72 +241,74 @@ export type InnerComponent =
 
 ### Text组件
 
+![](https://cdn.jsdelivr.net/gh/pqcqaq/imageSource/upload/202405281537221.png)
+
 ##### 示例
 
 - ```ts
     		// input
-    		{
-    			label: "姓名",
-    			field: "name",
-    			component: "Text",
-    			componentProps: {
-    				allowClear: true,
-    				showCount: true,
-    				maxlength: 20,
-    				style: {
-    					width: "400px",
-    				},
-    			},
-    			formItemProps: {
-    				rules: [
-    					{
-    						required: true,
-    						message: "请输入姓名",
-    						trigger: "blur",
-    					},
-    				],
-    				colon: false,
-    				tooltip: "在这里输入姓名",
-    			},
-    			value: "百里守约",
+        		{
+        			label: "姓名",
+        			field: "name",
+        			component: "Text",
+        			componentProps: {
+        				allowClear: true,
+        				showCount: true,
+        				maxlength: 20,
+        				style: {
+        					width: "400px",
+        				},
+        			},
+        			formItemProps: {
+        				rules: [
+        					{
+        						required: true,
+        						message: "请输入姓名",
+        						trigger: "blur",
+        					},
+        				],
+        				colon: false,
+        				tooltip: "在这里输入姓名",
+        			},
+        			value: "百里守约",
                 // 动态下一级表单
-    			next: (model: any): DyForm | undefined => {
-    				if (model == "百里守约") {
-    					return {
-    						items: [
-    							{
-    								label: "武器",
-    								field: "weapon",
-    								component: "Text",
-    								componentProps: {
-    									allowClear: true,
-    									showCount: true,
-    									maxlength: 80,
-    									style: {
-    										width: "350px",
-    									},
-    								},
-    								formItemProps: {
-    									rules: [
-    										{
-    											required: true,
-    											message: "武器只能是ABCDE中的一个",
-    											trigger: "blur",
-    											type: "enum",
-    											enum: ["A", "B", "C", "D", "E"],
-    										},
-    									],
-    									style: {
-    										marginTop: "10px",
-    									},
-    									labelCol: { span: 3 },
-    								},
-    							},
-    						],
-    					};
-    				}
-    			},
-    		},
+        			next: (model: any): DyForm | undefined => {
+        				if (model == "百里守约") {
+        					return {
+        						items: [
+        							{
+        								label: "武器",
+        								field: "weapon",
+        								component: "Text",
+        								componentProps: {
+        									allowClear: true,
+        									showCount: true,
+        									maxlength: 80,
+        									style: {
+        										width: "350px",
+        									},
+        								},
+        								formItemProps: {
+        									rules: [
+        										{
+        											required: true,
+        											message: "武器只能是ABCDE中的一个",
+        											trigger: "blur",
+        											type: "enum",
+        											enum: ["A", "B", "C", "D", "E"],
+        										},
+        									],
+        									style: {
+        										marginTop: "10px",
+        									},
+        									labelCol: { span: 3 },
+        								},
+        							},
+        						],
+        					};
+        				}
+        			},
+        		},
     ```
 
 - 
@@ -412,8 +414,9 @@ export type InnerComponent =
 
 
 
-
 ### Textarea组件
+
+![](https://cdn.jsdelivr.net/gh/pqcqaq/imageSource/upload/202405281538233.png)
 
 ##### 示例
 
@@ -464,6 +467,8 @@ export type InnerComponent =
 
 
 ### Number组件
+
+![](https://cdn.jsdelivr.net/gh/pqcqaq/imageSource/upload/202405281538051.png)
 
 ##### 示例
 
@@ -534,47 +539,49 @@ export type InnerComponent =
 
 ### Select
 
+![](https://cdn.jsdelivr.net/gh/pqcqaq/imageSource/upload/202405281539140.png)
+
 - ### 注意，下面的文档来自Antd，在本项目中，options可以传入一个异步函数，返回值为选项列表，在组件加载时将会自动调用该函数获取参数
 
 - ##### 示例
 
     - ```ts
         		// select
-        		{
-        			label: "固定国家选择",
-        			field: "country",
-        			component: "Select",
-        			componentProps: {
-        				allowClear: true,
-        				options: [
-        					{ value: "中国", label: "中国" },
-        					{ value: "美国", label: "美国" },
-        					{ value: "日本", label: "日本" },
-        					{ value: "韩国", label: "韩国" },
-        				],
-        			},
-        		},
-        		// async select 
-        		{
-        			label: "异步国家选择",
-        			field: "async-country",
-        			component: "Select",
-        			componentProps: {
-        				allowClear: true,
-        				options: () => {
-        					return new Promise<Options>((resolve) => {
-        						setTimeout(() => {
-        							resolve([
-        								{ value: "中国", label: "中国" },
-        								{ value: "美国", label: "美国" },
-        								{ value: "日本", label: "日本" },
-        								{ value: "韩国", label: "韩国" },
-        							]);
-        						}, 1000);
-        					});
-        				},
-        			},
-        		},
+            		{
+            			label: "固定国家选择",
+            			field: "country",
+            			component: "Select",
+            			componentProps: {
+            				allowClear: true,
+            				options: [
+            					{ value: "中国", label: "中国" },
+            					{ value: "美国", label: "美国" },
+            					{ value: "日本", label: "日本" },
+            					{ value: "韩国", label: "韩国" },
+            				],
+            			},
+            		},
+            		// async select 
+            		{
+            			label: "异步国家选择",
+            			field: "async-country",
+            			component: "Select",
+            			componentProps: {
+            				allowClear: true,
+            				options: () => {
+            					return new Promise<Options>((resolve) => {
+            						setTimeout(() => {
+            							resolve([
+            								{ value: "中国", label: "中国" },
+            								{ value: "美国", label: "美国" },
+            								{ value: "日本", label: "日本" },
+            								{ value: "韩国", label: "韩国" },
+            							]);
+            						}, 1000);
+            					});
+            				},
+            			},
+            		},
         ```
 
     - 
@@ -652,62 +659,75 @@ export type InnerComponent =
 
 ### Radio
 
+![](https://cdn.jsdelivr.net/gh/pqcqaq/imageSource/upload/202405281540543.png)
+
+![](https://cdn.jsdelivr.net/gh/pqcqaq/imageSource/upload/202405281540523.png)
+
+- 当使用异步加载，出现错误时可以点击重试。
+
+
+
 - 与Select相似，参考antd文档，同样支持options传入异步函数获取列表
 
 - 示例
 
     - ```ts
         		// radio
-        		{
-        			label: "性别",
-        			field: "sex",
-        			component: "Radio",
-        			componentProps: {
-        				options: [
-        					{ value: 1, label: "男" },
-        					{ value: 2, label: "女" },
-        					{ value: 3, label: "保密" },
-        				],
-        			},
-        			formItemProps: {
-        				rules: [
-        					{
-        						required: true,
-        						message: "请选择性别",
-        						trigger: "blur",
-        					},
-        				],
-        				hidden: false,
-        			},
-        			value: 1,
-        		},
-        		// async radio
-        		{
-        			label: "异步选择",
-        			field: "async-test",
-        			component: "Radio",
-        			componentProps: {
-        				options: async () => await getOptionApi(),
-        			},
-        			formItemProps: {
-        				rules: [
-        					{
-        						required: true,
-        						message: "请选择性别",
-        						trigger: "blur",
-        					},
-        				],
-        			},
-        			value: 1,
-        		},
+            		{
+            			label: "性别",
+            			field: "sex",
+            			component: "Radio",
+            			componentProps: {
+            				options: [
+            					{ value: 1, label: "男" },
+            					{ value: 2, label: "女" },
+            					{ value: 3, label: "保密" },
+            				],
+            			},
+            			formItemProps: {
+            				rules: [
+            					{
+            						required: true,
+            						message: "请选择性别",
+            						trigger: "blur",
+            					},
+            				],
+            				hidden: false,
+            			},
+            			value: 1,
+            		},
+            		// async radio
+            		{
+            			label: "异步选择",
+            			field: "async-test",
+            			component: "Radio",
+            			componentProps: {
+            				options: async () => await getOptionApi(),
+            			},
+            			formItemProps: {
+            				rules: [
+            					{
+            						required: true,
+            						message: "请选择性别",
+            						trigger: "blur",
+            					},
+            				],
+            			},
+            			value: 1,
+            		},
         ```
 
     - 
 
 
 
-
 ### CheckBox
+
+![](https://cdn.jsdelivr.net/gh/pqcqaq/imageSource/upload/202405281541409.png)
+
+![](https://cdn.jsdelivr.net/gh/pqcqaq/imageSource/upload/202405281541732.png)
+
+
 
 - 同上，类似Radio
 
@@ -715,56 +735,145 @@ export type InnerComponent =
 
 - ```ts
     		// checkbox
-    		{
-    			label: "兴趣",
-    			field: "hobby",
-    			component: "Checkbox",
-    			componentProps: {
-    				options: [
-    					{ value: 1, label: "足球" },
-    					{ value: 2, label: "篮球" },
-    					{ value: 3, label: "排球" },
-    				],
-    			},
-    		},
-    		// async checkbox
-    		{
-    			label: "异步多选",
-    			field: "async-checkbox",
-    			component: "Checkbox",
-    			componentProps: {
-    				options: async () => await getOptionApi(),
-    			},
-    		},
+        		{
+        			label: "兴趣",
+        			field: "hobby",
+        			component: "Checkbox",
+        			componentProps: {
+        				options: [
+        					{ value: 1, label: "足球" },
+        					{ value: 2, label: "篮球" },
+        					{ value: 3, label: "排球" },
+        				],
+        			},
+        		},
+        		// async checkbox
+        		{
+        			label: "异步多选",
+        			field: "async-checkbox",
+        			component: "Checkbox",
+        			componentProps: {
+        				options: async () => await getOptionApi(),
+        			},
+        		},
     ```
 
 - 
 
 ### DatePicker
 
+![](https://cdn.jsdelivr.net/gh/pqcqaq/imageSource/upload/202405281542734.png)
+
+![](https://cdn.jsdelivr.net/gh/pqcqaq/imageSource/upload/202405281542866.png)
+
+
+
 ##### 示例
 
 - ```ts
     		// datepicker
-    		{
-    			label: "生日",
-    			field: "birthday",
-    			component: "DatePicker",
-    			formItemProps: {
-    				rules: [
-    					{
-    						required: true,
-    						message: "生日日期不能为空",
-    						trigger: "blur",
-    					},
-    				],
-    			},
-    			componentProps: {
-    				format: "YYYY-MM-DD",
-    				valueFormat: "YYYY-MM-DD",
-    			},
-    		},
+        		{
+        			label: "生日",
+        			field: "birthday",
+        			component: "DatePicker",
+        			formItemProps: {
+        				rules: [
+        					{
+        						required: true,
+        						message: "生日日期不能为空",
+        						trigger: "blur",
+        					},
+        				],
+        			},
+        			componentProps: {
+        				format: "YYYY-MM-DD",
+        				valueFormat: "YYYY-MM-DD",
+        			},
+        		},
     ```
+
+- ```ts
+     let timeSelectStart: Dayjs = dayjs()
+     ......
+     	// 开始时间（在当前时间之后）
+         {
+           label: "开始时间",
+           field: "startTime",
+           component: "DatePicker",
+           //格式：2024-05-14 08:30:22
+           formItemProps: {
+             rules: [
+               { required: true, message: "请选择开始时间" },
+               // 建立一个规则用来缓存已经选择的时间
+               {
+                 validator: (_rule: any, value: any) => {
+                   timeSelectStart = value
+                   return Promise.resolve()
+                 }
+               }
+             ]
+           },
+           componentProps: {
+             disabledDate: (current: Dayjs) => {
+               return current && current < dayjs()
+             },
+             disabledTime: (current: Dayjs) => {
+               if (current.isSame(dayjs(), "day")) {
+                 return {
+                   disabledHours: () => {
+                     return [...Array(24).keys()].filter((hour) => hour < dayjs().hour())
+                   }
+                 }
+               }
+               return {}
+             },
+             ...componentStyle,
+             format: "YYYY-MM-DD HH:mm:ss",
+             valueFormat: "YYYY-MM-DD HH:mm:ss",
+             showTime: true,
+             placeholder: "请选择开始时间"
+           }
+         },
+         // 结束时间，在开始时间之后
+         {
+           label: "结束时间",
+           field: "endTime",
+           component: "DatePicker",
+           formItemProps: {
+             rules: [
+               { required: true, message: "请选择结束时间" },
+               {
+                 validator: (_rule: any, value: any) => {
+                   if (value < timeSelectStart) {
+                     return Promise.reject("结束时间不能早于开始时间")
+                   }
+                   return Promise.resolve()
+                 }
+               }
+             ]
+           },
+           componentProps: {
+             disabledDate: (current: Dayjs) => {
+               return current && current < timeSelectStart
+             },
+             disabledTime: (current: Dayjs) => {
+               if (current.isSame(timeSelectStart, "day")) {
+                 return {
+                   disabledHours: () => {
+                     return [...Array(24).keys()].filter((hour) => hour < timeSelectStart.hour())
+                   }
+                 }
+               }
+               return {}
+             },
+             ...componentStyle,
+             format: "YYYY-MM-DD HH:mm:ss",
+             valueFormat: "YYYY-MM-DD HH:mm:ss",
+             showTime: true,
+             placeholder: "请选择结束时间"
+           }
+         },
+     ```
 
 - 
 
@@ -891,29 +1000,33 @@ The following APIs are shared by DatePicker, RangePicker.
 
 ### TimePicker
 
+![](https://cdn.jsdelivr.net/gh/pqcqaq/imageSource/upload/202405281543976.png)
+
+
+
 ##### 示例
 
 - ```ts
     		// timepicker
-    		{
-    			label: "时间",
-    			field: "time",
-    			component: "TimePicker",
-    			componentProps: {
-    				format: "HH:mm:ss",
-    				valueFormat: "HH:mm:ss",
-    				tooltips: ["选择时间"],
-    			},
-    			formItemProps: {
-    				rules: [
-    					{
-    						required: true,
-    						message: "请选择时间",
-    						trigger: "blur",
-    					},
-    				],
-    			},
-    		},
+        		{
+        			label: "时间",
+        			field: "time",
+        			component: "TimePicker",
+        			componentProps: {
+        				format: "HH:mm:ss",
+        				valueFormat: "HH:mm:ss",
+        				tooltips: ["选择时间"],
+        			},
+        			formItemProps: {
+        				rules: [
+        					{
+        						required: true,
+        						message: "请选择时间",
+        						trigger: "blur",
+        					},
+        				],
+        			},
+        		},
     ```
 
 - 
@@ -971,43 +1084,49 @@ type DisabledTime = (now: Dayjs) => {
 
 ### Slider
 
+![](https://cdn.jsdelivr.net/gh/pqcqaq/imageSource/upload/202405281544627.png)
+
+![](https://cdn.jsdelivr.net/gh/pqcqaq/imageSource/upload/202405281544036.png)
+
+
+
 ##### 示例
 
 - ```ts
     		// slider
-    		{
-    			label: "滑块",
-    			field: "slider",
-    			component: "Slider",
-    			componentProps: {
-    				min: 0,
-    				max: 100,
-    				marks: {
-    					0: "0%",
-    					50: "50%",
-    					100: "100%",
-    				},
-    			},
-    			next: (model): DyForm | undefined => {
-    				if (((model as number) || 0) > 50) {
-    					return {
-    						items: [
-    							{
-    								label: "提示信息",
-    								field: "tip",
-    								component: "Tag",
-    								componentProps: {
-    									bordered: true,
-    									color: "red",
-    									size: "large",
-    								},
-    								value: "你选中的值已经超过50",
-    							},
-    						],
-    					};
-    				}
-    			},
-    		},
+        		{
+        			label: "滑块",
+        			field: "slider",
+        			component: "Slider",
+        			componentProps: {
+        				min: 0,
+        				max: 100,
+        				marks: {
+        					0: "0%",
+        					50: "50%",
+        					100: "100%",
+        				},
+        			},
+        			next: (model): DyForm | undefined => {
+        				if (((model as number) || 0) > 50) {
+        					return {
+        						items: [
+        							{
+        								label: "提示信息",
+        								field: "tip",
+        								component: "Tag",
+        								componentProps: {
+        									bordered: true,
+        									color: "red",
+        									size: "large",
+        								},
+        								value: "你选中的值已经超过50",
+        							},
+        						],
+        					};
+        				}
+        			},
+        		},
     ```
 
 - 
@@ -1049,19 +1168,23 @@ type DisabledTime = (now: Dayjs) => {
 
 ### Switch
 
+![](https://cdn.jsdelivr.net/gh/pqcqaq/imageSource/upload/202405281544070.png)
+
+
+
 ##### 示例
 
 - ```ts
     		// switch
-    		{
-    			label: "是否开启",
-    			field: "switch",
-    			component: "Switch",
-    			componentProps: {
-    				checkedChildren: "开",
-    				unCheckedChildren: "关",
-    			},
-    			value: true,
+        		{
+        			label: "是否开启",
+        			field: "switch",
+        			component: "Switch",
+        			componentProps: {
+        				checkedChildren: "开",
+        				unCheckedChildren: "关",
+        			},
+        			value: true,
             }
     ```
 
@@ -1094,97 +1217,103 @@ type DisabledTime = (now: Dayjs) => {
 
 ### Upload
 
+![](https://cdn.jsdelivr.net/gh/pqcqaq/imageSource/upload/202405281545135.png)
+
+![](https://cdn.jsdelivr.net/gh/pqcqaq/imageSource/upload/202405281545154.png)
+
+
+
 ##### 示例
 
 - ```ts
     		// avatar upload
-    		{
-    			label: "头像",
-    			field: "avatar",
-    			component: "Upload",
-    			componentProps: {
-    				uploadProps: {
-    					accept: "image/*",
-    					action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-    					maxCount: 1,
-    					multiple: false,
-    					listType: "picture-card",
-    					customRequest: (info: any) => {
-    						setTimeout(() => {
-    							info.onSuccess("ok", info.file);
-    						}, 1000);
-    					},
-    				},
-    				uploadType: "Image",
-    			},
-    			value: [],
-    		},
+        		{
+        			label: "头像",
+        			field: "avatar",
+        			component: "Upload",
+        			componentProps: {
+        				uploadProps: {
+        					accept: "image/*",
+        					action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
+        					maxCount: 1,
+        					multiple: false,
+        					listType: "picture-card",
+        					customRequest: (info: any) => {
+        						setTimeout(() => {
+        							info.onSuccess("ok", info.file);
+        						}, 1000);
+        					},
+        				},
+        				uploadType: "Image",
+        			},
+        			value: [],
+        		},
     ```
 
 - ```ts
     		// images
-    		{
-    			label: "图片",
-    			field: "images",
-    			component: "Upload",
-    			componentProps: {
-    				uploadProps: {
-    					accept: "image/*",
-    					action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-    					maxCount: 5,
-    					multiple: true,
-    					listType: "picture",
-    				},
-    				uploadType: "Dragger",
-    			},
-    		},
+        		{
+        			label: "图片",
+        			field: "images",
+        			component: "Upload",
+        			componentProps: {
+        				uploadProps: {
+        					accept: "image/*",
+        					action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
+        					maxCount: 5,
+        					multiple: true,
+        					listType: "picture",
+        				},
+        				uploadType: "Dragger",
+        			},
+        		},
     ```
 
 - ```ts
     		// 头像
-    		{
-    			label: "头像",
-    			field: "avatar",
-    			component: "Upload",
-    			componentProps: {
-    				uploadProps: {
-    					accept: "image/*",
-    					maxCount: 1,
-    					multiple: false,
-    					listType: "picture-card",
-    					customRequest: async (info) => {
-    						new Promise<string>((resolve) => {
-    							const fr = new FileReader();
-    							fr.onload = (e) => {
-    								resolve(e.target?.result as string);
-    							};
-    							fr.readAsDataURL(info.file as File);
-    						})
-    							.then((data) => {
-    								console.log("base64: ", data);
-    								if (
-    									testAvatarGroup.items[0]?.componentProps
-    										?.avatarGroupValue?.[0]
-    								) {
-    									testAvatarGroup.items[0].componentProps.avatarGroupValue[0].src =
-    										data;
-    								}
-    								info.onSuccess?.(data);
-    							})
-    							.catch((e) => {
-    								info.onError?.(e);
-    							});
-    					},
-    				},
-    				uploadType: "Image",
-    				// 将元素居中放置
-    				style: {
-    					display: "flex",
-    					justifyContent: "center",
-    				},
-    			},
-    			value: [],
-    		},
+        		{
+        			label: "头像",
+        			field: "avatar",
+        			component: "Upload",
+        			componentProps: {
+        				uploadProps: {
+        					accept: "image/*",
+        					maxCount: 1,
+        					multiple: false,
+        					listType: "picture-card",
+        					customRequest: async (info) => {
+        						new Promise<string>((resolve) => {
+        							const fr = new FileReader();
+        							fr.onload = (e) => {
+        								resolve(e.target?.result as string);
+        							};
+        							fr.readAsDataURL(info.file as File);
+        						})
+        							.then((data) => {
+        								console.log("base64: ", data);
+        								if (
+        									testAvatarGroup.items[0]?.componentProps
+        										?.avatarGroupValue?.[0]
+        								) {
+        									testAvatarGroup.items[0].componentProps.avatarGroupValue[0].src =
+        										data;
+        								}
+        								info.onSuccess?.(data);
+        							})
+        							.catch((e) => {
+        								info.onError?.(e);
+        							});
+        					},
+        				},
+        				uploadType: "Image",
+        				// 将元素居中放置
+        				style: {
+        					display: "flex",
+        					justifyContent: "center",
+        				},
+        			},
+        			value: [],
+        		},
     ```
 
 - 
@@ -1299,6 +1428,10 @@ When uploading state change, it returns:
 
 ### TreeSelect
 
+![](https://cdn.jsdelivr.net/gh/pqcqaq/imageSource/upload/202405281546860.png)
+
+
+
 ## 注意，此处对treeData参数进行了增强，可以传入异步函数，在表单加载时自动获取数据
 
 
@@ -1307,76 +1440,76 @@ When uploading state change, it returns:
 
 - ```ts
     		// treedata
-    		{
-    			label: "树形选择",
-    			field: "tree",
-    			component: "TreeSelect",
-    			componentProps: {
-    				treeData: [
-    					{
-    						title: "Node1",
-    						value: "0-0",
-    						children: [
-    							{
-    								title: "Child Node1",
-    								value: "0-0-0",
-    							},
-    						],
-    					},
-    					{
-    						title: "Node2",
-    						value: "0-1",
-    						children: [
-    							{
-    								title: "Child Node3",
-    								value: "0-1-0",
-    							},
-    						],
-    					},
-    				],
-    				multiple: true,
-    			},
-    		},
+        		{
+        			label: "树形选择",
+        			field: "tree",
+        			component: "TreeSelect",
+        			componentProps: {
+        				treeData: [
+        					{
+        						title: "Node1",
+        						value: "0-0",
+        						children: [
+        							{
+        								title: "Child Node1",
+        								value: "0-0-0",
+        							},
+        						],
+        					},
+        					{
+        						title: "Node2",
+        						value: "0-1",
+        						children: [
+        							{
+        								title: "Child Node3",
+        								value: "0-1-0",
+        							},
+        						],
+        					},
+        				],
+        				multiple: true,
+        			},
+        		},
     ```
 
 - ```ts
     		// async treeSelect
-    		{
-    			label: "异步树形选择",
-    			field: "async-tree",
-    			component: "TreeSelect",
-    			componentProps: {
-    				treeData: () => {
-    					return new Promise((resolve) => {
-    						setTimeout(() => {
-    							resolve([
-    								{
-    									title: "Node1",
-    									value: "0-0",
-    									children: [
-    										{
-    											title: "Child Node1",
-    											value: "0-0-0",
-    										},
-    									],
-    								},
-    								{
-    									title: "Node2",
-    									value: "0-1",
-    									children: [
-    										{
-    											title: "Child Node3",
-    											value: "0-1-0",
-    										},
-    									],
-    								},
-    							]);
-    						}, 1000);
-    					});
-    				},
-    				multiple: true,
-    			},
-    		},
+        		{
+        			label: "异步树形选择",
+        			field: "async-tree",
+        			component: "TreeSelect",
+        			componentProps: {
+        				treeData: () => {
+        					return new Promise((resolve) => {
+        						setTimeout(() => {
+        							resolve([
+        								{
+        									title: "Node1",
+        									value: "0-0",
+        									children: [
+        										{
+        											title: "Child Node1",
+        											value: "0-0-0",
+        										},
+        									],
+        								},
+        								{
+        									title: "Node2",
+        									value: "0-1",
+        									children: [
+        										{
+        											title: "Child Node3",
+        											value: "0-1-0",
+        										},
+        									],
+        								},
+        							]);
+        						}, 1000);
+        					});
+        				},
+        				multiple: true,
+        			},
+        		},
     ```
 
 - 
@@ -1443,6 +1576,10 @@ When uploading state change, it returns:
 
 
 ### AutoComplete
+
+![](https://cdn.jsdelivr.net/gh/pqcqaq/imageSource/upload/202405281546362.png)
+
+
 
 ##### 示例
 
@@ -1622,6 +1759,10 @@ When uploading state change, it returns:
 
 ### Tag
 
+![](https://cdn.jsdelivr.net/gh/pqcqaq/imageSource/upload/202405281547933.png)
+
+
+
 ## 该组件只用于标签显示
 
 value：显示的值
@@ -1630,21 +1771,27 @@ value：显示的值
 
 - ```ts
     							{
-    								label: "提示信息",
-    								field: "tip",
-    								component: "Tag",
-    								componentProps: {
-    									bordered: true,
-    									color: "red",
-    									size: "large",
-    								},
-    								value: "你选中的值已经超过50",
-    							},
+        								label: "提示信息",
+        								field: "tip",
+        								component: "Tag",
+        								componentProps: {
+        									bordered: true,
+        									color: "red",
+        									size: "large",
+        								},
+        								value: "你选中的值已经超过50",
+        							},
     ```
 
 - 
 
 ### Mentions
+
+![](https://cdn.jsdelivr.net/gh/pqcqaq/imageSource/upload/202405281547462.png)
+
+![](https://cdn.jsdelivr.net/gh/pqcqaq/imageSource/upload/202405281547946.png)
+
+
 
 提及输入框
 
@@ -1652,46 +1799,46 @@ value：显示的值
 
 - ```ts
     		//Mentions
-    		{
-    			label: "Mentions",
-    			field: "mentions",
-    			component: "Mentions",
-    			componentProps: {
-    				allowClear: true,
-    				placeholder: "输入 @ 触发",
-    				prefix: ["@"],
-    				autofocus: true,
-    				options: [
-    					{
-    						value: "百里守约",
-    						label: "百里守约",
-    					},
-    					{
-    						value: "安琪拉",
-    						label: "安琪拉",
-    					},
-    					{
-    						value: "李白",
-    						label: "李白",
-    					},
-    					{
-    						value: "韩信",
-    						label: "韩信",
-    					},
-    				],
-    			},
-    			formItemProps: {
-    				rules: [
-    					{
-    						required: true,
-    						message: "请输入内容",
-    						trigger: "blur",
-    					},
-    				],
-    				colon: false,
-    				tooltip: "在这里输入内容",
-    			},
-    		},
+        		{
+        			label: "Mentions",
+        			field: "mentions",
+        			component: "Mentions",
+        			componentProps: {
+        				allowClear: true,
+        				placeholder: "输入 @ 触发",
+        				prefix: ["@"],
+        				autofocus: true,
+        				options: [
+        					{
+        						value: "百里守约",
+        						label: "百里守约",
+        					},
+        					{
+        						value: "安琪拉",
+        						label: "安琪拉",
+        					},
+        					{
+        						value: "李白",
+        						label: "李白",
+        					},
+        					{
+        						value: "韩信",
+        						label: "韩信",
+        					},
+        				],
+        			},
+        			formItemProps: {
+        				rules: [
+        					{
+        						required: true,
+        						message: "请输入内容",
+        						trigger: "blur",
+        					},
+        				],
+        				colon: false,
+        				tooltip: "在这里输入内容",
+        			},
+        		},
     ```
 
 - 
@@ -1732,20 +1879,22 @@ value：显示的值
 
 ### Divider
 
+![](https://cdn.jsdelivr.net/gh/pqcqaq/imageSource/upload/202405281548500.png)
+
 ##### 示例
 
 - ```ts
     		// devider
-    		{
-    			label: "",
-    			field: "divider",
-    			component: "Divider",
-    			componentProps: {
-    				orientation: "center",
-    				orientationMargin: "10px",
-    				dividerText: "下面是其他信息",
-    			},
-    		},
+        		{
+        			label: "",
+        			field: "divider",
+        			component: "Divider",
+        			componentProps: {
+        				orientation: "center",
+        				orientationMargin: "10px",
+        				dividerText: "下面是其他信息",
+        			},
+        		},
     ```
 
 - 
@@ -1814,6 +1963,10 @@ value：显示的值
 
 ## 头像组
 
+![](https://cdn.jsdelivr.net/gh/pqcqaq/imageSource/upload/202405281548035.png)
+
+
+
 这里的两种参数，在不同的参数下面
 
 ## avatarProps：
@@ -1851,6 +2004,12 @@ value：显示的值
 
 
 ### Corn
+
+![](https://cdn.jsdelivr.net/gh/pqcqaq/imageSource/upload/202405281548090.png)
+
+![](https://cdn.jsdelivr.net/gh/pqcqaq/imageSource/upload/202405281549083.png)
+
+
 
 ## corn表达式选择器
 
