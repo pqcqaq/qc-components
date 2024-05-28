@@ -1,6 +1,6 @@
-import { ButtonProps, MentionsProps, TimePickerProps, TreeSelectProps, UploadChangeParam, UploadProps } from 'ant-design-vue';
+import { ButtonProps, MentionsProps, SelectProps, TimePickerProps, TreeSelectProps, UploadChangeParam, UploadProps } from 'ant-design-vue';
 import { Rule } from 'ant-design-vue/es/form';
-import { Dayjs } from 'dayjs';
+import { default as dayjs, Dayjs } from 'dayjs';
 import { CSSProperties, Component, Slot, VNode } from 'vue';
 
 export type Options = Array<{
@@ -11,7 +11,9 @@ export type Options = Array<{
     style?: Partial<CSSStyleDeclaration>;
     payload?: Record<string, any>;
 }>;
+export type DefaultOptions = SelectProps["options"];
 export type OptionsGetter = Options | (() => Options | Promise<Options>);
+export type TreeDataGetter = TreeSelectProps["treeData"] | (() => TreeSelectProps["treeData"] | Promise<TreeSelectProps["treeData"]>);
 export type AutoInputList = {
     label?: string;
     value: string;
@@ -83,7 +85,7 @@ export type DyFormItem = {
         maxCount?: number;
         method?: string;
         multiple?: boolean;
-        treeData?: TreeSelectProps["treeData"];
+        treeData?: TreeDataGetter;
         defaultValue?: string | number | string[] | number[] | null;
         popupClassName?: string;
         dropdownMatchSelectWidth?: boolean;
@@ -195,7 +197,7 @@ export type DyFormItem = {
             offset?: number;
         };
     };
-    value?: string | number | boolean | string[] | number[] | File | File[] | Record<string, any> | null;
+    value?: string | number | boolean | string[] | number[] | File | File[] | Record<string, any> | dayjs.Dayjs | null;
     next?: (modelValue: Record<string, any> | string | number | boolean | File | string[] | number[] | File[]) => DyForm | undefined | null;
     nextFormStyle?: Partial<CSSStyleDeclaration>;
     onShow?: (modelValue: Record<string, any>) => boolean;

@@ -1,6 +1,7 @@
 import {
 	ButtonProps,
 	MentionsProps,
+	SelectProps,
 	TimePickerProps,
 	TreeSelectProps,
 	UploadChangeParam,
@@ -19,7 +20,15 @@ export type Options = Array<{
 	payload?: Record<string, any>;
 }>;
 
+export type DefaultOptions = SelectProps["options"];
+
 export type OptionsGetter = Options | (() => Options | Promise<Options>);
+
+export type TreeDataGetter =
+	| TreeSelectProps["treeData"]
+	| (() =>
+			| TreeSelectProps["treeData"]
+			| Promise<TreeSelectProps["treeData"]>);
 
 export type AutoInputList = {
 	label?: string;
@@ -115,7 +124,7 @@ export type DyFormItem = {
 		maxCount?: number;
 		method?: string;
 		multiple?: boolean;
-		treeData?: TreeSelectProps["treeData"];
+		treeData?: TreeDataGetter;
 		defaultValue?: string | number | string[] | number[] | null;
 		popupClassName?: string;
 		dropdownMatchSelectWidth?: boolean;

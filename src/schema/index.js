@@ -301,7 +301,7 @@ export const schema = {
                             ]);
                         }, 1000);
                     });
-                }
+                },
             },
         },
         // textarea
@@ -1084,7 +1084,7 @@ export const testInline = {
             style: {
                 marginTop: "10px",
             },
-        }
+        },
     ],
 };
 //# sourceMappingURL=index.js.map

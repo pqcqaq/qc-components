@@ -90,5 +90,3 @@ const onSearch = (searchText: string) => {
 	promptList.value = createFilter(list.value, searchText);
 };
 </script>
-
-<style scoped></style>

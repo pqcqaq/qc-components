@@ -21,14 +21,11 @@
 import { computed, onMounted, ref } from "vue";
 import ACheckbox from "ant-design-vue/es/checkbox";
 import ACheckboxGroup from "ant-design-vue/es/checkbox/Group";
+import { Options, OptionsGetter } from "../../types";
 
 type propsType = {
 	value: string[] | number[] | undefined;
-	options:
-		| Array<{ label: string; value: string | number }>
-		| (() =>
-				| Array<{ label: string; value: string | number }>
-				| Promise<Array<{ label: string; value: string | number }>>);
+	options: OptionsGetter;
 };
 
 const props = defineProps<propsType>();
@@ -44,7 +41,7 @@ const checked = computed({
 
 const msg = ref("加载中....");
 
-const Realoptions = ref<Array<{ label: string; value: string | number }>>([]);
+const Realoptions = ref<Options>([]);
 
 const getData = async () => {
 	msg.value = "加载中....";
@@ -78,5 +75,3 @@ const reflash = async () => {
 	await getData();
 };
 </script>
-
-<style scoped></style>

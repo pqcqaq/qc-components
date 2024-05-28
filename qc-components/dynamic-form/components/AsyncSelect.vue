@@ -1,48 +1,35 @@
 <template>
 	<a-select
-		v-model:value="selected"
+		:value="selected"
+		@change="selected = $event as string"
+		
 		:loading="loading"
 		:options="realOptions"
-		v-bind="{ ...$attrs }"
+		v-bind="$attrs"
 	/>
 </template>
 
 <script setup lang="ts">
 import ASelect, { DefaultOptionType } from "ant-design-vue/es/select";
 import { computed, onMounted, ref } from "vue";
+import { Options, OptionsGetter } from "../../types";
 
 type propType = {
 	modelValue: string;
-	options?:
-		| {
-				value: number | string;
-				label: string;
-				disabled?: boolean;
-				key?: string;
-				title?: string;
-		  }[]
-		| (() => Promise<
-				{
-					value: number | string;
-					label: string;
-					disabled?: boolean;
-					key?: string;
-					title?: string;
-				}[]
-		  >)
-		| (() => {
-				value: number | string;
-				label: string;
-		  }[]);
+	options?:  Options | OptionsGetter;
 };
 
 const props = defineProps<propType>();
 const emit = defineEmits();
 
-const realOptions = ref<DefaultOptionType[]>([]);
+const realOptions = ref<Options>([]);
 const selected = computed({
-	get: () => props.modelValue,
-	set: (value) => emit("update:modelValue", value),
+	get() {
+		return props.modelValue;
+	},
+	set(value) {
+		emit("update:modelValue", value);
+	},
 });
 const loading = ref(false);
 
@@ -71,5 +58,3 @@ onMounted(() => {
 	getData();
 });
 </script>
-
-<style scoped></style>

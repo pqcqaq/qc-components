@@ -69,4 +69,3 @@ const handleClose = () => {
 };
 </script>
 
-<style scoped></style>

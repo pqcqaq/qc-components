@@ -21,6 +21,7 @@ import CustomAvatarGroup from "./components/CustomAvatarGroup.vue";
 import CustomUpload from "./components/CustomUpload.vue";
 import CronInput from "./components/CronInput.vue";
 import AsyncSelect from './components/AsyncSelect.vue'
+import AsyncTreeSelect from './components/AsyncTreeSelect.vue'
 
 // 表单域组件类型
 export const componentsMap: Record<
@@ -78,7 +79,7 @@ export const componentsMap: Record<
 		component: markRaw(CustomUpload),
 	},
 	TreeSelect: {
-		component: markRaw(TreeSelect),
+		component: markRaw(AsyncTreeSelect),
 	},
 	TimePicker: {
 		component: markRaw(TimePicker),

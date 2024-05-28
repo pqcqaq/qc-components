@@ -1,15 +1,8 @@
+import { OptionsGetter } from '../../types';
+
 type propsType = {
     value: string[] | number[] | undefined;
-    options: Array<{
-        label: string;
-        value: string | number;
-    }> | (() => Array<{
-        label: string;
-        value: string | number;
-    }> | Promise<Array<{
-        label: string;
-        value: string | number;
-    }>>);
+    options: OptionsGetter;
 };
 declare const _default: import('vue').DefineComponent<__VLS_TypePropsToRuntimeProps<propsType>, {}, unknown, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
     "update:value": (...args: any[]) => void;

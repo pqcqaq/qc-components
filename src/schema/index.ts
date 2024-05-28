@@ -302,7 +302,7 @@ export const schema: DyForm = {
 							]);
 						}, 1000);
 					});
-				}
+				},
 			},
 		},
 		// textarea
@@ -551,27 +551,27 @@ export const schema: DyForm = {
 			component: "TreeSelect",
 			componentProps: {
 				treeData: [
-					{
-						title: "Node1",
-						value: "0-0",
-						children: [
-							{
-								title: "Child Node1",
-								value: "0-0-0",
-							},
-						],
-					},
-					{
-						title: "Node2",
-						value: "0-1",
-						children: [
-							{
-								title: "Child Node3",
-								value: "0-1-0",
-							},
-						],
-					},
-				],
+						{
+							title: "Node1",
+							value: "0-0",
+							children: [
+								{
+									title: "Child Node1",
+									value: "0-0-0",
+								},
+							],
+						},
+						{
+							title: "Node2",
+							value: "0-1",
+							children: [
+								{
+									title: "Child Node3",
+									value: "0-1-0",
+								},
+							],
+						},
+					],
 				multiple: true,
 			},
 		},
@@ -1108,6 +1108,6 @@ export const testInline: DyForm = {
 			style: {
 				marginTop: "10px",
 			},
-		}
+		},
 	],
 };
