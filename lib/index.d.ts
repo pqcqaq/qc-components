@@ -5,3 +5,4 @@ export { useFullScreenDyForm } from './dynamic-form';
 export { DynamicForm };
 export { EasyTable };
 export * from './types';
+export * from './utils';

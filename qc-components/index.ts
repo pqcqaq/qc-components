@@ -1,4 +1,4 @@
-import type { App } from "vue";
+// import type { App } from "vue";
 import DynamicForm from "./dynamic-form";
 import EasyTable from "./easy-table";
 export { useFullScreenDyForm } from "./dynamic-form";
