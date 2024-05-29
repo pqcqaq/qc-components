@@ -1,4 +1,9 @@
-import { FetchConfig, InitFetchConfig, RequestInterceptor, ResponseInterceptor } from "../types";
+import {
+	FetchConfig,
+	InitFetchConfig,
+	RequestInterceptor,
+	ResponseInterceptor,
+} from "../types";
 
 export class Fetch {
 	/**
@@ -8,11 +13,11 @@ export class Fetch {
 	/**
 	 * 请求拦截器
 	 */
-	private requestInterceptor = new Array();
+	private requestInterceptor: RequestInterceptor[] = [];
 	/**
 	 * 响应拦截器
 	 */
-	private responseInterceptor = new Array();
+	private responseInterceptor: ResponseInterceptor[] = [];
 
 	/**
 	 *  构造函数
@@ -37,9 +42,10 @@ export class Fetch {
 		for (const interceptor of this.requestInterceptor) {
 			config = await interceptor(config);
 		}
-		let requestUrl = config.baseURL
-			? config.baseURL + config.url
-			: config.url;
+		const baseurl = config.baseURL?.endsWith("/")
+			? config.baseURL
+			: config.baseURL + "/";
+		let requestUrl = baseurl ? baseurl + config.url : config.url;
 		// 尝试用config中的转换器把params转换成字符串
 		let paramsStr = "";
 		if (config.params) {
@@ -52,6 +58,15 @@ export class Fetch {
 					.join("&");
 			}
 			requestUrl += "?" + paramsStr;
+		}
+
+		if (config.transformRequest) {
+			const { data, headers } = config.transformRequest(
+				config.data,
+				config.headers
+			);
+			config.headers = headers;
+			config.data = data;
 		}
 
 		const requset = new Request(requestUrl, {
@@ -67,6 +82,11 @@ export class Fetch {
 
 		// 发送请求
 		const response = await fetch(requset);
+
+		if (config.transformResponse) {
+			return config.transformResponse(response);
+		}
+
 		// 响应拦截器
 		// 	responseType?:
 		// | "arraybuffer"

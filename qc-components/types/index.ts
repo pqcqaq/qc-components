@@ -314,8 +314,6 @@ export type FormConfig = {
 	customBtns?: CustomBtn[];
 };
 
-
-
 //utils--------------
 export type InitFetchConfig = {
 	/**
@@ -345,7 +343,10 @@ export type InitFetchConfig = {
 	 * @param headers   请求头
 	 * @returns  返回修改后的请求数据
 	 */
-	transformRequest?: (data: any, headers: any) => any;
+	transformRequest?: (
+		data: any,
+		headers: Record<string, string> | undefined
+	) => { data: any; headers: Record<string, string> | undefined };
 	/**
 	 *  允许在传递给 then/catch 前，修改响应数据
 	 * @param data 响应数据
@@ -383,7 +384,7 @@ export type InitFetchConfig = {
 	 * @param config  请求配置
 	 * @returns  返回一个 promise 并提供一个有效的响应
 	 */
-	adapter?: (config: any) => any;
+	adapter?: (config: FetchConfig) => any;
 	/**
 	 * HTTP Basic Auth
 	 */
@@ -503,3 +504,32 @@ export type ResponseType = {
 
 export type RequestInterceptor = (config: FetchConfig) => Promise<FetchConfig>;
 export type ResponseInterceptor<T = any> = (data: T) => Promise<T>;
+
+export type FetchInstance = {
+	defaultConfig: InitFetchConfig;
+	requestInterceptor: RequestInterceptor[];
+	responseInterceptor: ResponseInterceptor[];
+	request: <T = any>(config: FetchConfig) => Promise<T>;
+	addRequestInterceptor: (
+		interceptor: RequestInterceptor,
+		order?: number
+	) => void;
+	addResponseInterceptor: (
+		interceptor: ResponseInterceptor,
+		order?: number
+	) => void;
+	get: <T = any>(url: string, config?: FetchConfig) => Promise<T>;
+	post: <T = any>(url: string, data: any, config?: FetchConfig) => Promise<T>;
+	put: <T = any>(url: string, data: any, config?: FetchConfig) => Promise<T>;
+	delete: <T = any>(url: string, config?: FetchConfig) => Promise<T>;
+	patch: <T = any>(
+		url: string,
+		data: any,
+		config?: FetchConfig
+	) => Promise<T>;
+	head: <T = any>(url: string, config?: FetchConfig) => Promise<T>;
+	options: <T = any>(url: string, config?: FetchConfig) => Promise<T>;
+	connect: <T = any>(url: string, config?: FetchConfig) => Promise<T>;
+	trace: <T = any>(url: string, config?: FetchConfig) => Promise<T>;
+	req: <T = any>(config: FetchConfig) => Promise<T>;
+};
