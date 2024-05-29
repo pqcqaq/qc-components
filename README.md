@@ -241,6 +241,8 @@ export type InnerComponent =
 
 ### Text组件
 
+
+
 ​	Input [#](https://www.antdv.com/components/input#input)
 
 | Property       | Description                                                  | Type                 | Default                 | Version |
