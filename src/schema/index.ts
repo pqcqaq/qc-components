@@ -243,6 +243,27 @@ export const schema: DyForm = {
 			},
 			value: 1,
 		},
+		// number
+		{
+			label: "年龄",
+			field: "age",
+			component: "Number",
+			componentProps: {
+				allowClear: true,
+				style: {
+					width: "400px",
+				},
+			},
+			formItemProps: {
+				rules: [
+					{
+						required: true,
+						message: "请输入年龄",
+						trigger: "blur",
+					},
+				],
+			},
+		},
 		// datepicker
 		{
 			label: "生日",
@@ -260,6 +281,26 @@ export const schema: DyForm = {
 			componentProps: {
 				format: "YYYY-MM-DD",
 				valueFormat: "YYYY-MM-DD",
+			},
+		},
+		// timepicker
+		{
+			label: "时间",
+			field: "time",
+			component: "TimePicker",
+			componentProps: {
+				format: "HH:mm:ss",
+				valueFormat: "HH:mm:ss",
+				tooltips: ["选择时间"],
+			},
+			formItemProps: {
+				rules: [
+					{
+						required: true,
+						message: "请选择时间",
+						trigger: "blur",
+					},
+				],
 			},
 		},
 		// checkbox
@@ -286,8 +327,23 @@ export const schema: DyForm = {
 		},
 		// select
 		{
-			label: "国家",
+			label: "固定国家选择",
 			field: "country",
+			component: "Select",
+			componentProps: {
+				allowClear: true,
+				options: [
+					{ value: "中国", label: "中国" },
+					{ value: "美国", label: "美国" },
+					{ value: "日本", label: "日本" },
+					{ value: "韩国", label: "韩国" },
+				],
+			},
+		},
+		// async select 
+		{
+			label: "异步国家选择",
+			field: "async-country",
 			component: "Select",
 			componentProps: {
 				allowClear: true,
@@ -551,27 +607,64 @@ export const schema: DyForm = {
 			component: "TreeSelect",
 			componentProps: {
 				treeData: [
-						{
-							title: "Node1",
-							value: "0-0",
-							children: [
+					{
+						title: "Node1",
+						value: "0-0",
+						children: [
+							{
+								title: "Child Node1",
+								value: "0-0-0",
+							},
+						],
+					},
+					{
+						title: "Node2",
+						value: "0-1",
+						children: [
+							{
+								title: "Child Node3",
+								value: "0-1-0",
+							},
+						],
+					},
+				],
+				multiple: true,
+			},
+		},
+		// async treeSelect
+		{
+			label: "异步树形选择",
+			field: "async-tree",
+			component: "TreeSelect",
+			componentProps: {
+				treeData: () => {
+					return new Promise((resolve) => {
+						setTimeout(() => {
+							resolve([
 								{
-									title: "Child Node1",
-									value: "0-0-0",
+									title: "Node1",
+									value: "0-0",
+									children: [
+										{
+											title: "Child Node1",
+											value: "0-0-0",
+										},
+									],
 								},
-							],
-						},
-						{
-							title: "Node2",
-							value: "0-1",
-							children: [
 								{
-									title: "Child Node3",
-									value: "0-1-0",
+									title: "Node2",
+									value: "0-1",
+									children: [
+										{
+											title: "Child Node3",
+											value: "0-1-0",
+										},
+									],
 								},
-							],
-						},
-					],
+							]);
+						}, 1000);
+					});
+				},
 				multiple: true,
 			},
 		},

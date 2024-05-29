@@ -44,6 +44,7 @@ const testCustomBtns = () => {
                 text: "自定义按钮",
                 onClick: (model) => {
                     console.log("自定义按钮", model);
+                    message.success("点击了自定义按钮" + JSON.stringify(model));
                 },
                 props: {
                     type: "primary",
@@ -266,9 +267,10 @@ const changeSchema = () => {
 const handleTest = async () => {
     schema.value = test;
 };
-const __VLS_fnComponent = (await import('vue')).defineComponent({});
 let __VLS_functionalComponentProps;
 let __VLS_modelEmitsType;
+const __VLS_componentsOption = {};
+let __VLS_name;
 function __VLS_template() {
     let __VLS_ctx;
     /* Components */
@@ -280,8 +282,9 @@ function __VLS_template() {
     // CSS variable injection 
     // CSS variable injection end 
     let __VLS_resolvedLocalAndGlobalComponents;
-    __VLS_elementAsFunction(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({ ...{ class: ("change") }, });
+    __VLS_elementAsFunction(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({ class: ("change"), });
     const __VLS_0 = {}.AButton;
+    const __VLS_1 = __VLS_asFunctionalComponent(__VLS_0, new __VLS_0({ ...{ 'onClick': {}, }, size: ("large"), }));
     ({}.AButton);
     ({}.AButton);
     __VLS_components.AButton;
@@ -290,20 +293,17 @@ function __VLS_template() {
     __VLS_components.aButton;
     // @ts-ignore
     [AButton, AButton,];
-    const __VLS_1 = __VLS_asFunctionalComponent(__VLS_0, new __VLS_0({ ...{ 'onClick': {} }, size: ("large"), }));
-    const __VLS_2 = __VLS_1({ ...{ 'onClick': {} }, size: ("large"), }, ...__VLS_functionalComponentArgsRest(__VLS_1));
-    ({}({ ...{ 'onClick': {} }, size: ("large"), }));
-    let __VLS_6;
-    const __VLS_7 = {
-        onClick: (__VLS_ctx.changeModel)
-    };
+    const __VLS_2 = __VLS_1({ ...{ 'onClick': {}, }, size: ("large"), }, ...__VLS_functionalComponentArgsRest(__VLS_1));
+    ({}({ ...{ 'onClick': {}, }, size: ("large"), }));
+    let __VLS_5 = { 'click': __VLS_pickEvent(__VLS_3['click'], {}.onClick) };
+    __VLS_5 = { click: (__VLS_ctx.changeModel) };
     // @ts-ignore
     [changeModel,];
-    (__VLS_5.slots).default;
-    const __VLS_5 = __VLS_pickFunctionalComponentCtx(__VLS_0, __VLS_2);
+    (__VLS_4.slots).default;
+    const __VLS_4 = __VLS_pickFunctionalComponentCtx(__VLS_0, __VLS_2);
     let __VLS_3;
-    let __VLS_4;
-    const __VLS_8 = {}.AButton;
+    const __VLS_6 = {}.AButton;
+    const __VLS_7 = __VLS_asFunctionalComponent(__VLS_6, new __VLS_6({ ...{ 'onClick': {}, }, size: ("large"), }));
     ({}.AButton);
     ({}.AButton);
     __VLS_components.AButton;
@@ -312,20 +312,17 @@ function __VLS_template() {
     __VLS_components.aButton;
     // @ts-ignore
     [AButton, AButton,];
-    const __VLS_9 = __VLS_asFunctionalComponent(__VLS_8, new __VLS_8({ ...{ 'onClick': {} }, size: ("large"), }));
-    const __VLS_10 = __VLS_9({ ...{ 'onClick': {} }, size: ("large"), }, ...__VLS_functionalComponentArgsRest(__VLS_9));
-    ({}({ ...{ 'onClick': {} }, size: ("large"), }));
-    let __VLS_14;
-    const __VLS_15 = {
-        onClick: (__VLS_ctx.changeSchema)
-    };
+    const __VLS_8 = __VLS_7({ ...{ 'onClick': {}, }, size: ("large"), }, ...__VLS_functionalComponentArgsRest(__VLS_7));
+    ({}({ ...{ 'onClick': {}, }, size: ("large"), }));
+    let __VLS_11 = { 'click': __VLS_pickEvent(__VLS_9['click'], {}.onClick) };
+    __VLS_11 = { click: (__VLS_ctx.changeSchema) };
     // @ts-ignore
     [changeSchema,];
-    (__VLS_13.slots).default;
-    const __VLS_13 = __VLS_pickFunctionalComponentCtx(__VLS_8, __VLS_10);
-    let __VLS_11;
-    let __VLS_12;
-    const __VLS_16 = {}.AButton;
+    (__VLS_10.slots).default;
+    const __VLS_10 = __VLS_pickFunctionalComponentCtx(__VLS_6, __VLS_8);
+    let __VLS_9;
+    const __VLS_12 = {}.AButton;
+    const __VLS_13 = __VLS_asFunctionalComponent(__VLS_12, new __VLS_12({ ...{ 'onClick': {}, }, size: ("large"), }));
     ({}.AButton);
     ({}.AButton);
     __VLS_components.AButton;
@@ -334,20 +331,17 @@ function __VLS_template() {
     __VLS_components.aButton;
     // @ts-ignore
     [AButton, AButton,];
-    const __VLS_17 = __VLS_asFunctionalComponent(__VLS_16, new __VLS_16({ ...{ 'onClick': {} }, size: ("large"), }));
-    const __VLS_18 = __VLS_17({ ...{ 'onClick': {} }, size: ("large"), }, ...__VLS_functionalComponentArgsRest(__VLS_17));
-    ({}({ ...{ 'onClick': {} }, size: ("large"), }));
-    let __VLS_22;
-    const __VLS_23 = {
-        onClick: (__VLS_ctx.handleTest)
-    };
+    const __VLS_14 = __VLS_13({ ...{ 'onClick': {}, }, size: ("large"), }, ...__VLS_functionalComponentArgsRest(__VLS_13));
+    ({}({ ...{ 'onClick': {}, }, size: ("large"), }));
+    let __VLS_17 = { 'click': __VLS_pickEvent(__VLS_15['click'], {}.onClick) };
+    __VLS_17 = { click: (__VLS_ctx.handleTest) };
     // @ts-ignore
     [handleTest,];
-    (__VLS_21.slots).default;
-    const __VLS_21 = __VLS_pickFunctionalComponentCtx(__VLS_16, __VLS_18);
-    let __VLS_19;
-    let __VLS_20;
-    const __VLS_24 = {}.AButton;
+    (__VLS_16.slots).default;
+    const __VLS_16 = __VLS_pickFunctionalComponentCtx(__VLS_12, __VLS_14);
+    let __VLS_15;
+    const __VLS_18 = {}.AButton;
+    const __VLS_19 = __VLS_asFunctionalComponent(__VLS_18, new __VLS_18({ ...{ 'onClick': {}, }, size: ("large"), }));
     ({}.AButton);
     ({}.AButton);
     __VLS_components.AButton;
@@ -356,20 +350,17 @@ function __VLS_template() {
     __VLS_components.aButton;
     // @ts-ignore
     [AButton, AButton,];
-    const __VLS_25 = __VLS_asFunctionalComponent(__VLS_24, new __VLS_24({ ...{ 'onClick': {} }, size: ("large"), }));
-    const __VLS_26 = __VLS_25({ ...{ 'onClick': {} }, size: ("large"), }, ...__VLS_functionalComponentArgsRest(__VLS_25));
-    ({}({ ...{ 'onClick': {} }, size: ("large"), }));
-    let __VLS_30;
-    const __VLS_31 = {
-        onClick: (__VLS_ctx.testPopup)
-    };
+    const __VLS_20 = __VLS_19({ ...{ 'onClick': {}, }, size: ("large"), }, ...__VLS_functionalComponentArgsRest(__VLS_19));
+    ({}({ ...{ 'onClick': {}, }, size: ("large"), }));
+    let __VLS_23 = { 'click': __VLS_pickEvent(__VLS_21['click'], {}.onClick) };
+    __VLS_23 = { click: (__VLS_ctx.testPopup) };
     // @ts-ignore
     [testPopup,];
-    (__VLS_29.slots).default;
-    const __VLS_29 = __VLS_pickFunctionalComponentCtx(__VLS_24, __VLS_26);
-    let __VLS_27;
-    let __VLS_28;
-    const __VLS_32 = {}.AButton;
+    (__VLS_22.slots).default;
+    const __VLS_22 = __VLS_pickFunctionalComponentCtx(__VLS_18, __VLS_20);
+    let __VLS_21;
+    const __VLS_24 = {}.AButton;
+    const __VLS_25 = __VLS_asFunctionalComponent(__VLS_24, new __VLS_24({ ...{ 'onClick': {}, }, size: ("large"), }));
     ({}.AButton);
     ({}.AButton);
     __VLS_components.AButton;
@@ -378,20 +369,17 @@ function __VLS_template() {
     __VLS_components.aButton;
     // @ts-ignore
     [AButton, AButton,];
-    const __VLS_33 = __VLS_asFunctionalComponent(__VLS_32, new __VLS_32({ ...{ 'onClick': {} }, size: ("large"), }));
-    const __VLS_34 = __VLS_33({ ...{ 'onClick': {} }, size: ("large"), }, ...__VLS_functionalComponentArgsRest(__VLS_33));
-    ({}({ ...{ 'onClick': {} }, size: ("large"), }));
-    let __VLS_38;
-    const __VLS_39 = {
-        onClick: (__VLS_ctx.testAvatars)
-    };
+    const __VLS_26 = __VLS_25({ ...{ 'onClick': {}, }, size: ("large"), }, ...__VLS_functionalComponentArgsRest(__VLS_25));
+    ({}({ ...{ 'onClick': {}, }, size: ("large"), }));
+    let __VLS_29 = { 'click': __VLS_pickEvent(__VLS_27['click'], {}.onClick) };
+    __VLS_29 = { click: (__VLS_ctx.testAvatars) };
     // @ts-ignore
     [testAvatars,];
-    (__VLS_37.slots).default;
-    const __VLS_37 = __VLS_pickFunctionalComponentCtx(__VLS_32, __VLS_34);
-    let __VLS_35;
-    let __VLS_36;
-    const __VLS_40 = {}.AButton;
+    (__VLS_28.slots).default;
+    const __VLS_28 = __VLS_pickFunctionalComponentCtx(__VLS_24, __VLS_26);
+    let __VLS_27;
+    const __VLS_30 = {}.AButton;
+    const __VLS_31 = __VLS_asFunctionalComponent(__VLS_30, new __VLS_30({ ...{ 'onClick': {}, }, size: ("large"), }));
     ({}.AButton);
     ({}.AButton);
     __VLS_components.AButton;
@@ -400,20 +388,17 @@ function __VLS_template() {
     __VLS_components.aButton;
     // @ts-ignore
     [AButton, AButton,];
-    const __VLS_41 = __VLS_asFunctionalComponent(__VLS_40, new __VLS_40({ ...{ 'onClick': {} }, size: ("large"), }));
-    const __VLS_42 = __VLS_41({ ...{ 'onClick': {} }, size: ("large"), }, ...__VLS_functionalComponentArgsRest(__VLS_41));
-    ({}({ ...{ 'onClick': {} }, size: ("large"), }));
-    let __VLS_46;
-    const __VLS_47 = {
-        onClick: (__VLS_ctx.testCorn)
-    };
+    const __VLS_32 = __VLS_31({ ...{ 'onClick': {}, }, size: ("large"), }, ...__VLS_functionalComponentArgsRest(__VLS_31));
+    ({}({ ...{ 'onClick': {}, }, size: ("large"), }));
+    let __VLS_35 = { 'click': __VLS_pickEvent(__VLS_33['click'], {}.onClick) };
+    __VLS_35 = { click: (__VLS_ctx.testCorn) };
     // @ts-ignore
     [testCorn,];
-    (__VLS_45.slots).default;
-    const __VLS_45 = __VLS_pickFunctionalComponentCtx(__VLS_40, __VLS_42);
-    let __VLS_43;
-    let __VLS_44;
-    const __VLS_48 = {}.AButton;
+    (__VLS_34.slots).default;
+    const __VLS_34 = __VLS_pickFunctionalComponentCtx(__VLS_30, __VLS_32);
+    let __VLS_33;
+    const __VLS_36 = {}.AButton;
+    const __VLS_37 = __VLS_asFunctionalComponent(__VLS_36, new __VLS_36({ ...{ 'onClick': {}, }, size: ("large"), }));
     ({}.AButton);
     ({}.AButton);
     __VLS_components.AButton;
@@ -422,20 +407,17 @@ function __VLS_template() {
     __VLS_components.aButton;
     // @ts-ignore
     [AButton, AButton,];
-    const __VLS_49 = __VLS_asFunctionalComponent(__VLS_48, new __VLS_48({ ...{ 'onClick': {} }, size: ("large"), }));
-    const __VLS_50 = __VLS_49({ ...{ 'onClick': {} }, size: ("large"), }, ...__VLS_functionalComponentArgsRest(__VLS_49));
-    ({}({ ...{ 'onClick': {} }, size: ("large"), }));
-    let __VLS_54;
-    const __VLS_55 = {
-        onClick: (__VLS_ctx.testInlineLayout)
-    };
+    const __VLS_38 = __VLS_37({ ...{ 'onClick': {}, }, size: ("large"), }, ...__VLS_functionalComponentArgsRest(__VLS_37));
+    ({}({ ...{ 'onClick': {}, }, size: ("large"), }));
+    let __VLS_41 = { 'click': __VLS_pickEvent(__VLS_39['click'], {}.onClick) };
+    __VLS_41 = { click: (__VLS_ctx.testInlineLayout) };
     // @ts-ignore
     [testInlineLayout,];
-    (__VLS_53.slots).default;
-    const __VLS_53 = __VLS_pickFunctionalComponentCtx(__VLS_48, __VLS_50);
-    let __VLS_51;
-    let __VLS_52;
-    const __VLS_56 = {}.AButton;
+    (__VLS_40.slots).default;
+    const __VLS_40 = __VLS_pickFunctionalComponentCtx(__VLS_36, __VLS_38);
+    let __VLS_39;
+    const __VLS_42 = {}.AButton;
+    const __VLS_43 = __VLS_asFunctionalComponent(__VLS_42, new __VLS_42({ ...{ 'onClick': {}, }, size: ("large"), }));
     ({}.AButton);
     ({}.AButton);
     __VLS_components.AButton;
@@ -444,69 +426,63 @@ function __VLS_template() {
     __VLS_components.aButton;
     // @ts-ignore
     [AButton, AButton,];
-    const __VLS_57 = __VLS_asFunctionalComponent(__VLS_56, new __VLS_56({ ...{ 'onClick': {} }, size: ("large"), }));
-    const __VLS_58 = __VLS_57({ ...{ 'onClick': {} }, size: ("large"), }, ...__VLS_functionalComponentArgsRest(__VLS_57));
-    ({}({ ...{ 'onClick': {} }, size: ("large"), }));
-    let __VLS_62;
-    const __VLS_63 = {
-        onClick: (__VLS_ctx.testCustomBtns)
-    };
+    const __VLS_44 = __VLS_43({ ...{ 'onClick': {}, }, size: ("large"), }, ...__VLS_functionalComponentArgsRest(__VLS_43));
+    ({}({ ...{ 'onClick': {}, }, size: ("large"), }));
+    let __VLS_47 = { 'click': __VLS_pickEvent(__VLS_45['click'], {}.onClick) };
+    __VLS_47 = { click: (__VLS_ctx.testCustomBtns) };
     // @ts-ignore
     [testCustomBtns,];
-    (__VLS_61.slots).default;
-    const __VLS_61 = __VLS_pickFunctionalComponentCtx(__VLS_56, __VLS_58);
-    let __VLS_59;
-    let __VLS_60;
-    __VLS_elementAsFunction(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({ ...{ style: ({}) }, });
-    const __VLS_64 = {}.DynamicForm;
-    ({}.DynamicForm);
-    __VLS_components.DynamicForm;
-    // @ts-ignore
-    [DynamicForm,];
-    const __VLS_65 = __VLS_asFunctionalComponent(__VLS_64, new __VLS_64({ schema: ((__VLS_ctx.schema)), modelValue: ((__VLS_ctx.model)), ...{ class: ("custom") }, showBtns: (({
+    (__VLS_46.slots).default;
+    const __VLS_46 = __VLS_pickFunctionalComponentCtx(__VLS_42, __VLS_44);
+    let __VLS_45;
+    __VLS_elementAsFunction(__VLS_intrinsicElements.div, __VLS_intrinsicElements.div)({ style: ({}), });
+    const __VLS_48 = {}.DynamicForm;
+    const __VLS_49 = __VLS_asFunctionalComponent(__VLS_48, new __VLS_48({ schema: ((__VLS_ctx.schema)), modelValue: ((__VLS_ctx.model)), class: ("custom"), showBtns: (({
             reset: 1,
             clearAll: 1,
             submit: 1,
         })), }));
-    const __VLS_66 = __VLS_65({ schema: ((__VLS_ctx.schema)), modelValue: ((__VLS_ctx.model)), ...{ class: ("custom") }, showBtns: (({
+    ({}.DynamicForm);
+    __VLS_components.DynamicForm;
+    // @ts-ignore
+    [DynamicForm,];
+    const __VLS_50 = __VLS_49({ schema: ((__VLS_ctx.schema)), modelValue: ((__VLS_ctx.model)), class: ("custom"), showBtns: (({
             reset: 1,
             clearAll: 1,
             submit: 1,
-        })), }, ...__VLS_functionalComponentArgsRest(__VLS_65));
-    ({}({ schema: ((__VLS_ctx.schema)), modelValue: ((__VLS_ctx.model)), ...{ class: ("custom") }, showBtns: (({
+        })), }, ...__VLS_functionalComponentArgsRest(__VLS_49));
+    ({}({ schema: ((__VLS_ctx.schema)), modelValue: ((__VLS_ctx.model)), class: ("custom"), showBtns: (({
             reset: 1,
             clearAll: 1,
             submit: 1,
         })), }));
     // @ts-ignore
     [schema, model,];
-    const __VLS_69 = __VLS_pickFunctionalComponentCtx(__VLS_64, __VLS_66);
+    const __VLS_52 = __VLS_pickFunctionalComponentCtx(__VLS_48, __VLS_50);
     if (typeof __VLS_styleScopedClasses === 'object' && !Array.isArray(__VLS_styleScopedClasses)) {
-        __VLS_styleScopedClasses['change'];
-        __VLS_styleScopedClasses['custom'];
+        __VLS_styleScopedClasses["change"];
+        __VLS_styleScopedClasses["custom"];
     }
     var __VLS_slots;
     return __VLS_slots;
-    const __VLS_componentsOption = {};
-    let __VLS_name;
-    const __VLS_internalComponent = (await import('vue')).defineComponent({
-        setup() {
-            return {
-                DynamicForm: DynamicForm,
-                testCustomBtns: testCustomBtns,
-                testInlineLayout: testInlineLayout,
-                testCorn: testCorn,
-                testPopup: testPopup,
-                schema: schema,
-                model: model,
-                testAvatars: testAvatars,
-                changeModel: changeModel,
-                changeSchema: changeSchema,
-                handleTest: handleTest,
-            };
-        },
-    });
 }
+const __VLS_internalComponent = (await import('vue')).defineComponent({
+    setup() {
+        return {
+            DynamicForm: DynamicForm,
+            testCustomBtns: testCustomBtns,
+            testInlineLayout: testInlineLayout,
+            testCorn: testCorn,
+            testPopup: testPopup,
+            schema: schema,
+            model: model,
+            testAvatars: testAvatars,
+            changeModel: changeModel,
+            changeSchema: changeSchema,
+            handleTest: handleTest,
+        };
+    },
+});
 export default (await import('vue')).defineComponent({
     setup() {
         return {};
