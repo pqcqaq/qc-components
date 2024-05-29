@@ -5,6 +5,7 @@ export { useFullScreenDyForm } from "./dynamic-form";
 export { DynamicForm };
 export { EasyTable };
 export * from "./types";
+export * from "./utils";
 
 // // 所有组件列表
 // const components = [ DynamicForm, EasyTable ];
