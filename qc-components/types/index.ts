@@ -76,10 +76,21 @@ export type InnerComponent =
 
 export type CustomBtn = {
 	text: string;
-	onClick: (model: Record<string, any>, event?: PointerEvent) => void;
 	props?: ButtonProps;
 	outterStyle?: CSSProperties;
 	style?: CSSProperties;
+};
+
+export type FormCustomBtn = CustomBtn & {
+	onClick: (model: Record<string, any>, event?: PointerEvent) => void;
+};
+
+export type FuncCustomBtn = CustomBtn & {
+	onClick: (
+		model: Record<string, any>,
+		close: () => void,
+		event?: PointerEvent
+	) => void;
 };
 
 export type DyFormItem = {
@@ -289,7 +300,7 @@ export type DyForm = {
 		validate?: () => void;
 	};
 	className?: string;
-	customBtns?: CustomBtn[];
+	customBtns?: FormCustomBtn[];
 	customBtnsStyle?: CSSProperties;
 };
 
@@ -311,7 +322,8 @@ export type FormConfig = {
 	defaultValues?: Record<string, any>;
 	fadeInOut?: boolean;
 	fadeTime?: number;
-	customBtns?: CustomBtn[];
+	customBtns?: FuncCustomBtn[];
+	showCloseBtn?: boolean;
 };
 
 //utils--------------

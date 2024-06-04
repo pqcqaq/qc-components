@@ -35,10 +35,15 @@ export type UploadEvents = {
 export type InnerComponent = "Text" | "Password" | "Textarea" | "Number" | "Select" | "Radio" | "Checkbox" | "DatePicker" | "Rate" | "Slider" | "Switch" | "Upload" | "TreeSelect" | "TimePicker" | "AutoComplete" | "Tag" | "Mentions" | "Divider" | "AvatarGroup" | "Corn";
 export type CustomBtn = {
     text: string;
-    onClick: (model: Record<string, any>, event?: PointerEvent) => void;
     props?: ButtonProps;
     outterStyle?: CSSProperties;
     style?: CSSProperties;
+};
+export type FormCustomBtn = CustomBtn & {
+    onClick: (model: Record<string, any>, event?: PointerEvent) => void;
+};
+export type FuncCustomBtn = CustomBtn & {
+    onClick: (model: Record<string, any>, close: () => void, event?: PointerEvent) => void;
 };
 export type DyFormItem = {
     label: string;
@@ -236,7 +241,7 @@ export type DyForm = {
         validate?: () => void;
     };
     className?: string;
-    customBtns?: CustomBtn[];
+    customBtns?: FormCustomBtn[];
     customBtnsStyle?: CSSProperties;
 };
 export type FormConfig = {
@@ -255,7 +260,8 @@ export type FormConfig = {
     defaultValues?: Record<string, any>;
     fadeInOut?: boolean;
     fadeTime?: number;
-    customBtns?: CustomBtn[];
+    customBtns?: FuncCustomBtn[];
+    showCloseBtn?: boolean;
 };
 export type InitFetchConfig = {
     /**

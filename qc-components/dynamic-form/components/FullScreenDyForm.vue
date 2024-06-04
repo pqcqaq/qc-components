@@ -26,7 +26,7 @@
 				:on-submit="props.onSubmit"
 				:on-after-submit="handleOnAfterSubmit"
 			/>
-			<div class="btns">
+			<div class="btns" v-if="!!props.showCloseBtn">
 				<a-button
 					shape="circle"
 					type="primary"
@@ -65,7 +65,7 @@
 					<a-button
 						@click="
 							() => {
-								btn.onClick?.(formModel);
+								btn.onClick?.(formModel, props.onCancel);
 							}
 						"
 						v-bind="btn.props"
@@ -83,7 +83,7 @@
 
 <script setup lang="ts">
 import { CSSProperties, Directive, Ref, onMounted, ref, watch } from "vue";
-import { CustomBtn, DyForm } from "../../types";
+import { DyForm, FuncCustomBtn } from "../../types";
 import DynamicForm from "../DynamicForm.vue";
 import AButton from "ant-design-vue/es/button";
 import { Modal } from "ant-design-vue";
@@ -94,11 +94,13 @@ type MousePosition = { x: number; y: number } | null;
 
 type propType = {
 	schema: DyForm;
-	showBtns: {
-		clearAll: 0 | 1;
-		reset: 0 | 1;
-		submit: 0 | 1;
-	} | boolean;
+	showBtns:
+		| {
+				clearAll: 0 | 1;
+				reset: 0 | 1;
+				submit: 0 | 1;
+		  }
+		| boolean;
 	init: Record<string, any>;
 	onCancel: () => void;
 	allowDirectClose: boolean;
@@ -110,7 +112,8 @@ type propType = {
 	fadeTime?: number;
 	mousePosition: MousePosition;
 	goClose: Ref<boolean>;
-	customBtns?: CustomBtn[];
+	customBtns?: FuncCustomBtn[];
+	showCloseBtn?: boolean;
 };
 
 const props = defineProps<propType>();

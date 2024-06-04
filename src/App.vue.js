@@ -53,7 +53,23 @@ const testCustomBtns = () => {
                     margin: "0 10px",
                 },
             },
+            {
+                text: "自定义关闭",
+                onClick: (model, close) => {
+                    console.log("自定义按钮", model);
+                    message.success("点击了关闭按钮" + JSON.stringify(model));
+                    close();
+                },
+                props: {
+                    type: "primary",
+                    danger: true,
+                },
+                style: {
+                    margin: "0 10px",
+                },
+            },
         ],
+        showCloseBtn: false,
     });
 };
 const testInlineLayout = () => {

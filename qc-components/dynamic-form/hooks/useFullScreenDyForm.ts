@@ -64,6 +64,8 @@ export function useFullScreenDyForm(config: FormConfig) {
 		mousePosition,
 		goClose,
 		customBtns: config.customBtns,
+		showCloseBtn:
+			config.showCloseBtn === undefined ? true : config.showCloseBtn,
 	});
 	app.mount(div);
 }
