@@ -81,17 +81,34 @@ export type CustomBtn = {
 	style?: CSSProperties;
 };
 
+export type FormBtnProps = {
+	doCheck?: () => Promise<boolean>;
+	model?: Record<string, any>;
+	event?: MouseEvent;
+};
+
 export type FormCustomBtn = CustomBtn & {
-	onClick: (model: Record<string, any>, event?: PointerEvent) => void;
+	onClick: (props: FormBtnProps) => void;
+};
+
+export type FuncBtnProps = {
+	doCheck: () => Promise<boolean>;
+	model: Record<string, any>;
+	close: () => void;
+	event?: MouseEvent;
 };
 
 export type FuncCustomBtn = CustomBtn & {
-	onClick: (
-		model: Record<string, any>,
-		close: () => void,
-		event?: PointerEvent
-	) => void;
+	onClick: (props: FuncBtnProps) => void;
 };
+
+export type ModalClickFnProps = {
+	model: Record<string, any>;
+	close: () => void;
+	event: MouseEvent;
+};
+
+export type ModalClickFn = (props: ModalClickFnProps) => void;
 
 export type DyFormItem = {
 	label: string;
@@ -324,6 +341,7 @@ export type FormConfig = {
 	fadeTime?: number;
 	customBtns?: FuncCustomBtn[];
 	showCloseBtn?: boolean;
+	onModalClick?: ModalClickFn;
 };
 
 //utils--------------

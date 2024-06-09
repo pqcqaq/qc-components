@@ -122,8 +122,17 @@
 				>
 					<a-button
 						@click="
-							() => {
-								btn.onClick?.(formModel);
+							($event: MouseEvent) => {
+								btn.onClick?.({
+									doCheck: async () => {
+										return (
+											!!(await validateThenGetModel()) ||
+											false
+										);
+									},
+									model: formModel,
+									event: $event,
+								});
 							}
 						"
 						v-bind="btn.props"

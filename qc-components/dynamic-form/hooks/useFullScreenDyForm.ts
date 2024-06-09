@@ -1,6 +1,7 @@
-import { createApp, ref } from "vue";
-import FullScreenDyForm from "../components/FullScreenDyForm.vue";
+import { createApp, defineAsyncComponent, ref } from "vue";
 import { FormConfig } from "../../types";
+
+const FullScreenDyForm = defineAsyncComponent(() => import("../components/FullScreenDyForm.vue"));
 
 type MousePosition = { x: number; y: number } | null;
 let mousePosition: MousePosition = null;
@@ -66,6 +67,7 @@ export function useFullScreenDyForm(config: FormConfig) {
 		customBtns: config.customBtns,
 		showCloseBtn:
 			config.showCloseBtn === undefined ? true : config.showCloseBtn,
+		onModalClick: config.onModalClick,
 	});
 	app.mount(div);
 }

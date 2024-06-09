@@ -5,6 +5,13 @@
 			fadeTime: props.fadeTime || 150,
 			enable: props.fadeInOut || true,
 		}"
+		@click="
+			props.onModalClick?.({
+				model: formModel,
+				close: () => props.onCancel(),
+				event: $event,
+			})
+		"
 	>
 		<div
 			class="full-form"
@@ -16,6 +23,7 @@
 			:style="{
 				...props.style,
 			}"
+			@click.stop
 		>
 			<DynamicForm
 				:schema="schema"
@@ -25,6 +33,7 @@
 				:on-before-submit="handleOnBeforeSubmit"
 				:on-submit="props.onSubmit"
 				:on-after-submit="handleOnAfterSubmit"
+				:registe-to-parent="register"
 			/>
 			<div class="btns" v-if="!!props.showCloseBtn">
 				<a-button
@@ -64,8 +73,13 @@
 				>
 					<a-button
 						@click="
-							() => {
-								btn.onClick?.(formModel, props.onCancel);
+							($event) => {
+								btn.onClick?.({
+									doCheck: () => checker(),
+									close: () => props.onCancel(),
+									model: formModel,
+									event: $event,
+								});
 							}
 						"
 						v-bind="btn.props"
@@ -82,14 +96,29 @@
 </template>
 
 <script setup lang="ts">
-import { CSSProperties, Directive, Ref, onMounted, ref, watch, defineAsyncComponent } from "vue";
-import type { DyForm, FuncCustomBtn } from "../../types";
+import {
+	CSSProperties,
+	Directive,
+	Ref,
+	onMounted,
+	ref,
+	watch,
+	defineAsyncComponent,
+	ComponentInternalInstance,
+} from "vue";
+import type { DyForm, FuncCustomBtn, ModalClickFn } from "../../types";
 import DynamicForm from "../DynamicForm.vue";
 import { Modal } from "ant-design-vue";
 import { CloseOutlined } from "@ant-design/icons-vue";
 import "./style.scss";
 
 const AButton = defineAsyncComponent(() => import("ant-design-vue/es/button"));
+
+const nextFormRefs = ref<ComponentInternalInstance>();
+
+const register = (form: ComponentInternalInstance) => {
+	nextFormRefs.value = form;
+};
 
 type MousePosition = { x: number; y: number } | null;
 
@@ -115,6 +144,7 @@ type propType = {
 	goClose: Ref<boolean>;
 	customBtns?: FuncCustomBtn[];
 	showCloseBtn?: boolean;
+	onModalClick?: ModalClickFn;
 };
 
 const props = defineProps<propType>();
@@ -277,7 +307,7 @@ const vScaleIn: Directive = {
 		setTimeout(() => {
 			el.style.transition = "scale " + config.fadeTime + "ms ease";
 			el.style.scale = "1";
-		}, 10);
+		});
 	},
 };
 
@@ -295,4 +325,10 @@ watch(
 		}
 	}
 );
+
+const checker = async () => {
+	return (
+		!!(await nextFormRefs.value?.exposed?.validateThenGetModel()) || false
+	);
+};
 </script>

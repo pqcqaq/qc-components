@@ -1167,7 +1167,7 @@ export const testInline: DyForm = {
 	customBtns: [
 		{
 			text: "自定义按钮",
-			onClick: (model, event) => {
+			onClick: ({model, event}) => {
 				console.log(model);
 				console.log(event);
 			},
@@ -1177,7 +1177,7 @@ export const testInline: DyForm = {
 		},
 		{
 			text: "自定义按钮2",
-			onClick: (model, event) => {
+			onClick: ({model, event}) => {
 				console.log(model);
 				console.log(event);
 			},
@@ -1190,7 +1190,7 @@ export const testInline: DyForm = {
 		},
 		{
 			text: "自定义按钮3",
-			onClick: (model, event) => {
+			onClick: ({model, event}) => {
 				console.log(model);
 				console.log(event);
 			},
@@ -1212,6 +1212,15 @@ export const testCustomBtnsSchema: DyForm = {
 			label: "姓名",
 			field: "name",
 			component: "Text",
+			formItemProps: {
+				rules: [
+					{
+						required: true,
+						message: "请输入姓名",
+						trigger: "blur",
+					},
+				],
+			}
 		},
 		{
 			label: "选项",

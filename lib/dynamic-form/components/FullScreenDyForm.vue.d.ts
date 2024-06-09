@@ -1,5 +1,5 @@
 import { CSSProperties, Ref } from 'vue';
-import { DyForm, FuncCustomBtn } from '../../types';
+import { DyForm, FuncCustomBtn, ModalClickFn } from '../../types';
 
 type MousePosition = {
     x: number;
@@ -25,6 +25,7 @@ type propType = {
     goClose: Ref<boolean>;
     customBtns?: FuncCustomBtn[];
     showCloseBtn?: boolean;
+    onModalClick?: ModalClickFn;
 };
 declare const _default: import('vue').DefineComponent<__VLS_TypePropsToRuntimeProps<propType>, {}, unknown, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<__VLS_TypePropsToRuntimeProps<propType>>>, {}, {}>;
 export default _default;

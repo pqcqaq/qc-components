@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref, defineProps, defineEmits } from "vue";
+import { computed, onMounted, ref } from "vue";
 
 type AutoInputList = {
 	label?: string;

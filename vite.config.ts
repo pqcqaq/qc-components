@@ -45,6 +45,7 @@ export default defineConfig(({ command, mode }) => {
 			extensions: [".vue", ".js", ".json", ".ts", ".tsx"], //使用别名省略的后缀名
 		},
 		build: {
+			sourcemap: false, //是否生成map文件
 			outDir: "lib", //输出文件名称
 			lib: {
 				formats: ["es", "cjs"], //指定打包格式

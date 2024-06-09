@@ -69,7 +69,10 @@ const testCustomBtns = () => {
 		customBtns: [
 			{
 				text: "自定义按钮",
-				onClick: (model) => {
+				onClick: async ({ doCheck, close, model, event }) => {
+					if (! await doCheck()) {
+						return;
+					}
 					console.log("自定义按钮", model);
 					message.success("点击了自定义按钮" + JSON.stringify(model));
 				},
@@ -82,7 +85,10 @@ const testCustomBtns = () => {
 			},
 			{
 				text: "自定义关闭",
-				onClick: (model, close) => {
+				onClick: async ({ doCheck, close, model, event }) => {
+					if (! await doCheck()) {
+						return;
+					}
 					console.log("自定义按钮", model);
 					message.success("点击了关闭按钮" + JSON.stringify(model));
 					close();
@@ -97,6 +103,10 @@ const testCustomBtns = () => {
 			},
 		],
 		showCloseBtn: false,
+		onModalClick: (e) => {
+			console.log("modal click", e);
+			e.close();
+		},
 	});
 };
 
