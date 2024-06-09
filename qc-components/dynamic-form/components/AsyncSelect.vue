@@ -10,8 +10,8 @@
 </template>
 
 <script setup lang="ts">
-import ASelect, { DefaultOptionType } from "ant-design-vue/es/select";
-import { computed, onMounted, ref } from "vue";
+import ASelect from "ant-design-vue/es/select";
+import { computed, ref } from "vue";
 import { Options, OptionsGetter } from "../../types";
 
 type propType = {
