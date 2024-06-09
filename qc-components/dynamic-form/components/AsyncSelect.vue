@@ -52,9 +52,9 @@ const getData = async () => {
 		console.error(error);
 	}
 	loading.value = false;
+	selected.value = props.value;
 };
 
-onMounted(() => {
-	getData();
-});
+getData();
+
 </script>

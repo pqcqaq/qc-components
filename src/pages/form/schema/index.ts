@@ -12,25 +12,25 @@ const getOption = async () => {
 				resolve([
 					{
 						value: "111111",
-						label: "111111",
+						label: "选项1",
 					},
 					{
 						value: "222222",
-						label: "222222",
+						label: "选项2",
 					},
 					{
 						value: "333333",
-						label: "333333",
+						label: "选项3",
 					},
 					{
 						value: "444444",
-						label: "444444",
+						label: "选项4",
 					},
 				]);
 			} else {
 				reject("Failed to get options.");
 			}
-		}, 200);
+		}, 5000);
 	});
 };
 
@@ -1217,18 +1217,8 @@ export const testCustomBtnsSchema: DyForm = {
 			label: "选项",
 			field: "select",
 			component: "Select",
-			value: 1,
 			componentProps: {
-				options: [
-					{
-						value: 1,
-						label: "选项1",
-					},
-					{
-						value: 2,
-						label: "选项2",
-					},
-				],
+				options: async () => await getOption(),
 			}
 		},
 	],

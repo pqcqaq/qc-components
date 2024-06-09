@@ -2,7 +2,7 @@
 	"name": "@pqcqcqc/qc-components",
 	"private": false,
 	"type": "module",
-	"version": "0.2.16",
+	"version": "0.2.17",
 	"author": "PQCQCQC",
 	"description": "A Vue3 UI library Base on Ant Design Vue",
 	"main": "./lib/index.es.js",

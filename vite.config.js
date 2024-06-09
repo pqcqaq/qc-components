@@ -21,6 +21,7 @@ export default defineConfig(({ command, mode }) => {
             AutoImport({
                 //安装两行后你会发现在组件中不用再导入ref，reactive等
                 imports: ["vue", "vue-router"],
+                ignore: ["h"], // 自动添加 import { h } from '/node_modules/.vite/deps/vue.js 代码问题处理
                 dts: "src/auto-import.d.ts",
                 //ant-design-vue
                 resolvers: [AntDesignVueResolver()],

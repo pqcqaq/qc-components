@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from "vue";
+import { computed, ref } from "vue";
 import ARadio from "ant-design-vue/es/radio";
 import ARadioGroup from "ant-design-vue/es/radio/Group";
 import { Options, OptionsGetter } from "../../types";
@@ -58,20 +58,21 @@ const getData = async () => {
 			}
 			Realoptions.value = props.options;
 		}
+		if (Realoptions.value.length === 0) {
+			msg.value = "暂无数据";
+		} else {
+			msg.value = "";
+		}
 	} catch (error) {
 		msg.value = "数据加载失败";
 	}
+	checked.value = props.value;
 };
 
-onMounted(async () => {
-	if (!props.options) {
-		msg.value = "暂无数据";
-		return;
-	}
-	await getData();
-});
+getData();
 
 const reflash = async () => {
 	await getData();
 };
+
 </script>

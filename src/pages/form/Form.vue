@@ -48,7 +48,7 @@ const testCustomBtns = () => {
 		schema: testCustomBtnsSchema,
 		init: {
 			name: "test init",
-			select: 2,
+			select: "222222",
 		},
 		showBtns: false,
 		submit: async (model, close) => {

@@ -56,10 +56,10 @@ const getData = async () => {
 	} catch (error) {
 		console.error(error);
 	}
-    loading.value = false;
+	loading.value = false;
+	selected.value = props.value;
 };
 
-onMounted(() => {
-	getData();
-});
+getData();
+
 </script>
