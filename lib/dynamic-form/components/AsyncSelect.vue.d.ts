@@ -1,7 +1,7 @@
 import { Options, OptionsGetter } from '../../types';
 
 type propType = {
-    modelValue: string;
+    value: string | number | undefined;
     options?: Options | OptionsGetter;
 };
 declare const _default: import('vue').DefineComponent<__VLS_TypePropsToRuntimeProps<propType>, {}, unknown, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {

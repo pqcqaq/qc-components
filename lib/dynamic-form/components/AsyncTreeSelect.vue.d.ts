@@ -2,7 +2,7 @@ import { TreeDataGetter } from '../../types';
 import { DefaultOptionType } from 'ant-design-vue/es/vc-tree-select/TreeSelect';
 
 type propType = {
-    modelValue: string | string[];
+    value: string | string[] | undefined;
     treeData?: DefaultOptionType[] | TreeDataGetter;
 };
 declare const _default: import('vue').DefineComponent<__VLS_TypePropsToRuntimeProps<propType>, {}, unknown, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
