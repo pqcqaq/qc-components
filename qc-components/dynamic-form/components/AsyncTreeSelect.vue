@@ -16,7 +16,7 @@ import { TreeSelectProps } from "ant-design-vue";
 import { DefaultOptionType } from "ant-design-vue/es/vc-tree-select/TreeSelect";
 
 type propType = {
-	modelValue: string | string[];
+	value: string | string[] | undefined;
 	treeData?: DefaultOptionType[] | TreeDataGetter;
 };
 
@@ -26,10 +26,10 @@ const emit = defineEmits();
 const realTreeData = ref<TreeSelectProps["treeData"]>([]);
 const selected = computed({
 	get() {
-		return props.modelValue;
+		return props.value;
 	},
 	set(value) {
-		emit("update:modelValue", value);
+		emit("update:value", value);
 	},
 });
 const loading = ref(false);

@@ -15,7 +15,7 @@ import { computed, onMounted, ref } from "vue";
 import { Options, OptionsGetter } from "../../types";
 
 type propType = {
-	modelValue: string;
+	value: string | number | undefined;
 	options?:  Options | OptionsGetter;
 };
 
@@ -25,10 +25,10 @@ const emit = defineEmits();
 const realOptions = ref<Options>([]);
 const selected = computed({
 	get() {
-		return props.modelValue;
+		return props.value;
 	},
 	set(value) {
-		emit("update:modelValue", value);
+		emit("update:value", value);
 	},
 });
 const loading = ref(false);
