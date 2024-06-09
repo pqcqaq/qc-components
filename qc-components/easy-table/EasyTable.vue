@@ -88,15 +88,15 @@ type CachedComponentsInfoProp =
 	| { render: undefined; key: string }
 	| { render: ColumnsRenderFn; key: string };
 
-const ComponentsCacheMap = new Map<string, ComponentRender>();
+// const ComponentsCacheMap = new Map<string, ComponentRender>();
 
 const cachedComponentsInfo = (
 	render: CachedComponentsInfoProp,
 	props: RenderColumnProps
 ) => {
-	if (ComponentsCacheMap.has(render.key)) {
-		return ComponentsCacheMap.get(render.key)!;
-	}
+	// if (ComponentsCacheMap.has(render.key)) {
+	// 	return ComponentsCacheMap.get(render.key)!;
+	// }
 	if (!render.render) {
 		return {
 			component: "span",
@@ -110,7 +110,7 @@ const cachedComponentsInfo = (
 		props: rendered.props,
 		event: rendered.event,
 	};
-	ComponentsCacheMap.set(render.key, cache);
+	// ComponentsCacheMap.set(render.key, cache);
 	return cache;
 };
 

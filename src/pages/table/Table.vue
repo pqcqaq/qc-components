@@ -6,6 +6,7 @@ import { SmileOutlined } from "@ant-design/icons-vue";
 import { TableSchema } from "qc-components";
 import { EasyTable } from "../../../";
 import Tags from "./components/Tags.vue";
+import Icon from "./components/Icon.vue";
 
 const data = [
 	{
@@ -36,11 +37,14 @@ const schema: TableSchema = {
 	columns: [
 		{
 			header: {
-				render: ({ title }) => {
-					console.log("title", title);
-
+				render: ({ title, column }) => {
+					console.log("title", title, column);
 					return {
-						component: SmileOutlined,
+						component: Icon,
+						props: {
+							componentId: SmileOutlined,
+							info: "姓名",
+						},
 					};
 				},
 			},
@@ -50,9 +54,6 @@ const schema: TableSchema = {
 					console.log("text", text, record, index);
 					return {
 						component: "a",
-						props: {
-							icon: markRaw(SmileOutlined),
-						},
 						event: {
 							click: (e: MouseEvent) => {
 								console.log("click", e);
