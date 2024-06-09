@@ -340,7 +340,7 @@ export const schema: DyForm = {
 				],
 			},
 		},
-		// async select 
+		// async select
 		{
 			label: "异步国家选择",
 			field: "async-country",
@@ -1201,6 +1201,35 @@ export const testInline: DyForm = {
 			style: {
 				marginTop: "10px",
 			},
+		},
+	],
+};
+
+export const testCustomBtnsSchema: DyForm = {
+	title: "test",
+	items: [
+		{
+			label: "姓名",
+			field: "name",
+			component: "Text",
+		},
+		{
+			label: "选项",
+			field: "select",
+			component: "Select",
+			value: 1,
+			componentProps: {
+				options: [
+					{
+						value: 1,
+						label: "选项1",
+					},
+					{
+						value: 2,
+						label: "选项2",
+					},
+				],
+			}
 		},
 	],
 };

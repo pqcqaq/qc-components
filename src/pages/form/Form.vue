@@ -40,22 +40,15 @@ import {
 	cornSchema,
 	testAvatarGroup,
 	testInline,
+	testCustomBtnsSchema,
 } from "./schema";
 
 const testCustomBtns = () => {
 	useFullScreenDyForm({
-		schema: {
-			title: "test",
-			items: [
-				{
-					label: "姓名",
-					field: "name",
-					component: "Text",
-				},
-			],
-		},
+		schema: testCustomBtnsSchema,
 		init: {
 			name: "test init",
+			select: 2,
 		},
 		showBtns: false,
 		submit: async (model, close) => {
