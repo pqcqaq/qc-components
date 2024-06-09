@@ -1,7 +1,6 @@
-import { createApp, defineAsyncComponent, ref } from "vue";
+import { createApp, ref } from "vue";
+import FullScreenDyForm from "../components/FullScreenDyForm.vue";
 import { FormConfig } from "../../types";
-
-const FullScreenDyForm = defineAsyncComponent(() => import("../components/FullScreenDyForm.vue"));
 
 type MousePosition = { x: number; y: number } | null;
 let mousePosition: MousePosition = null;

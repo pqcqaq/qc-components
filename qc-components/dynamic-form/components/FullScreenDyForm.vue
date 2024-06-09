@@ -84,11 +84,11 @@
 <script setup lang="ts">
 import { CSSProperties, Directive, Ref, onMounted, ref, watch, defineAsyncComponent } from "vue";
 import type { DyForm, FuncCustomBtn } from "../../types";
+import DynamicForm from "../DynamicForm.vue";
 import { Modal } from "ant-design-vue";
 import { CloseOutlined } from "@ant-design/icons-vue";
 import "./style.scss";
 
-const DynamicForm = defineAsyncComponent(() => import("../DynamicForm.vue"));
 const AButton = defineAsyncComponent(() => import("ant-design-vue/es/button"));
 
 type MousePosition = { x: number; y: number } | null;
