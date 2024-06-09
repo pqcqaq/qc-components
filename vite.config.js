@@ -45,7 +45,7 @@ export default defineConfig(({ command, mode }) => {
         build: {
             outDir: "lib", //输出文件名称
             lib: {
-                formats: ["es", "cjs", "umd"], //指定打包格式
+                formats: ["es", "cjs"], //指定打包格式
                 entry: join(__dirname, "./qc-components/index.ts"), //指定组件编译入口文件
                 name: "QcComponents", //指定打包后全局变量的名字
                 fileName: (format) => `index.${format}.js`, // 打包后的文件名
