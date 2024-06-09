@@ -1,5 +1,4 @@
 import { App, createApp } from "vue";
-import { FormConfig } from "../types";
 import "./assets/css/base.scss";
 
 // import type { App } from 'vue'

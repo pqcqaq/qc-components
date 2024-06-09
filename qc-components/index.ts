@@ -1,10 +1,15 @@
 // import type { App } from "vue";
 import DynamicForm from "./dynamic-form";
 import EasyTable from "./easy-table";
+// 导出组件和hooks
 export { useFullScreenDyForm } from "./dynamic-form";
 export { DynamicForm };
 export { EasyTable };
-export * from "./types";
+// 导出类型
+export * from "./dynamic-form/types";
+export * from "./easy-table/types";
+export * from "./utils/types";
+// 导出工具函数
 export * from "./utils";
 
 // // 所有组件列表
