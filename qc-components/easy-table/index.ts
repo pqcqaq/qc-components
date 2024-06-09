@@ -1,5 +1,7 @@
 import { App, createApp } from "vue";
 import "./assets/css/base.scss";
+export * from "./types";
+export * from "./utils";
 
 // import type { App } from 'vue'
 import EasyTable from './EasyTable.vue'

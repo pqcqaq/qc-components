@@ -1,5 +1,6 @@
 <template>
 	<EasyTable :schema="schema" :data="data" />
+	<EasyTable :schema="simpleSchema" :data="data" />
 </template>
 <script lang="ts" setup>
 import { SmileOutlined } from "@ant-design/icons-vue";
@@ -7,6 +8,7 @@ import { TableSchema } from "qc-components";
 import { EasyTable } from "../../../";
 import Tags from "./components/Tags.vue";
 import Icon from "./components/Icon.vue";
+import { createSimpleTable } from "../../../";
 
 const data = [
 	{
@@ -96,4 +98,12 @@ const schema: TableSchema = {
 		},
 	],
 };
+
+const simpleSchema = createSimpleTable({
+	key: "主键",
+	name: "姓名",
+	age: "年龄",
+	address: "地址",
+	tags: "标签",
+});
 </script>

@@ -69,7 +69,7 @@
 	</div>
 </template>
 <script lang="ts" setup>
-import { type Component, markRaw } from "vue";
+import { type Component, markRaw, computed } from "vue";
 import {
 	ColumnsRenderFn,
 	ComponentRender,
