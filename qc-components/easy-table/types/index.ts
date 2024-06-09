@@ -124,7 +124,7 @@ export type HeaderProps = {};
  * 表格渲染列参数
  */
 export type RenderColumnProps = {
-	text: string;
+	text: string | number | boolean | object | null | undefined | Array<any>;
 	record?: Record<string, any>;
 	index?: number;
 };
@@ -172,8 +172,9 @@ export type HeaderRender = {
 };
 
 export type Column = {
-	header?: HeaderRender;
-	body: ColumnsRender;
+	header?: HeaderRender | string;
+	body: ColumnsRender | string;
+	width?: number | string;
 };
 /**
  * 表格渲染配置

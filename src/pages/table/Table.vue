@@ -36,11 +36,18 @@ const schema: TableSchema = {
 	columns: [
 		{
 			header: {
-				title: "Name",
+				render: ({ title }) => {
+					console.log("title", title);
+
+					return {
+						component: SmileOutlined,
+					};
+				},
 			},
 			body: {
 				index: "name",
 				render: ({ text, record, index }) => {
+					console.log("text", text, record, index);
 					return {
 						component: "a",
 						props: {
@@ -57,27 +64,26 @@ const schema: TableSchema = {
 		},
 		{
 			header: {
-				title: "Age",
+				title: "年龄",
 			},
 			body: {
 				index: "age",
 			},
+			width: "60px",
+		},
+		{
+			header: "地址",
+			body: "address",
+			width: 300,
 		},
 		{
 			header: {
-				title: "Address",
-			},
-			body: {
-				index: "address",
-			},
-		},
-		{
-			header: {
-				title: "Tags",
+				title: "标签",
 			},
 			body: {
 				index: "tags",
 				render: ({ text }) => {
+					console.log("tags", text);
 					return {
 						component: Tags,
 						props: {

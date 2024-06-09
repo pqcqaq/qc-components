@@ -1,6 +1,6 @@
 <template>
 	<div class="easy-table">
-		<div class="title">
+		<div class="title" v-if="schema.title">
 			{{ schema.title }}
 		</div>
 		<a-table :columns="baseSchema" :data-source="data">
@@ -9,23 +9,24 @@
 					<template v-if="column.key === header.key">
 						<component
 							:is="
-								cachedHeaderInfo(header?.render, {
+								cachedHeaderInfo(header, {
 									title,
 									column,
 								}).component
 							"
 							v-bind="
-								cachedHeaderInfo(header?.render, {
+								cachedHeaderInfo(header, {
 									title,
 									column,
 								}).props
 							"
-							v-on="
-								cachedHeaderInfo(header?.render, {
+							v-on="{
+								...cachedHeaderInfo(header, {
 									title,
 									column,
-								}).event
-							"
+								}).event,
+								onNull: () => {},
+							}"
 							>{{ header?.title }}</component
 						>
 					</template>
@@ -35,33 +36,32 @@
 			<template #bodyCell="{ text, record, index, column }">
 				<template v-for="render in renders">
 					<template v-if="column.key === render.key">
-						<template v-if="render.render">
-							<component
-								:is="
-									cachedComponentsInfo(render.render, {
-										text,
-										record,
-										index,
-									}).component
-								"
-								v-bind="
-									cachedComponentsInfo(render.render, {
-										text,
-										record,
-										index,
-									}).props
-								"
-								v-on="
-									cachedComponentsInfo(render.render, {
-										text,
-										record,
-										index,
-									}).event
-								"
-							>
-								{{ text }}
-							</component>
-						</template>
+						<component
+							:is="
+								cachedComponentsInfo(render, {
+									text,
+									record,
+									index,
+								}).component
+							"
+							v-bind="
+								cachedComponentsInfo(render, {
+									text,
+									record,
+									index,
+								}).props
+							"
+							v-on="{
+								...cachedComponentsInfo(render, {
+									text,
+									record,
+									index,
+								}).event,
+								onNull: () => {},
+							}"
+						>
+							{{ text }}
+						</component>
 					</template>
 				</template>
 			</template>
@@ -72,6 +72,7 @@
 import { type Component, markRaw } from "vue";
 import {
 	ColumnsRenderFn,
+	ComponentRender,
 	HeaderRenderFn,
 	RenderColumnProps,
 	RenderHeaderProps,
@@ -83,41 +84,64 @@ type PropType = {
 	data: Record<string, any>[];
 };
 
-const cachedComponentsInfo = computed(
-	() => (render: ColumnsRenderFn | undefined, props: RenderColumnProps) => {
-		if (!render) {
-			return {
-				component: "span",
-				props: {},
-				event: {},
-			};
-		}
-		const rendered = render(props);
-		return {
-			component: makeRawCpn.value(rendered.component),
-			props: rendered.props,
-			event: rendered.event,
-		};
-	}
-);
+type CachedComponentsInfoProp =
+	| { render: undefined; key: string }
+	| { render: ColumnsRenderFn; key: string };
 
-const cachedHeaderInfo = computed(
-	() => (render: HeaderRenderFn | undefined, props: RenderHeaderProps) => {
-		if (!render) {
-			return {
-				component: "span",
-				props: {},
-				event: {},
-			};
-		}
-		const rendered = render(props);
+const ComponentsCacheMap = new Map<string, ComponentRender>();
+
+const cachedComponentsInfo = (
+	render: CachedComponentsInfoProp,
+	props: RenderColumnProps
+) => {
+	if (ComponentsCacheMap.has(render.key)) {
+		return ComponentsCacheMap.get(render.key)!;
+	}
+	if (!render.render) {
 		return {
-			component: makeRawCpn.value(rendered.component),
-			props: rendered.props,
-			event: rendered.event,
+			component: "span",
+			props: {},
+			event: {},
 		};
 	}
-);
+	const rendered = render.render(props);
+	const cache = {
+		component: makeRawCpn.value(rendered.component),
+		props: rendered.props,
+		event: rendered.event,
+	};
+	ComponentsCacheMap.set(render.key, cache);
+	return cache;
+};
+
+type CachedHeaderInfoProp =
+	| { render: undefined; key: string }
+	| { render: HeaderRenderFn; key: string };
+
+const headerInfoCacheMap = new Map<string, ComponentRender>();
+const cachedHeaderInfo = (
+	render: CachedHeaderInfoProp,
+	props: RenderHeaderProps
+) => {
+	if (headerInfoCacheMap.has(render.key)) {
+		return headerInfoCacheMap.get(render.key)!;
+	}
+	if (!render.render) {
+		return {
+			component: "span",
+			props: {},
+			event: {},
+		};
+	}
+	const rendered = render.render(props);
+	const cache = {
+		component: makeRawCpn.value(rendered.component),
+		props: rendered.props,
+		event: rendered.event,
+	};
+	headerInfoCacheMap.set(render.key, cache);
+	return cache;
+};
 
 const props = defineProps<PropType>();
 
@@ -129,32 +153,56 @@ const makeRawCpn = computed(() => (cpn: Component | string) => {
 });
 
 const baseSchema = computed(() => {
+	const widthCache: (number | string | undefined)[] = [];
 	return props.schema.columns
-		.map((item) => item.body)
-		.map((render) => {
+		.map((item, index) => {
+			widthCache[index] = item.width;
+			return item.body;
+		})
+		.map((render, index) => {
+			if (typeof render === "string") {
+				return {
+					dataIndex: render,
+					key: render,
+					width: widthCache[index],
+				};
+			}
 			return {
 				dataIndex: render.index,
 				key: render.index,
 				...render.columnProps,
+				width: widthCache[index],
 			};
 		});
 });
 
 const renders = computed(() => {
-    return props.schema.columns.map((item) => {
-        return {
-            ...item.body,
-            key: item.body.index,
-        }
-    });
+	return props.schema.columns.map((item) => {
+		if (typeof item.body === "string") {
+			return {
+				render: undefined,
+				key: item.body,
+			};
+		}
+		return {
+			...item.body,
+			key: item.body.index,
+		};
+	});
 });
 
 const headers = computed(() => {
-    return props.schema.columns.map((item) => {
-        return {
-            ...item.header,
-            key: item.body.index,
-        }
-    });
+	return props.schema.columns.map((item) => {
+		if (typeof item.header === "string") {
+			return {
+				title: item.header,
+				key: typeof item.body == "string" ? item.body : item.body.index,
+			};
+		}
+		return {
+			...item.header,
+			key: typeof item.body == "string" ? item.body : item.body.index,
+		};
+	});
 });
 </script>
