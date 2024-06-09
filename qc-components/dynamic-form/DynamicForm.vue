@@ -33,7 +33,7 @@
 						item.formItemProps?.className || 'dynamic-form-item'
 					"
 				>
-				<component
+					<component
 						:is="
 							typeof item.component === 'string'
 								? componentsMap[item.component]?.component
@@ -77,28 +77,27 @@
 
 			<div
 				v-if="!!btnShow"
-				style="display: flex; justify-content: center"
+				style="display: flex; justify-content: center; gap: 50px"
 			>
 				<a-button v-if="btnShow?.clearAll" @click="handleClear"
 					>清空</a-button
 				>
-				<a-button
-					v-if="btnShow?.reset"
-					style="margin-left: 50px"
-					@click="handleReset"
+				<a-button v-if="btnShow?.reset" @click="handleReset"
 					>重置</a-button
 				>
 				<a-button
 					v-if="btnShow?.submit"
 					type="primary"
-					style="margin-left: 50px"
 					@click="handleSubmit"
 					:loading="props.disabled || loading"
 					>提交</a-button
 				>
 			</div>
 			<div
-				v-if="props.schema.customBtns && props.schema.customBtns.length > 0"
+				v-if="
+					props.schema.customBtns &&
+					props.schema.customBtns.length > 0
+				"
 				class="custombtns"
 				:style="{
 					...{
