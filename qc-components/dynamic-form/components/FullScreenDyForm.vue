@@ -106,7 +106,7 @@ import {
 	defineAsyncComponent,
 	ComponentInternalInstance,
 } from "vue";
-import type { DyForm, FuncCustomBtn, ModalClickFn } from "../../types";
+import type { DyForm, FuncCustomBtn, ModalClickFn } from "../types";
 import DynamicForm from "../DynamicForm.vue";
 import { Modal } from "ant-design-vue";
 import { CloseOutlined } from "@ant-design/icons-vue";

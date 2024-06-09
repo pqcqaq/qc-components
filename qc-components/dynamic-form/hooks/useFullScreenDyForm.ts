@@ -1,5 +1,5 @@
 import { createApp, defineAsyncComponent, ref } from "vue";
-import { FormConfig } from "../../types";
+import { FormConfig } from "../types";
 
 const FullScreenDyForm = defineAsyncComponent(() => import("../components/FullScreenDyForm.vue"));
 

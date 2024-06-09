@@ -1,4 +1,4 @@
-import { Options, OptionsGetter } from '../../types';
+import { Options, OptionsGetter } from '../types';
 
 type propType = {
     value: string | number | undefined;

@@ -21,7 +21,7 @@
 import { computed, ref } from "vue";
 import ARadio from "ant-design-vue/es/radio";
 import ARadioGroup from "ant-design-vue/es/radio/Group";
-import { Options, OptionsGetter } from "../../types";
+import { Options, OptionsGetter } from "../types";
 
 type propsType = {
 	value: string | number | undefined;

@@ -1,5 +1,5 @@
 import { CSSProperties, Ref } from 'vue';
-import { DyForm, FuncCustomBtn, ModalClickFn } from '../../types';
+import { DyForm, FuncCustomBtn, ModalClickFn } from '../types';
 
 type MousePosition = {
     x: number;

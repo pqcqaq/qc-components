@@ -1,5 +1,5 @@
 import { ComponentInternalInstance } from 'vue';
-import { DyForm } from '../types';
+import { DyForm } from './types';
 
 declare const _default: import('vue').DefineComponent<__VLS_TypePropsToRuntimeProps<{
     schema: DyForm;

@@ -21,7 +21,7 @@
 import { computed, ref } from "vue";
 import ACheckbox from "ant-design-vue/es/checkbox";
 import ACheckboxGroup from "ant-design-vue/es/checkbox/Group";
-import { Options, OptionsGetter } from "../../types";
+import { Options, OptionsGetter } from "../types";
 
 type propsType = {
 	value: string[] | number[] | undefined;

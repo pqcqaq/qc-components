@@ -12,7 +12,7 @@
 <script setup lang="ts">
 import ASelect from "ant-design-vue/es/select";
 import { computed, ref } from "vue";
-import { Options, OptionsGetter } from "../../types";
+import { Options, OptionsGetter } from "../types";
 
 type propType = {
 	value: string | number | undefined;

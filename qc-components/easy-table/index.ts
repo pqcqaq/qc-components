@@ -1,4 +1,4 @@
-import { App, createApp } from "vue";
+import { App } from "vue";
 import "./assets/css/base.scss";
 export * from "./types";
 export * from "./utils";

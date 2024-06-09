@@ -1,4 +1,4 @@
-import { TreeDataGetter } from '../../types';
+import { TreeDataGetter } from '../types';
 import { DefaultOptionType } from 'ant-design-vue/es/vc-tree-select/TreeSelect';
 
 type propType = {

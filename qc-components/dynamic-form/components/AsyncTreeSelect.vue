@@ -11,7 +11,7 @@
 <script setup lang="ts">
 import ATreeSelect from "ant-design-vue/es/tree-select";
 import { computed, ref } from "vue";
-import { TreeDataGetter } from "../../types";
+import { TreeDataGetter } from "../types";
 import { TreeSelectProps } from "ant-design-vue";
 import { DefaultOptionType } from "ant-design-vue/es/vc-tree-select/TreeSelect";
 

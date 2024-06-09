@@ -8,9 +8,9 @@ export { useFullScreenDyForm } from "./dynamic-form";
 export { DynamicForm };
 export { EasyTable };
 // // 导出类型
-// export * from "./dynamic-form/types";
-// export * from "./easy-table/types";
-// export * from "./utils/types";
+export * from "./dynamic-form/types";
+export * from "./easy-table/types";
+export * from "./utils/types";
 // 导出工具函数
 export * from "./utils";
 
