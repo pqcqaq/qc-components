@@ -1,9 +1,12 @@
 <template>
 	<div class="switch">
 		<div class="btns" v-for="(component, key) in componentsList" :key="key">
-			<a-button @click="viewComponent = component.cpn" type="primary" class="btn">{{
-				component.name
-			}}</a-button>
+			<a-button
+				@click="viewComponent = component.cpn"
+				type="primary"
+				class="btn"
+				>{{ component.name }}</a-button
+			>
 		</div>
 	</div>
 	<div>
@@ -15,18 +18,18 @@
 import type { Component } from "vue";
 import Form from "./pages/form/Form.vue";
 import Table from "./pages/table/Table.vue";
-import { ref } from "vue";
+import { ref, markRaw } from "vue";
 
 const viewComponent = ref<Component>();
 
 const componentsList = [
 	{
 		name: "动态表单",
-		cpn: Form,
+		cpn: markRaw(Form),
 	},
 	{
 		name: "表格",
-		cpn: Table,
+		cpn: markRaw(Table),
 	},
 ];
 </script>

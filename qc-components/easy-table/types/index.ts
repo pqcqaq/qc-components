@@ -1,4 +1,4 @@
-import { type Component } from "vue";
+import { CSSProperties, type Component } from "vue";
 
 /**
  * 分割大小界限
@@ -176,10 +176,24 @@ export type Column = {
 	body: ColumnsRender | string;
 	width?: number | string;
 };
+
+export type TitleConfig = {
+	text: string;
+	style?: CSSProperties;
+};
+
 /**
  * 表格渲染配置
  */
 export type TableSchema = {
-	title?: string;
+	title?: string | TitleConfig;
 	columns: Column[];
+	outterStyle?: CSSProperties;
+};
+
+export type CreateSchemaProps = {
+	config: {
+		[key: string]: string | HeaderRender;
+	};
+	title?: string | TitleConfig;
 };

@@ -1,7 +1,19 @@
 <template>
-	<div class="easy-table">
+	<div
+		class="easy-table"
+		:style="{
+			...schema.outterStyle,
+		}"
+	>
 		<div class="title" v-if="schema.title">
-			{{ schema.title }}
+			<template v-if="typeof schema.title === 'string'">
+				<h2 style="margin-bottom: 10px">{{ schema.title }}</h2>
+			</template>
+			<template v-else>
+				<div :style="schema.title.style">
+					{{ schema.title.text }}
+				</div>
+			</template>
 		</div>
 		<a-table :columns="baseSchema" :data-source="data">
 			<template #headerCell="{ title, column }">

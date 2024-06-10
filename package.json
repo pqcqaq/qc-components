@@ -5,10 +5,10 @@
 	"version": "0.2.22",
 	"author": "PQCQCQC",
 	"description": "A Vue3 UI library Base on Ant Design Vue",
-	"main": "./lib/index.es.js",
-	"module": "./lib/index.es.js",
+	"main": "./qc-components/index.ts",
+	"module": "./qc-components/index.ts",
 	"style": "./lib/index.css",
-	"types": "./lib/index.d.ts",
+	"types": "./qc-components/index.ts",
 	"files": [
 		"lib"
 	],

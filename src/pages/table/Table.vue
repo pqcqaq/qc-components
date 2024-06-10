@@ -9,38 +9,26 @@ import { EasyTable } from "../../../";
 import Tags from "./components/Tags.vue";
 import Icon from "./components/Icon.vue";
 import { createSimpleTable } from "../../../";
-
-const data = [
-	{
-		key: "1",
-		name: "John Brown",
-		age: 32,
-		address: "New York No. 1 Lake Park",
-		tags: ["nice", "developer"],
-	},
-	{
-		key: "2",
-		name: "Jim Green",
-		age: 42,
-		address: "London No. 1 Lake Park",
-		tags: ["loser"],
-	},
-	{
-		key: "3",
-		name: "Joe Black",
-		age: 32,
-		address: "Sidney No. 1 Lake Park",
-		tags: ["cool", "teacher"],
-	},
-];
+import { data } from "./data";
 
 const schema: TableSchema = {
-	title: "Table Title",
+	title: {
+		text: "表格",
+		style: {
+			color: "red",
+			fontSize: "30px",
+			marginTop: "10px",
+			marginBottom: "10px",
+		},
+	},
+	outterStyle: {
+		border: "1px solid grey",
+		borderRadius: "10px",
+	},
 	columns: [
 		{
 			header: {
 				render: ({ title, column }) => {
-					console.log("title", title, column);
 					return {
 						component: Icon,
 						props: {
@@ -53,7 +41,6 @@ const schema: TableSchema = {
 			body: {
 				index: "name",
 				render: ({ text, record, index }) => {
-					console.log("text", text, record, index);
 					return {
 						component: "a",
 						event: {
@@ -86,7 +73,6 @@ const schema: TableSchema = {
 			body: {
 				index: "tags",
 				render: ({ text }) => {
-					console.log("tags", text);
 					return {
 						component: Tags,
 						props: {
@@ -100,10 +86,23 @@ const schema: TableSchema = {
 };
 
 const simpleSchema = createSimpleTable({
-	key: "主键",
-	name: "姓名",
-	age: "年龄",
-	address: "地址",
-	tags: "标签",
+	config: {
+		key: {
+			render: ({ title }) => {
+				return {
+					component: Icon,
+					props: {
+						componentId: SmileOutlined,
+						info: "主键",
+					},
+				};
+			},
+		},
+		name: "姓名",
+		age: "年龄",
+		address: "地址",
+		tags: "标签",
+	},
+	title: "简单表格",
 });
 </script>
