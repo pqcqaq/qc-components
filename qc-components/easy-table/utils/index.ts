@@ -1,4 +1,4 @@
-import { Column, CreateSchemaProps, TableSchema, TitleConfig } from "../../types";
+import { Column, CreateSchemaProps, TableSchema } from "../types";
 
 /**
  *  创建一个简单的表格Schema
