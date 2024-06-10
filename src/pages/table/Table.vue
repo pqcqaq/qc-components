@@ -4,7 +4,7 @@
 </template>
 <script lang="ts" setup>
 import { SmileOutlined } from "@ant-design/icons-vue";
-import { TableSchema } from "qc-components";
+import { TableSchema } from "../../../";
 import { EasyTable } from "../../../";
 import Tags from "./components/Tags.vue";
 import Icon from "./components/Icon.vue";
