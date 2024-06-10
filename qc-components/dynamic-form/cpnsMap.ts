@@ -1,4 +1,4 @@
-import { Component, reactive, markRaw, defineAsyncComponent } from "vue";
+import { Component, reactive, defineAsyncComponent } from "vue";
 
 // 表单域组件类型
 export const componentsMap: Record<
@@ -17,112 +17,100 @@ export const componentsMap: Record<
 	>
 >({
 	Text: {
-		component: markRaw(
-			defineAsyncComponent(() => import("./components/Text.vue"))
-		),
+		component: defineAsyncComponent(() => import("./components/Text.vue")),
 	},
 	Password: {
-		component: markRaw(
-			defineAsyncComponent(() => import("./components/Text.vue"))
-		),
+		component: defineAsyncComponent(() => import("./components/Text.vue")),
 		defaultProps: {
 			type: "password",
 		},
 	},
 	Textarea: {
-		component: markRaw(
-			defineAsyncComponent(() => import("./components/Textarea.vue"))
+		component: defineAsyncComponent(
+			() => import("./components/Textarea.vue")
 		),
 	},
 	Number: {
-		component: markRaw(
-			defineAsyncComponent(() => import("./components/Number.vue"))
+		component: defineAsyncComponent(
+			() => import("./components/Number.vue")
 		),
 	},
 	Select: {
-		component: markRaw(
-			defineAsyncComponent(() => import("./components/AsyncSelect.vue"))
+		component: defineAsyncComponent(
+			() => import("./components/AsyncSelect.vue")
 		),
 	},
 	Radio: {
-		component: markRaw(
-			defineAsyncComponent(() => import("./components/AsyncRadio.vue"))
+		component: defineAsyncComponent(
+			() => import("./components/AsyncRadio.vue")
 		),
 	},
 	Checkbox: {
-		component: markRaw(
-			defineAsyncComponent(() => import("./components/AsyncCheckBox.vue"))
+		component: defineAsyncComponent(
+			() => import("./components/AsyncCheckBox.vue")
 		),
 	},
 	DatePicker: {
-		component: markRaw(
-			defineAsyncComponent(() => import("./components/DatePicker.vue"))
+		component: defineAsyncComponent(
+			() => import("./components/DatePicker.vue")
 		),
 	},
 	Rate: {
-		component: markRaw(
-			defineAsyncComponent(() => import("./components/Rate.vue"))
-		),
+		component: defineAsyncComponent(() => import("./components/Rate.vue")),
 	},
 	Slider: {
-		component: markRaw(
-			defineAsyncComponent(() => import("./components/Slider.vue"))
+		component: defineAsyncComponent(
+			() => import("./components/Slider.vue")
 		),
 	},
 	Switch: {
-		component: markRaw(
-			defineAsyncComponent(() => import("./components/CustomSwitch.vue"))
+		component: defineAsyncComponent(
+			() => import("./components/CustomSwitch.vue")
 		),
 	},
 	Upload: {
-		component: markRaw(
-			defineAsyncComponent(() => import("./components/CustomUpload.vue"))
+		component: defineAsyncComponent(
+			() => import("./components/CustomUpload.vue")
 		),
 	},
 	TreeSelect: {
-		component: markRaw(
-			defineAsyncComponent(
-				() => import("./components/AsyncTreeSelect.vue")
-			)
+		component: defineAsyncComponent(
+			() => import("./components/AsyncTreeSelect.vue")
 		),
 	},
 	TimePicker: {
-		component: markRaw(
-			defineAsyncComponent(() => import("./components/TimePicker.vue"))
+		component: defineAsyncComponent(
+			() => import("./components/TimePicker.vue")
 		),
 	},
 	AutoComplete: {
-		component: markRaw(
-			defineAsyncComponent(
-				() => import("./components/AutoCompleteInput.vue")
-			)
+		component: defineAsyncComponent(
+			() => import("./components/AutoCompleteInput.vue")
 		),
 	},
 	Tag: {
-		component: markRaw(
-			defineAsyncComponent(() => import("./components/TagShow.vue"))
+		component: defineAsyncComponent(
+			() => import("./components/TagShow.vue")
 		),
 	},
 	Mentions: {
-		component: markRaw(
-			defineAsyncComponent(() => import("./components/Mentions.vue"))
+		component: defineAsyncComponent(
+			() => import("./components/Mentions.vue")
 		),
 	},
 	Divider: {
-		component: markRaw(
-			defineAsyncComponent(() => import("./components/CustomDivider.vue"))
+		component: defineAsyncComponent(
+			() => import("./components/CustomDivider.vue")
 		),
 	},
 	AvatarGroup: {
-		component: markRaw(
-			defineAsyncComponent(
-				() => import("./components/CustomAvatarGroup.vue")
-			)
+		component: defineAsyncComponent(
+			() => import("./components/CustomAvatarGroup.vue")
 		),
 	},
 	Corn: {
-		component: markRaw(
-			defineAsyncComponent(() => import("./components/CronInput.vue"))
+		component: defineAsyncComponent(
+			() => import("./components/CronInput.vue")
 		),
 	},
 });

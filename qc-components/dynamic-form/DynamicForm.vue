@@ -36,8 +36,8 @@
 					<component
 						:is="
 							typeof item.component === 'string'
-								? componentsMap[item.component]?.component
-								: item.component
+								? markRaw(componentsMap[item.component]?.component)
+								: markRaw(item.component)
 						"
 						v-bind="{
 							...item.componentProps,
@@ -165,6 +165,7 @@ import {
 	onUnmounted,
 	getCurrentInstance,
 	ComponentInternalInstance,
+	markRaw
 } from "vue";
 import type { DyForm, DyFormItem } from "../types";
 import { componentsMap } from "./cpnsMap";
