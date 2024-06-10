@@ -166,7 +166,7 @@ import {
 	getCurrentInstance,
 	ComponentInternalInstance,
 } from "vue";
-import type { DyForm, DyFormItem } from "./types";
+import type { DyForm, DyFormItem } from "../types";
 import { componentsMap } from "./cpnsMap";
 import { FormInstance } from "ant-design-vue/es/form/Form";
 import { StyleValue } from "vue";

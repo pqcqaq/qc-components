@@ -1,4 +1,4 @@
-import { Column, TableSchema } from "../types";
+import { Column, TableSchema } from "../../types";
 
 /**
  *  创建一个简单的表格Schema

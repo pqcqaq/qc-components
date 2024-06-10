@@ -68,6 +68,13 @@
 		</a-table>
 	</div>
 </template>
+
+<script lang="ts">
+export default {
+	name: "easy-table",
+};
+</script>
+
 <script lang="ts" setup>
 import { type Component, markRaw, computed } from "vue";
 import {

@@ -1,7 +1,6 @@
 import { App } from "vue";
-// import FullScreenDyForm from "./components/FullScreenDyForm.vue";
-// import { FormConfig } from "./types";
-// import "./assets/css/base.scss";
+import "./assets/css/base.scss";
+export * from './types';
 
 // import type { App } from 'vue'
 import DynamicForm from "./DynamicForm.vue";
@@ -13,4 +12,3 @@ DynamicForm.install = function (Vue: App) {
 };
 
 export default DynamicForm;
-export * from "./types";

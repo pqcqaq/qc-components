@@ -3,7 +3,7 @@ import {
 	InitFetchConfig,
 	RequestInterceptor,
 	ResponseInterceptor,
-} from "./types";
+} from "../types";
 
 export class Fetch {
 	/**

@@ -9,7 +9,7 @@ import {
 } from "ant-design-vue";
 import { Rule } from "ant-design-vue/es/form";
 import dayjs, { Dayjs } from "dayjs";
-import { CSSProperties, Component, Slot, VNode } from "vue";
+import { CSSProperties, type Component, Slot, VNode } from "vue";
 
 export type Options = Array<{
 	label: string;
