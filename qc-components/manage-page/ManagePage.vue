@@ -11,7 +11,7 @@
 
 <script setup lang="ts">
 import { DyForm } from "../../../qc-components";
-import { defineAsyncComponent } from "vue";
+import { defineAsyncComponent, ref, reactive } from "vue";
 import { TableSchema } from "../types";
 const DynamicForm = defineAsyncComponent(
 	() => import("../dynamic-form/DynamicForm.vue")
@@ -50,7 +50,7 @@ const formSchema: DyForm = reactive<DyForm>({
 		},
 	],
 });
-const searchModel = reactive({});
+const searchModel = ref<Record<string, any>>({});
 const data = ref<any[]>([]);
 const tableSchema: TableSchema = reactive({
 	// schema
