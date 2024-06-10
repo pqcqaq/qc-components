@@ -40,7 +40,8 @@ export default defineConfig(({ command, mode }) => {
 		//设置别名
 		resolve: {
 			alias: {
-				"@/qc-components": join(__dirname, "./qc-components/"),
+				"../../../": join(__dirname, "./qc-components/"),
+				"@lib": join(__dirname, "./lib/"),
 			},
 			extensions: [".vue", ".js", ".json", ".ts", ".tsx"], //使用别名省略的后缀名
 		},

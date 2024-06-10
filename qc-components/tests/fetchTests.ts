@@ -1,4 +1,4 @@
-import { Fetch } from "../utils/useFetch";
+import { Fetch } from "../utils/FetchUtils";
 
 // tests
 const service = Fetch.createService({

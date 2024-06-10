@@ -70,7 +70,7 @@ const testCustomBtns = () => {
 			{
 				text: "自定义按钮",
 				onClick: async ({ doCheck, close, model, event }) => {
-					if (! await doCheck()) {
+					if (!(await doCheck())) {
 						return;
 					}
 					console.log("自定义按钮", model);
@@ -86,7 +86,7 @@ const testCustomBtns = () => {
 			{
 				text: "自定义关闭",
 				onClick: async ({ doCheck, close, model, event }) => {
-					if (! await doCheck()) {
+					if (!(await doCheck())) {
 						return;
 					}
 					console.log("自定义按钮", model);

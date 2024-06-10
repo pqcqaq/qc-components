@@ -2,13 +2,13 @@
 	"name": "@pqcqcqc/qc-components",
 	"private": false,
 	"type": "module",
-	"version": "0.2.22",
+	"version": "0.2.24",
 	"author": "PQCQCQC",
 	"description": "A Vue3 UI library Base on Ant Design Vue",
-	"main": "./qc-components/index.ts",
-	"module": "./qc-components/index.ts",
+	"main": "./lib/index.es.js",
+	"module": "./lib/index.es.js",
 	"style": "./lib/index.css",
-	"types": "./qc-components/index.ts",
+	"types": "./lib/index.d.ts",
 	"files": [
 		"lib"
 	],
