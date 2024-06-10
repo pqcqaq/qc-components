@@ -18,6 +18,7 @@
 import type { Component } from "vue";
 import Form from "./pages/form/Form.vue";
 import Table from "./pages/table/Table.vue";
+import Manage from "./pages/manage/Manage.vue";
 import { ref, markRaw } from "vue";
 
 const viewComponent = ref<Component>();
@@ -31,6 +32,10 @@ const componentsList = [
 		name: "表格",
 		cpn: markRaw(Table),
 	},
+	{
+		name: "管理页面",
+		cpn: markRaw(Manage),
+	}
 ];
 </script>
 
