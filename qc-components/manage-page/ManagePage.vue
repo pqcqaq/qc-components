@@ -34,7 +34,7 @@ const formSchema: DyForm = reactive<DyForm>({
 				const result = (await doCheck?.()) || false;
 				if (result) {
 					console.log("submit", model);
-					data.value = [...data.value, model];
+					data.value = [...data.value, { ...model }];
 				} else {
 					console.log("submit", "校验不通过");
 				}
