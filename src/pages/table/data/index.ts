@@ -22,3 +22,5 @@ export const data = [
 		tags: ["cool", "teacher"],
 	},
 ];
+
+export const empty = []

@@ -16,5 +16,6 @@ export const createSimpleTable = (
 	return {
 		title: props.title || "",
 		columns: result,
+		props: props.props,
 	};
 };

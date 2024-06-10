@@ -15,7 +15,11 @@
 				</div>
 			</template>
 		</div>
-		<a-table :columns="baseSchema" :data-source="data">
+		<a-table
+			:columns="baseSchema"
+			:data-source="data"
+			v-bind="schema.props"
+		>
 			<template #headerCell="{ title, column }">
 				<template v-for="header in headers">
 					<template v-if="column.key === header.key">
@@ -90,6 +94,7 @@ export default {
 <script lang="ts" setup>
 import { type Component, markRaw, computed } from "vue";
 import {
+	ColumnProps,
 	ColumnsRenderFn,
 	ComponentRender,
 	HeaderRenderFn,
@@ -173,9 +178,11 @@ const makeRawCpn = computed(() => (cpn: Component | string) => {
 
 const baseSchema = computed(() => {
 	const widthCache: (number | string | undefined)[] = [];
+	const PropsCache: (ColumnProps | undefined)[] = [];
 	return props.schema.columns
 		.map((item, index) => {
 			widthCache[index] = item.width;
+			PropsCache[index] = item.props;
 			return item.body;
 		})
 		.map((render, index) => {
@@ -189,7 +196,7 @@ const baseSchema = computed(() => {
 			return {
 				dataIndex: render.index,
 				key: render.index,
-				...render.columnProps,
+				...PropsCache[index],
 				width: widthCache[index],
 			};
 		});

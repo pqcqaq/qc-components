@@ -1,3 +1,4 @@
+import { TableProps } from 'ant-design-vue';
 import { CSSProperties, Component } from 'vue';
 
 /**
@@ -149,7 +150,6 @@ export type ColumnsRenderFn = (props: RenderColumnProps) => ComponentRender;
 export type ColumnsRender = {
     index: string;
     render?: ColumnsRenderFn;
-    columnProps?: ColumnProps;
 };
 /**
  * 表头渲染参数
@@ -174,6 +174,7 @@ export type HeaderRender = {
 export type Column = {
     header?: HeaderRender | string;
     body: ColumnsRender | string;
+    props?: ColumnProps;
     width?: number | string;
 };
 export type TitleConfig = {
@@ -187,10 +188,12 @@ export type TableSchema = {
     title?: string | TitleConfig;
     columns: Column[];
     outterStyle?: CSSProperties;
+    props?: TableProps;
 };
 export type CreateSchemaProps = {
     config: {
         [key: string]: string | HeaderRender;
     };
     title?: string | TitleConfig;
+    props?: TableProps;
 };

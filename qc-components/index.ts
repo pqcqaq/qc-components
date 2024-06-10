@@ -1,10 +1,12 @@
 // import type { App } from "vue";
 import DynamicForm from "./dynamic-form";
 import EasyTable from "./easy-table";
+import ManagePage from "./manage-page";
 export { useFullScreenDyForm } from "./dynamic-form";
 export { createSimpleTable } from "./easy-table";
 export { DynamicForm };
 export { EasyTable };
+export { ManagePage };
 export * from "./types";
 export * from "./utils";
 
