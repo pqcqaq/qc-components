@@ -219,6 +219,7 @@ const pageSchema: ManagePageSchema = {
 			{
 				header: "地址",
 				body: "address",
+                width: "200px",
 			},
 			{
 				header: "标签",

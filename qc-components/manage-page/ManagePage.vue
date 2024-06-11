@@ -141,9 +141,6 @@ const tableSchema: TableSchema = reactive({
 	props: {
 		pagination: {
 			...props.schema.table.paginationProps,
-			pageSize: 10,
-			total: 0,
-			current: 1,
 		},
 		loading: false,
 		onChange: (pagination, filters, sorter, extra) => {
