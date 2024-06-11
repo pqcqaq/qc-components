@@ -42,7 +42,7 @@ import type { TableCustomBtn } from "../types";
 import { CSSProperties } from "vue";
 type propType = {
 	btns: TableCustomBtn[];
-	customBtnsStyle: CSSProperties;
+	customBtnsStyle?: CSSProperties;
 };
 const props = defineProps<propType>();
 </script>

@@ -103,7 +103,6 @@
 					...{
 						display: 'flex',
 						justifyContent: 'center',
-						marginTop: '20px',
 						gap: '20px',
 					},
 					...props.schema.customBtnsStyle,
