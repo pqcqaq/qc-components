@@ -3,16 +3,16 @@
 		<template v-if="schema.title">
 			<div class="title">
 				<template v-if="typeof schema.title === 'string'">
-					<h2
+					<div
 						style="
 							display: flex;
 							justify-content: center;
-							margin-bottom: 15px;
+							margin-bottom: 20px;
 							align-items: center;
 						"
 					>
 						{{ schema.title }}
-					</h2>
+					</div>
 				</template>
 				<template v-else>
 					<div :style="schema.title.style">
