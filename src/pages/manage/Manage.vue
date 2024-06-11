@@ -49,7 +49,11 @@ const pageSchema: ManagePageSchema = {
 		doRefresh();
 	},
 	seacher: {
-		style: {},
+		style: {
+			padding: "10px",
+			backgroundColor: "#f3f3f3",
+			borderRadius: "10px",
+		},
 		items: [
 			{
 				component: "Text",
@@ -77,20 +81,27 @@ const pageSchema: ManagePageSchema = {
 			},
 		],
 	},
-	tableColumns: [
-		{
-			header: "姓名",
-			body: "name",
-		},
-		{
-			header: "年龄",
-			body: "age",
-		},
-		{
-			header: "地址",
-			body: "address",
-		},
-	],
+	table: {
+		columns: [
+			{
+				header: "姓名",
+				body: "name",
+			},
+			{
+				header: "年龄",
+				body: "age",
+			},
+			{
+				header: "地址",
+				body: "address",
+			},
+		],
+		style: {
+			padding: "10px",
+			backgroundColor: "#f0f0f0",
+			borderRadius: "10px",
+		}
+	},
 };
 </script>
 

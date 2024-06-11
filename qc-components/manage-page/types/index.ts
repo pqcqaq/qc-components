@@ -1,5 +1,6 @@
 import { CSSProperties } from "vue";
 import { Column, DyFormItem } from "../../types";
+import { TablePaginationConfig } from "ant-design-vue";
 
 export type PageRecords = {
 	data: Record<string, any>[]; // 表格数据
@@ -46,11 +47,17 @@ export type PageEventsProps = {
 	doReset: () => void;
 };
 
+export type TableBuilder = {
+	columns: Column[];
+	style?: CSSProperties;
+	paginationProps?: TablePaginationConfig;
+};
+
 export type ManagePageSchema = {
 	title?: string;
 	fetchData: FetchDataFn;
 	deleteData?: DeleteDataFn;
 	editData?: EditDataFn;
 	seacher: SearcherSchema;
-	tableColumns: Column[];
+	table: TableBuilder;
 };

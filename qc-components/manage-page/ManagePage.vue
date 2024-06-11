@@ -16,7 +16,12 @@
 				:disabled="disabled"
 			/>
 		</div>
-		<div class="list">
+		<div
+			class="list"
+			:style="{
+				...props.schema.table.style,
+			}"
+		>
 			<EasyTable :data="data" :schema="tableSchema" />
 		</div>
 	</div>
@@ -87,6 +92,7 @@ const doSearch = async () => {
 const tableSchema: TableSchema = reactive({
 	props: {
 		pagination: {
+			...props.schema.table.paginationProps,
 			pageSize: 10,
 			total: 0,
 			current: 1,
@@ -99,7 +105,7 @@ const tableSchema: TableSchema = reactive({
 	},
 	// schema
 	columns: [
-		...props.schema.tableColumns,
+		...props.schema.table.columns,
 		{
 			header: "管理",
 			body: {
