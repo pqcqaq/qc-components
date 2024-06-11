@@ -1,6 +1,6 @@
 <template>
     <div>
-        <a-tag v-for="tag in props.tags" :key="tag">
+        <a-tag v-for="tag in props.tags" :key="tag" v-bind="$attrs">
             {{ tag }}
         </a-tag>
     </div>

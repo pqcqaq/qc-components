@@ -6,7 +6,8 @@
 
 <script setup lang="ts">
 import { ManagePage } from "../../../qc-components";
-import { ManagePageSchema } from "../../../qc-components/manage-page";
+import { EditorSchema, ManagePageSchema } from "../../../qc-components";
+import Tags from "../table/components/Tags.vue";
 
 let datas = [
 	{
@@ -14,46 +15,39 @@ let datas = [
 		name: "John Brown",
 		age: 32,
 		address: "New York No. 1 Lake Park",
+		tags: ["nice", "developer"],
 	},
 	{
 		id: 2,
 		name: "Jim Green",
 		age: 42,
 		address: "London No. 1 Lake Park",
+		tags: ["loser"],
 	},
 	{
 		id: 3,
 		name: "Joe Black",
 		age: 32,
 		address: "Sidney No. 1 Lake Park",
+		tags: ["cool", "teacher"],
 	},
 ];
 
-const pageSchema: ManagePageSchema = {
-	title: "Manage Page",
-	fetchData: async ({ paginator, model }) => {
-		console.log("fetchData", paginator, model);
-		return new Promise((resolve) => {
-			setTimeout(() => {
-				resolve({
-					data: datas,
-					total: 200,
-					current: paginator.current || 1,
-				});
-			}, 200);
-		});
-	},
-	deleteData: async ({ record, doRefresh }) => {
-		console.log("deleteData", record);
-		datas = datas.filter((item) => item.id !== record.id);
-		doRefresh();
-	},
-	seacher: {
-		style: {
-			padding: "10px",
-			backgroundColor: "#f3f3f3",
-			borderRadius: "10px",
-		},
+const getDataApi = async (props: { paginator: any; model: any }) => {
+	return await new Promise<any>((resolve) => {
+		setTimeout(() => {
+			resolve({
+				data: datas,
+				total: 200,
+				current: props.paginator.current || 1,
+			});
+		}, 200);
+	});
+};
+
+const editSchema: EditorSchema = {
+	schema: {
+		title: "编辑",
 		items: [
 			{
 				component: "Text",
@@ -79,6 +73,122 @@ const pageSchema: ManagePageSchema = {
 					required: true,
 				},
 			},
+			{
+				component: "Select",
+				label: "标签",
+				field: "tags",
+				componentProps: {
+					options: [
+						{
+							label: "nice",
+							value: "nice",
+						},
+						{
+							label: "cool",
+							value: "cool",
+						},
+						{
+							label: "loser",
+							value: "loser",
+						},
+						{
+							label: "teacher",
+							value: "teacher",
+						},
+						{
+							label: "developer",
+							value: "developer",
+						},
+					],
+				},
+				formItemProps: {
+					required: true,
+				},
+			},
+		],
+	},
+};
+
+const pageSchema: ManagePageSchema = {
+	title: "Manage Page",
+	fetchData: async ({ paginator, model }) => {
+		return await getDataApi({ paginator, model });
+	},
+	deleteData: async ({ record, doRefresh }) => {
+		datas = datas.filter((item) => item.id !== record.id);
+		doRefresh();
+	},
+	editData: ({ record, doRefresh, close }) => {
+		const index = datas.findIndex((item) => item.id === record.id);
+		datas[index] = record as any;
+		doRefresh();
+		close();
+	},
+	addData: async ({ record, doRefresh, close }) => {
+		datas.push({
+			id: datas.length + 1,
+			name: record.name,
+			age: record.age,
+			address: record.address,
+			tags: [record.tags],
+		});
+		doRefresh();
+		close();
+	},
+	seacher: {
+		style: {
+			padding: "10px",
+			backgroundColor: "#f3f3f3",
+			borderRadius: "10px",
+		},
+		items: [
+			{
+				component: "Text",
+				label: "姓名",
+				field: "name",
+			},
+			{
+				component: "Text",
+				label: "年龄",
+				field: "age",
+			},
+			{
+				component: "Text",
+				label: "地址",
+				field: "address",
+			},
+			{
+				component: "Select",
+				label: "标签",
+				field: "tags",
+				componentProps: {
+					options: [
+						{
+							label: "nice",
+							value: "nice",
+						},
+						{
+							label: "cool",
+							value: "cool",
+						},
+						{
+							label: "loser",
+							value: "loser",
+						},
+						{
+							label: "teacher",
+							value: "teacher",
+						},
+						{
+							label: "developer",
+							value: "developer",
+						},
+					],
+					style: {
+						width: "120px",
+					},
+				},
+			},
 		],
 	},
 	table: {
@@ -95,13 +205,32 @@ const pageSchema: ManagePageSchema = {
 				header: "地址",
 				body: "address",
 			},
+			{
+				header: "标签",
+				body: {
+					index: "tags",
+					render: ({ text }) => {
+						return {
+							component: Tags,
+							props: {
+								tags: (text as string[]).map((item) =>
+									item.toUpperCase()
+								),
+								type: "success",
+							},
+						};
+					},
+				},
+			},
 		],
 		style: {
 			padding: "10px",
 			backgroundColor: "#f0f0f0",
 			borderRadius: "10px",
-		}
+		},
 	},
+	editor: editSchema,
+	creator: editSchema,
 };
 </script>
 
@@ -111,6 +240,6 @@ const pageSchema: ManagePageSchema = {
 	border: 1px solid #000;
 	border-radius: 10px;
 	padding: 10px;
-	width: 600px;
+	width: 800px;
 }
 </style>

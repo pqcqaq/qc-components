@@ -1,6 +1,13 @@
 import { CSSProperties } from "vue";
-import { Column, DyFormItem } from "../../types";
+import {
+	Column,
+	DyForm,
+	DyFormItem,
+	FuncCustomBtn,
+	ModalClickFn,
+} from "../../types";
 import { TablePaginationConfig } from "ant-design-vue";
+import { FormConfig } from "../../types";
 
 export type PageRecords = {
 	data: Record<string, any>[]; // 表格数据
@@ -32,6 +39,7 @@ export type DeleteDataFn = (props: DeleteFnProps) => void;
 
 export type EditDataFnProps = {
 	record: Record<string, any>;
+	close: () => void;
 } & PageEventsProps;
 
 export type EditDataFn = (props: EditDataFnProps) => void;
@@ -53,11 +61,35 @@ export type TableBuilder = {
 	paginationProps?: TablePaginationConfig;
 };
 
+export type EditorSchema = {
+	schema: DyForm;
+	showBtns?:
+		| {
+				clearAll: 0 | 1;
+				reset: 0 | 1;
+				submit: 0 | 1;
+		  }
+		| boolean;
+	allowDirectClose?: boolean;
+	style?: CSSProperties;
+	draggable?: boolean;
+	title?: string;
+	defaultValues?: Record<string, any>;
+	fadeInOut?: boolean;
+	fadeTime?: number;
+	customBtns?: FuncCustomBtn[];
+	showCloseBtn?: boolean;
+	onModalClick?: ModalClickFn;
+};
+
 export type ManagePageSchema = {
 	title?: string;
 	fetchData: FetchDataFn;
-	deleteData?: DeleteDataFn;
+    deleteData?: DeleteDataFn;
+    addData?: EditDataFn;
 	editData?: EditDataFn;
 	seacher: SearcherSchema;
 	table: TableBuilder;
+	editor: EditorSchema;
+	creator: EditorSchema;
 };

@@ -36,8 +36,10 @@
 					<component
 						:is="
 							typeof item.component === 'string'
-								? markRaw(componentsMap[item.component]?.component)
-								: markRaw(item.component)
+								? rawComponents(
+										componentsMap[item.component]?.component
+								  )
+								: rawComponents(item.component)
 						"
 						v-bind="{
 							...item.componentProps,
@@ -164,13 +166,18 @@ import {
 	onUnmounted,
 	getCurrentInstance,
 	ComponentInternalInstance,
-	markRaw
+	markRaw,
+	type Component,
 } from "vue";
 import type { DyForm, DyFormItem } from "../types";
 import { componentsMap } from "./cpnsMap";
 import { FormInstance } from "ant-design-vue/es/form/Form";
 import { StyleValue } from "vue";
 import { message } from "ant-design-vue";
+
+const rawComponents = computed(() => (cpns: Component) => {
+	return markRaw(cpns);
+});
 
 type BtnsShow = {
 	clearAll: 0 | 1;

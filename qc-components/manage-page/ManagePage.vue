@@ -16,6 +16,15 @@
 				:disabled="disabled"
 			/>
 		</div>
+		<div style="display: flex" class="btns" v-if="props.schema.addData !== undefined">
+			<a-button
+				style="margin-left: auto"
+				type="primary"
+				@click="handleAdd"
+			>
+				新增
+			</a-button>
+		</div>
 		<div
 			class="list"
 			:style="{
@@ -26,6 +35,12 @@
 		</div>
 	</div>
 </template>
+
+<script lang="ts">
+export default {
+	name: "manage-page",
+};
+</script>
 
 <script setup lang="ts">
 import { DyForm } from "../dynamic-form/types";
@@ -72,7 +87,7 @@ const formSchema: DyForm = reactive<DyForm>({
 		},
 		{
 			text: "重置",
-			onClick: async ({ doCheck, model, event }) => {
+			onClick: async () => {
 				await doReset();
 			},
 		},
@@ -117,15 +132,8 @@ const tableSchema: TableSchema = reactive({
 							btns: [
 								{
 									text: "编辑",
-									onClick: async () => {
-										await props.schema.editData?.({
-											record: {
-												...record,
-											},
-											doRefresh: fetchData,
-											doSearch,
-											doReset,
-										});
+									onClick: () => {
+										handleEdit(record);
 									},
 									props: {
 										type: "primary",
@@ -159,6 +167,32 @@ const tableSchema: TableSchema = reactive({
 
 const data = ref<any[]>([]);
 
+const handleEdit = async (record: any) => {
+	useFullScreenDyForm({
+		showBtns: {
+			submit: 1,
+			reset: 1,
+			clearAll: 1,
+		},
+		...props.schema.editor,
+		init: {
+			...record,
+		},
+		submit: async (values, close) => {
+			await props.schema.editData?.({
+				record: {
+					...record,
+					...values,
+				},
+				doRefresh: fetchData,
+				doSearch,
+				doReset,
+				close: close as () => void,
+			});
+		},
+	});
+};
+
 const fetchData = async () => {
 	tableSchema.props!.loading = true;
 	disabled.value = true;
@@ -191,6 +225,29 @@ const fetchData = async () => {
 };
 
 fetchData();
+
+const handleAdd = async () => {
+	useFullScreenDyForm({
+		showBtns: {
+			submit: 1,
+			reset: 1,
+			clearAll: 1,
+		},
+		...props.schema.creator,
+		init: {},
+		submit: async (values, close) => {
+			await props.schema.addData?.({
+				record: {
+					...values,
+				},
+				doRefresh: fetchData,
+				doSearch,
+				doReset,
+				close: close as () => void,
+			});
+		},
+	});
+};
 </script>
 
 <style scoped lang="scss">

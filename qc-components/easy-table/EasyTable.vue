@@ -17,7 +17,7 @@
 		</div>
 		<a-table
 			:columns="baseSchema"
-			:data-source="data"
+			:data-source="deepCloneArray(data)"
 			v-bind="schema.props"
 		>
 			<template #headerCell="{ title, column }">
@@ -102,6 +102,8 @@ import {
 	RenderHeaderProps,
 	TableSchema,
 } from "./types";
+// import ATable from "ant-design-vue/es/table";
+import { deepCloneArray } from "./utils";
 
 type PropType = {
 	schema: TableSchema;
