@@ -47,7 +47,13 @@ const getDataApi = async (props: { paginator: any; model: any }) => {
 
 const editSchema: EditorSchema = {
 	schema: {
-		title: "编辑",
+        title: {
+            text: "编辑",
+            style: {
+                fontSize: "20px",
+                fontWeight: "bold",
+            },
+        },
 		items: [
 			{
 				component: "Text",

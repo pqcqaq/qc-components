@@ -1,8 +1,8 @@
 <template>
 	<div>
-		<template v-if="schema.title">
+		<template v-if="props.schema.title">
 			<div class="title">
-				<template v-if="typeof schema.title === 'string'">
+				<template v-if="typeof props.schema.title === 'string'">
 					<div
 						style="
 							display: flex;
@@ -15,8 +15,8 @@
 					</div>
 				</template>
 				<template v-else>
-					<div :style="schema.title.style">
-						{{ schema.title.text }}
+					<div :style="props.schema.title.style">
+						{{ props.schema.title.text }}
 					</div>
 				</template>
 			</div>
