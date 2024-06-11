@@ -14,7 +14,7 @@ export type PageRecords = {
 	current: number; // 当前页
 };
 
-export type TitleConfig = {
+export type MPTitleConfig = {
 	text: string;
 	style?: CSSProperties;
 };
@@ -108,7 +108,7 @@ export type EditHandler = {
 };
 
 export type ManagePageSchema = {
-	title?: string | TitleConfig;
+	title?: string | MPTitleConfig;
 	fetchData: FetchDataFn;
 	seacher: SearcherSchema;
 	table: TableBuilder;

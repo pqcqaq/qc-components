@@ -3,9 +3,11 @@ import { TableSchema } from './types';
 declare const _default: import('vue').DefineComponent<__VLS_TypePropsToRuntimeProps<{
     schema: TableSchema;
     data: Record<string, any>[];
+    enableDeepClone?: boolean | undefined;
 }>, {}, unknown, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<__VLS_TypePropsToRuntimeProps<{
     schema: TableSchema;
     data: Record<string, any>[];
+    enableDeepClone?: boolean | undefined;
 }>>>, {}, {}>;
 export default _default;
 type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;

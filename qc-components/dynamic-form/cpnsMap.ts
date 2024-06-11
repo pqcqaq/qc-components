@@ -1,4 +1,4 @@
-import { Component, reactive, defineAsyncComponent } from "vue";
+import { Component, reactive, defineAsyncComponent, markRaw } from "vue";
 
 // 表单域组件类型
 export const componentsMap: Record<

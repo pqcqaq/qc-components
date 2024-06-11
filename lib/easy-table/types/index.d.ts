@@ -1,5 +1,6 @@
 import { TableProps } from 'ant-design-vue';
 import { CSSProperties, Component } from 'vue';
+import { CustomBtn } from '../../types';
 
 /**
  * 分割大小界限
@@ -196,4 +197,10 @@ export type CreateSchemaProps = {
     };
     title?: string | TitleConfig;
     props?: TableProps;
+};
+export type CustomBtnProp = {
+    event: MouseEvent;
+};
+export type TableCustomBtn = CustomBtn & {
+    onClick: (props: CustomBtnProp) => void;
 };

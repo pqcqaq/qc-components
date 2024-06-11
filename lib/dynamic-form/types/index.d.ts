@@ -178,7 +178,7 @@ export type DyFormItem = {
         uploadEvent?: UploadEvents;
         uploadType?: UploadType;
         disabledDate?: (currentDate: Dayjs) => boolean;
-        mode?: "time" | "date" | "month" | "year" | "decade";
+        mode?: "time" | "date" | "month" | "year" | "decade" | "multiple" | "tags" | "combobox";
         picker?: "date" | "week" | "month" | "quarter" | "year";
         popupStyle?: Partial<CSSStyleDeclaration>;
         presets?: {
@@ -224,8 +224,12 @@ export type DyFormItem = {
     nextFormStyle?: Partial<CSSStyleDeclaration>;
     onShow?: (modelValue: Record<string, any>) => boolean;
 };
+export type DyTitleConfig = {
+    text: string;
+    style?: CSSProperties;
+};
 export type DyForm = {
-    title?: string;
+    title?: string | DyTitleConfig;
     items: DyFormItem[];
     onSubmit?: (values: Record<string, any>) => void;
     onReset?: () => void;
@@ -270,7 +274,7 @@ export type FormConfig = {
     } | boolean;
     init?: Record<string, any>;
     allowDirectClose?: boolean;
-    submit?: (values: Record<string, any>, close: Function) => void;
+    submit?: (values: Record<string, any>, close: () => void) => void;
     style?: CSSProperties;
     draggable?: boolean;
     title?: string;
