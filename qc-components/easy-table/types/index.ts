@@ -202,7 +202,7 @@ export type CreateSchemaProps = {
 	props?: TableProps;
 };
 
-export type CustomBtnProp = RenderColumnProps & {
+export type CustomBtnProp = {
 	event: MouseEvent;
 };
 

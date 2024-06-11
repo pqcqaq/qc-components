@@ -24,7 +24,7 @@
 			}"
 		>
 			<a-button
-                @click="btn.onClick"
+				@click="btn.onClick({ event: $event })"
 				v-bind="btn.props"
 				:style="{
 					...btn.style,
