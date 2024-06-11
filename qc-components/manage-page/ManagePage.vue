@@ -40,6 +40,9 @@
 			<a-button
 				:style="{
 					'margin-left': 'auto',
+					'margin-top': '10px',
+					'margin-right': '10px',
+					'margin-bottom': '10px',
 					...props.schema.handleAdd.btnStyle,
 				}"
 				v-bind="props.schema.handleAdd.btnProps"
