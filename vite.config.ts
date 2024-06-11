@@ -65,6 +65,7 @@ export default defineConfig(({ command, mode }) => {
 				},
 			}, // rollup打包配置
 			cssCodeSplit: true, //是否拆分css
+			exclude: [join(__dirname, "src/**/*")], //排除打包的文件
 		},
 	};
 });

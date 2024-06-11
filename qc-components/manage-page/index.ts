@@ -1,6 +1,6 @@
 import { App } from "vue";
 import "./assets/css/base.scss";
-export * from './types'
+export * from "./types";
 
 // import type { App } from 'vue'
 import ManagePage from "./ManagePage.vue";
@@ -11,4 +11,4 @@ ManagePage.install = function (Vue: App) {
 	Vue.component(ManagePage.name || "", ManagePage);
 };
 
-export default ManagePage;
+export { ManagePage };

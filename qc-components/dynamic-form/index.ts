@@ -11,4 +11,4 @@ DynamicForm.install = function (Vue: App) {
 	Vue.component(DynamicForm.name || "", DynamicForm);
 };
 
-export default DynamicForm;
+export { DynamicForm };

@@ -1,6 +1,6 @@
 import { App } from "vue";
 import "./assets/css/base.scss";
-export * from './types'
+export * from "./types";
 
 // import type { App } from 'vue'
 import EasyTable from "./EasyTable.vue";
@@ -11,4 +11,4 @@ EasyTable.install = function (Vue: App) {
 	Vue.component(EasyTable.name || "", EasyTable);
 };
 
-export default EasyTable;
+export { EasyTable };
