@@ -56,73 +56,78 @@
 						:disabled="props.disabled || loading"
 					/>
 				</a-form-item>
-				<div
-					class="subForms"
-					v-if="hasNext"
-					:style="(item.nextFormStyle || {}) as StyleValue"
+				<template
+					v-if="hasNext && showNext(formModel[item.field], item)"
 				>
-					<DynamicForm
-						v-if="showNext(formModel[item.field], item)"
-						:schema="nextFormSchema(formModel[item.field], item)"
-						v-model="nextModel"
-						:registe-to-parent="register"
-						:un-registe-from-parent="unRegister"
-						:disabled="props.disabled || loading"
-						:show-btns="{
-							clearAll: 0,
-							reset: 0,
-							submit: 0,
-						}"
-					/>
+					<div
+						class="subForms"
+						:style="(item.nextFormStyle || {}) as StyleValue"
+					>
+						<DynamicForm
+							:schema="
+								nextFormSchema(formModel[item.field], item)
+							"
+							v-model="nextModel"
+							:registe-to-parent="register"
+							:un-registe-from-parent="unRegister"
+							:disabled="props.disabled || loading"
+							:show-btns="{
+								clearAll: 0,
+								reset: 0,
+								submit: 0,
+							}"
+						/>
+					</div>
+				</template>
+			</div>
+			<template v-if="!!btnShow">
+				<div style="display: flex; justify-content: center; gap: 50px">
+					<template v-if="btnShow?.clearAll">
+						<a-button @click="handleClear">清空</a-button>
+					</template>
+					<template v-if="btnShow?.reset">
+						<a-button @click="handleReset">重置</a-button>
+					</template>
+					<template v-if="btnShow?.submit">
+						<a-button
+							type="primary"
+							@click="handleSubmit"
+							:loading="props.disabled || loading"
+							>提交</a-button
+						>
+					</template>
 				</div>
-			</div>
-
-			<div
-				v-if="!!btnShow"
-				style="display: flex; justify-content: center; gap: 50px"
-			>
-				<a-button v-if="btnShow?.clearAll" @click="handleClear"
-					>清空</a-button
-				>
-				<a-button v-if="btnShow?.reset" @click="handleReset"
-					>重置</a-button
-				>
-				<a-button
-					v-if="btnShow?.submit"
-					type="primary"
-					@click="handleSubmit"
-					:loading="props.disabled || loading"
-					>提交</a-button
-				>
-			</div>
-			<div
+			</template>
+			<template
 				v-if="
 					props.schema.customBtns &&
 					props.schema.customBtns.length > 0
 				"
-				class="custombtns"
-				:style="{
-					...{
-						display: 'flex',
-						justifyContent: 'center',
-						gap: '20px',
-					},
-					...props.schema.customBtnsStyle,
-				}"
 			>
 				<div
-					v-for="btn in props.schema.customBtns"
-					:key="btn.text"
+					class="custombtns"
 					:style="{
 						...{
-							display: 'inline',
+							display: 'flex',
 							justifyContent: 'center',
+							gap: '20px',
 						},
-						...btn.outterStyle,
+						...props.schema.customBtnsStyle,
 					}"
 				>
-					<a-button
-						@click="
+					<div
+						v-for="btn in props.schema.customBtns"
+						:key="btn.text"
+						:style="{
+							...{
+								display: 'inline',
+								justifyContent: 'center',
+							},
+							...btn.outterStyle,
+						}"
+					>
+						<a-button
+							@click="
 							($event: MouseEvent) => {
 								btn.onClick?.({
 									doCheck: async () => {
@@ -136,15 +141,16 @@
 								});
 							}
 						"
-						v-bind="btn.props"
-						:style="{
-							...btn.style,
-						}"
-					>
-						{{ btn.text }}
-					</a-button>
+							v-bind="btn.props"
+							:style="{
+								...btn.style,
+							}"
+						>
+							{{ btn.text }}
+						</a-button>
+					</div>
 				</div>
-			</div>
+			</template>
 		</a-form>
 	</div>
 </template>

@@ -5,16 +5,18 @@
 			...schema.outterStyle,
 		}"
 	>
-		<div class="title" v-if="schema.title">
-			<template v-if="typeof schema.title === 'string'">
-				<h2 style="margin-bottom: 10px">{{ schema.title }}</h2>
-			</template>
-			<template v-else>
-				<div :style="schema.title.style">
-					{{ schema.title.text }}
-				</div>
-			</template>
-		</div>
+		<template v-if="schema.title">
+			<div class="title">
+				<template v-if="typeof schema.title === 'string'">
+					<h2 style="margin-bottom: 10px">{{ schema.title }}</h2>
+				</template>
+				<template v-else>
+					<div :style="schema.title.style">
+						{{ schema.title.text }}
+					</div>
+				</template>
+			</div>
+		</template>
 		<a-table
 			:columns="baseSchema"
 			:data-source="getOrDeepCloneArray(data)"

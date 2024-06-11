@@ -29,29 +29,30 @@
 				:disabled="disabled"
 			/>
 		</div>
-		<div
-			:style="{
-				display: 'flex',
-				...props.schema.handleAdd.outerStyle,
-			}"
-			class="btns"
-			v-if="props.schema.handleAdd !== undefined"
-		>
-			<a-button
+		<template v-if="props.schema.handleAdd !== undefined">
+			<div
 				:style="{
-					'margin-left': 'auto',
-					'margin-top': '10px',
-					'margin-right': '10px',
-					'margin-bottom': '10px',
-					...props.schema.handleAdd.btnStyle,
+					display: 'flex',
+					...props.schema.handleAdd.outerStyle,
 				}"
-				v-bind="props.schema.handleAdd.btnProps"
-				type="primary"
-				@click="handleAdd"
+				class="btns"
 			>
-				新增
-			</a-button>
-		</div>
+				<a-button
+					:style="{
+						'margin-left': 'auto',
+						'margin-top': '10px',
+						'margin-right': '10px',
+						'margin-bottom': '10px',
+						...props.schema.handleAdd.btnStyle,
+					}"
+					v-bind="props.schema.handleAdd.btnProps"
+					type="primary"
+					@click="handleAdd"
+				>
+					新增
+				</a-button>
+			</div>
+		</template>
 		<div
 			class="list"
 			:style="{
