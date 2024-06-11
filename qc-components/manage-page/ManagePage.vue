@@ -78,6 +78,7 @@ const formSchema: DyForm = reactive<DyForm>({
 const searchModel = ref<Record<string, any>>({});
 const doReset = async () => {
 	searchModel.value = {};
+	await fetchData();
 };
 const doSearch = async () => {
 	await fetchData();
