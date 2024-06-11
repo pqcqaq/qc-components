@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import { DyForm } from "../../../qc-components";
+import { DyForm } from "../dynamic-form/types";
 import { defineAsyncComponent, ref, reactive } from "vue";
 import { TableSchema } from "../types";
 const DynamicForm = defineAsyncComponent(
@@ -18,6 +18,9 @@ const DynamicForm = defineAsyncComponent(
 );
 const EasyTable = defineAsyncComponent(
 	() => import("../easy-table/EasyTable.vue")
+);
+const TableButtons = defineAsyncComponent(
+	() => import("../easy-table/components/TableButtons.vue")
 );
 const formSchema: DyForm = reactive<DyForm>({
 	formProps: {
@@ -32,12 +35,11 @@ const formSchema: DyForm = reactive<DyForm>({
 			},
 			onClick: async ({ doCheck, model, event }) => {
 				const result = (await doCheck?.()) || false;
-				if (result) {
-					console.log("submit", model);
-					data.value = [...data.value, { ...model }];
-				} else {
+				if (!result) {
 					console.log("submit", "校验不通过");
 				}
+				console.log("submit", model);
+				data.value = [...data.value, { ...model }];
 			},
 		},
 	],
@@ -47,6 +49,9 @@ const formSchema: DyForm = reactive<DyForm>({
 			component: "Text",
 			label: "Name",
 			field: "name",
+			formItemProps: {
+				required: true,
+			},
 		},
 	],
 });
@@ -58,6 +63,43 @@ const tableSchema: TableSchema = reactive({
 		{
 			header: "Name",
 			body: "name",
+		},
+		{
+			header: "Action",
+			body: {
+				index: "action",
+				render: ({ text, record, index }) => {
+					return {
+						component: TableButtons,
+						props: {
+							btns: [
+								{
+									text: "Edit",
+									onClick: () => {
+										console.log("edit", record);
+									},
+									props: {
+										type: "primary",
+									},
+								},
+								{
+									text: "Delete",
+									onClick: () => {
+										console.log("delete", record);
+										data.value = data.value.filter(
+											(item) => item !== record
+										);
+									},
+									props: {
+										type: "primary",
+										danger: true,
+									},
+								},
+							],
+						},
+					};
+				},
+			},
 		},
 	],
 });
