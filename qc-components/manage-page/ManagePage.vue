@@ -152,60 +152,61 @@ const tableSchema: TableSchema = reactive({
 		},
 	},
 	// schema
-	columns: [
-		...props.schema.table.columns,
-		{
-			header: "管理",
-			body: {
-				index: "action",
-				render: ({ text, record, index }) => {
-					return {
-						component: TableButtons,
-						props: {
-							btns: [
-								{
-									text:
-										props.schema.handleEdit.text || "编辑",
-									onClick: () => {
-										handleEdit(record);
-									},
-									props: {
-										type: "primary",
-										size: "small",
-										...props.schema.handleEdit.btnProps,
-									},
+	columns: [...props.schema.table.columns],
+});
+
+if (
+	props.schema.handleDelete !== undefined ||
+	props.schema.handleEdit !== undefined
+) {
+	tableSchema.columns.push({
+		header: "管理",
+		body: {
+			index: "action",
+			render: ({ text, record, index }) => {
+				return {
+					component: TableButtons,
+					props: {
+						btns: [
+							{
+								text: props.schema.handleEdit!.text || "编辑",
+								onClick: () => {
+									handleEdit(record);
 								},
-								{
-									text:
-										props.schema.handleDelete.text ||
-										"删除",
-									onClick: async () => {
-										await props.schema.handleDelete.deleteData?.(
-											{
-												record: {
-													...record,
-												},
-												doRefresh: fetchData,
-												doSearch,
-												doReset,
-											}
-										);
-									},
-									props: {
-										type: "primary",
-										size: "small",
-										danger: true,
-										...props.schema.handleDelete.btnProps,
-									},
+								props: {
+									type: "primary",
+									size: "small",
+									...props.schema.handleEdit!.btnProps,
 								},
-							],
-						},
-					};
-				},
+							},
+							{
+								text: props.schema.handleDelete!.text || "删除",
+								onClick: async () => {
+									await props.schema.handleDelete!.deleteData?.(
+										{
+											record: {
+												...record,
+											},
+											doRefresh: fetchData,
+											doSearch,
+											doReset,
+										}
+									);
+								},
+								props: {
+									type: "primary",
+									size: "small",
+									danger: true,
+									...props.schema.handleDelete!.btnProps,
+								},
+							},
+						],
+					},
+				};
 			},
 		},
-	],
-});
+	});
+}
 
 const data = ref<any[]>([]);
 
@@ -216,12 +217,12 @@ const handleEdit = async (record: any) => {
 			reset: 1,
 			clearAll: 1,
 		},
-		...props.schema.handleEdit.editor,
+		...(props.schema.handleEdit?.editor as any),
 		defaultValues: {
 			...record,
 		},
 		submit: async (values, close) => {
-			await props.schema.handleEdit.editData?.({
+			await props.schema.handleEdit?.editData?.({
 				record: {
 					...record,
 					...values,
@@ -275,10 +276,10 @@ const handleAdd = async () => {
 			reset: 1,
 			clearAll: 1,
 		},
-		...props.schema.handleAdd.creator,
+		...(props.schema.handleAdd?.creator as any),
 		init: {},
 		submit: async (values, close) => {
-			await props.schema.handleAdd.addData?.({
+			await props.schema.handleAdd?.addData?.({
 				record: {
 					...values,
 				},

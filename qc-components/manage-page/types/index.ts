@@ -112,7 +112,7 @@ export type ManagePageSchema = {
 	fetchData: FetchDataFn;
 	seacher: SearcherSchema;
 	table: TableBuilder;
-	handleAdd: AddHandler;
-	handleDelete: DeleteHandler;
-	handleEdit: EditHandler;
+	handleAdd?: AddHandler;
+	handleDelete?: DeleteHandler;
+	handleEdit?: EditHandler;
 };
