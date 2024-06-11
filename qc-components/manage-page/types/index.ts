@@ -6,13 +6,17 @@ import {
 	FuncCustomBtn,
 	ModalClickFn,
 } from "../../types";
-import { TablePaginationConfig } from "ant-design-vue";
-import { FormConfig } from "../../types";
+import { ButtonProps, TablePaginationConfig } from "ant-design-vue";
 
 export type PageRecords = {
 	data: Record<string, any>[]; // 表格数据
 	total: number; // 总数
 	current: number; // 当前页
+};
+
+export type TitleConfig = {
+	text: string;
+	style?: CSSProperties;
 };
 
 export type SeacherFn = (model: Record<string, any>) => void;
@@ -82,14 +86,33 @@ export type EditorSchema = {
 	onModalClick?: ModalClickFn;
 };
 
+export type AddHandler = {
+	creator: EditorSchema;
+	addData: EditDataFn;
+	outerStyle?: CSSProperties;
+	btnStyle?: CSSProperties;
+	btnProps?: ButtonProps;
+};
+
+export type DeleteHandler = {
+	text?: string;
+	deleteData: DeleteDataFn;
+	btnProps?: ButtonProps;
+};
+
+export type EditHandler = {
+	editor: EditorSchema;
+	text?: string;
+	editData: EditDataFn;
+	btnProps?: ButtonProps;
+};
+
 export type ManagePageSchema = {
-	title?: string;
+	title?: string | TitleConfig;
 	fetchData: FetchDataFn;
-    deleteData?: DeleteDataFn;
-    addData?: EditDataFn;
-	editData?: EditDataFn;
 	seacher: SearcherSchema;
 	table: TableBuilder;
-	editor: EditorSchema;
-	creator: EditorSchema;
+	handleAdd: AddHandler;
+	handleDelete: DeleteHandler;
+	handleEdit: EditHandler;
 };

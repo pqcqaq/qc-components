@@ -1,12 +1,25 @@
 <template>
 	<div>
-		<div class="title">
-			{{ props.schema.title || "" }}
-		</div>
+		<template v-if="props.schema.title !== undefined">
+			<template v-if="typeof props.schema.title === 'string'">
+				<div class="title">
+					{{ props.schema.title || "" }}
+				</div>
+			</template>
+			<template v-else>
+				<div
+					class="title"
+					:style="{
+						...props.schema.title.style,
+					}"
+				>
+					{{ props.schema.title.text || "" }}
+				</div>
+			</template>
+		</template>
 		<div
 			class="seacher"
 			:style="{
-				marginBottom: '10px',
 				...props.schema.seacher.style,
 			}"
 		>
@@ -16,9 +29,20 @@
 				:disabled="disabled"
 			/>
 		</div>
-		<div style="display: flex" class="btns" v-if="props.schema.addData !== undefined">
+		<div
+			:style="{
+				display: 'flex',
+				...props.schema.handleAdd.outerStyle,
+			}"
+			class="btns"
+			v-if="props.schema.handleAdd !== undefined"
+		>
 			<a-button
-				style="margin-left: auto"
+				:style="{
+					'margin-left': 'auto',
+					...props.schema.handleAdd.btnStyle,
+				}"
+				v-bind="props.schema.handleAdd.btnProps"
 				type="primary"
 				@click="handleAdd"
 			>
@@ -31,7 +55,11 @@
 				...props.schema.table.style,
 			}"
 		>
-			<EasyTable :data="data" :schema="tableSchema" />
+			<EasyTable
+				:data="data"
+				:schema="tableSchema"
+				:enable-deep-clone="enableDeepClone"
+			/>
 		</div>
 	</div>
 </template>
@@ -49,6 +77,7 @@ import { TableSchema } from "../types";
 import { ManagePageSchema } from "./types";
 import { message } from "ant-design-vue";
 import { useFullScreenDyForm } from "../dynamic-form";
+import en from "../dynamic-form/components/language/en";
 const DynamicForm = defineAsyncComponent(
 	() => import("../dynamic-form/DynamicForm.vue")
 );
@@ -61,6 +90,7 @@ const TableButtons = defineAsyncComponent(
 
 type PropType = {
 	schema: ManagePageSchema;
+	enableDeepClone?: boolean;
 };
 
 const props = defineProps<PropType>();
@@ -131,29 +161,38 @@ const tableSchema: TableSchema = reactive({
 						props: {
 							btns: [
 								{
-									text: "编辑",
+									text:
+										props.schema.handleEdit.text || "编辑",
 									onClick: () => {
 										handleEdit(record);
 									},
 									props: {
 										type: "primary",
+										size: "small",
+										...props.schema.handleEdit.btnProps,
 									},
 								},
 								{
-									text: "删除",
+									text:
+										props.schema.handleDelete.text ||
+										"删除",
 									onClick: async () => {
-										await props.schema.deleteData?.({
-											record: {
-												...record,
-											},
-											doRefresh: fetchData,
-											doSearch,
-											doReset,
-										});
+										await props.schema.handleDelete.deleteData?.(
+											{
+												record: {
+													...record,
+												},
+												doRefresh: fetchData,
+												doSearch,
+												doReset,
+											}
+										);
 									},
 									props: {
 										type: "primary",
+										size: "small",
 										danger: true,
+										...props.schema.handleDelete.btnProps,
 									},
 								},
 							],
@@ -174,12 +213,12 @@ const handleEdit = async (record: any) => {
 			reset: 1,
 			clearAll: 1,
 		},
-		...props.schema.editor,
-		init: {
+		...props.schema.handleEdit.editor,
+		defaultValues: {
 			...record,
 		},
 		submit: async (values, close) => {
-			await props.schema.editData?.({
+			await props.schema.handleEdit.editData?.({
 				record: {
 					...record,
 					...values,
@@ -233,10 +272,10 @@ const handleAdd = async () => {
 			reset: 1,
 			clearAll: 1,
 		},
-		...props.schema.creator,
+		...props.schema.handleAdd.creator,
 		init: {},
 		submit: async (values, close) => {
-			await props.schema.addData?.({
+			await props.schema.handleAdd.addData?.({
 				record: {
 					...values,
 				},

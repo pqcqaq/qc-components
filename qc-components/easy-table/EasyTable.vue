@@ -17,7 +17,7 @@
 		</div>
 		<a-table
 			:columns="baseSchema"
-			:data-source="deepCloneArray(data)"
+			:data-source="getOrDeepCloneArray(data)"
 			v-bind="schema.props"
 		>
 			<template #headerCell="{ title, column }">
@@ -105,9 +105,18 @@ import {
 // import ATable from "ant-design-vue/es/table";
 import { deepCloneArray } from "./utils";
 
+const getOrDeepCloneArray = (data: Record<string, any>[]) => {
+	if (props.enableDeepClone) {
+		console.warn("已启用数组深度克隆，可能会影响性能！");
+		return deepCloneArray(data);
+	}
+	return data;
+};
+
 type PropType = {
 	schema: TableSchema;
 	data: Record<string, any>[];
+	enableDeepClone?: boolean;
 };
 
 type CachedComponentsInfoProp =

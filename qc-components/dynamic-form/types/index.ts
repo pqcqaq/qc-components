@@ -231,7 +231,15 @@ export type DyFormItem = {
 		uploadEvent?: UploadEvents;
 		uploadType?: UploadType;
 		disabledDate?: (currentDate: Dayjs) => boolean;
-		mode?: "time" | "date" | "month" | "year" | "decade";
+		mode?:
+			| "time"
+			| "date"
+			| "month"
+			| "year"
+			| "decade"
+			| "multiple"
+			| "tags"
+			| "combobox";
 		picker?: "date" | "week" | "month" | "quarter" | "year";
 		popupStyle?: Partial<CSSStyleDeclaration>;
 		presets?: { label: Slot; value: Dayjs }[];

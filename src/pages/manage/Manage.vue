@@ -1,6 +1,6 @@
 <template>
 	<div class="page">
-		<ManagePage :schema="pageSchema" />
+		<ManagePage :schema="pageSchema" :enable-deep-clone="true" />
 	</div>
 </template>
 
@@ -38,7 +38,7 @@ const getDataApi = async (props: { paginator: any; model: any }) => {
 		setTimeout(() => {
 			resolve({
 				data: datas,
-				total: 200,
+				total: datas.length,
 				current: props.paginator.current || 1,
 			});
 		}, 200);
@@ -78,6 +78,7 @@ const editSchema: EditorSchema = {
 				label: "标签",
 				field: "tags",
 				componentProps: {
+					mode: "multiple",
 					options: [
 						{
 							label: "nice",
@@ -114,26 +115,34 @@ const pageSchema: ManagePageSchema = {
 	fetchData: async ({ paginator, model }) => {
 		return await getDataApi({ paginator, model });
 	},
-	deleteData: async ({ record, doRefresh }) => {
-		datas = datas.filter((item) => item.id !== record.id);
-		doRefresh();
+	handleDelete: {
+		deleteData: async ({ record, doRefresh }) => {
+			datas = datas.filter((item) => item.id !== record.id);
+			doRefresh();
+		},
 	},
-	editData: ({ record, doRefresh, close }) => {
-		const index = datas.findIndex((item) => item.id === record.id);
-		datas[index] = record as any;
-		doRefresh();
-		close();
+	handleEdit: {
+        editData: ({ record, doRefresh, close }) => {
+            const index = datas.findIndex((item) => item.id === record.id);
+			datas[index] = record as any;
+			doRefresh();
+			close();
+		},
+        editor: editSchema,
 	},
-	addData: async ({ record, doRefresh, close }) => {
-		datas.push({
-			id: datas.length + 1,
-			name: record.name,
-			age: record.age,
-			address: record.address,
-			tags: [record.tags],
-		});
-		doRefresh();
-		close();
+	handleAdd: {
+		addData: async ({ record, doRefresh, close }) => {
+			datas.push({
+				id: datas.length + 1,
+				name: record.name,
+				age: record.age,
+				address: record.address,
+				tags: record.tags,
+			});
+			doRefresh();
+			close();
+		},
+		creator: editSchema,
 	},
 	seacher: {
 		style: {
@@ -229,8 +238,6 @@ const pageSchema: ManagePageSchema = {
 			borderRadius: "10px",
 		},
 	},
-	editor: editSchema,
-	creator: editSchema,
 };
 </script>
 

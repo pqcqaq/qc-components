@@ -3,12 +3,10 @@
 		v-if="props.btns && props.btns.length > 0"
 		class="custombtns"
 		:style="{
-			...{
-				display: 'flex',
-				alignItems: 'center',
-				justifyContent: 'center',
-				gap: '20px',
-			},
+			display: 'flex',
+			alignItems: 'center',
+			justifyContent: 'center',
+			gap: '20px',
 			...props.customBtnsStyle,
 		}"
 	>
@@ -16,10 +14,8 @@
 			v-for="btn in props.btns"
 			:key="btn.text"
 			:style="{
-				...{
-					display: 'inline',
-					justifyContent: 'center',
-				},
+				display: 'inline',
+				justifyContent: 'center',
 				...btn.outterStyle,
 			}"
 		>

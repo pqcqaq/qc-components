@@ -2,7 +2,7 @@
 	<div class="switch">
 		<div class="btns" v-for="(component, key) in componentsList" :key="key">
 			<a-button
-				@click="viewComponent = component.cpn"
+				@click="location.href = `?component=${component.path}`"
 				type="primary"
 				class="btn"
 				>{{ component.name }}</a-button
@@ -21,22 +21,39 @@ import Table from "./pages/table/Table.vue";
 import Manage from "./pages/manage/Manage.vue";
 import { ref, markRaw } from "vue";
 
-const viewComponent = ref<Component>();
-
 const componentsList = [
 	{
 		name: "动态表单",
+		path: "form",
 		cpn: markRaw(Form),
 	},
 	{
 		name: "表格",
+		path: "table",
 		cpn: markRaw(Table),
 	},
 	{
 		name: "管理页面",
+		path: "manage",
 		cpn: markRaw(Manage),
-	}
+	},
 ];
+
+const viewComponent = ref<Component>();
+
+// 获取当前页面的查询参数，然后根据查询参数来获取对应的组件
+const getComponent = () => {
+	const search = new URLSearchParams(location.search);
+	const componentName = search.get("component");
+	const component = componentsList.find(
+		(item) => item.path === componentName
+	);
+	if (component) {
+		viewComponent.value = component.cpn;
+	}
+};
+const location = window.location;
+getComponent();
 </script>
 
 <style scoped lang="scss">
