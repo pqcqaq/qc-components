@@ -81,7 +81,6 @@ import { TableSchema } from "../types";
 import { ManagePageSchema } from "./types";
 import { message } from "ant-design-vue";
 import { useFullScreenDyForm } from "../dynamic-form";
-import en from "../dynamic-form/components/language/en";
 const DynamicForm = defineAsyncComponent(
 	() => import("../dynamic-form/DynamicForm.vue")
 );
