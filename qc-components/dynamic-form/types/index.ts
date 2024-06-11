@@ -297,8 +297,13 @@ export type DyFormItem = {
 	onShow?: (modelValue: Record<string, any>) => boolean;
 };
 
+export type DyTitleConfig = {
+	text: string;
+	style?: CSSProperties;
+};
+
 export type DyForm = {
-	title?: string;
+	title?: string | DyTitleConfig;
 	items: DyFormItem[];
 	onSubmit?: (values: Record<string, any>) => void;
 	onReset?: () => void;

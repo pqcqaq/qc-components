@@ -1,16 +1,26 @@
 <template>
 	<div>
-		<div
-			class="title"
-			style="
-				display: flex;
-				justify-content: center;
-				margin-bottom: 15px;
-				align-items: center;
-			"
-		>
-			{{ props.schema.title }}
-		</div>
+		<template v-if="schema.title">
+			<div class="title">
+				<template v-if="typeof schema.title === 'string'">
+					<h2
+						style="
+							display: flex;
+							justify-content: center;
+							margin-bottom: 15px;
+							align-items: center;
+						"
+					>
+						{{ schema.title }}
+					</h2>
+				</template>
+				<template v-else>
+					<div :style="schema.title.style">
+						{{ schema.title.text }}
+					</div>
+				</template>
+			</div>
+		</template>
 		<a-form
 			ref="formRef"
 			:model="formModel"
