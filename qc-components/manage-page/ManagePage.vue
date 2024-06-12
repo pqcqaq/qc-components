@@ -79,7 +79,7 @@ import { DyForm } from "../dynamic-form/types";
 import { defineAsyncComponent, ref, reactive } from "vue";
 import { TableSchema } from "../types";
 import { ManagePageSchema } from "./types";
-import { message } from "ant-design-vue";
+import { TableProps, message } from "ant-design-vue";
 import { useFullScreenDyForm } from "../dynamic-form";
 const DynamicForm = defineAsyncComponent(
 	() => import("../dynamic-form/DynamicForm.vue")
@@ -138,19 +138,23 @@ const doSearch = async () => {
 };
 
 const tableSchema: TableSchema = reactive({
-	props: {
-		pagination: {
-			...props.schema.table.paginationProps,
-		},
-		loading: false,
-		onChange: (pagination, filters, sorter, extra) => {
-			tableSchema.props!.pagination = pagination;
-			fetchData();
-		},
-	},
+	props: {},
 	// schema
 	columns: [...props.schema.table.columns],
 });
+
+// 单独配置props，因为类型实例化过深，会导致无法正确推导类型
+tableSchema.props = {
+	pagination: {
+		current: 1,
+	},
+	...props.schema.table.props,
+	loading: false,
+	onChange: (pagination, filters, sorter, extra) => {
+		tableSchema.props!.pagination = pagination;
+		fetchData();
+	},
+};
 
 if (
 	props.schema.handleDelete !== undefined ||

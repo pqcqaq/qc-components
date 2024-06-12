@@ -6,7 +6,7 @@ import {
 	FuncCustomBtn,
 	ModalClickFn,
 } from "../../types";
-import { ButtonProps, TablePaginationConfig } from "ant-design-vue";
+import { ButtonProps, TablePaginationConfig, TableProps } from "ant-design-vue";
 
 export type PageRecords = {
 	data: Record<string, any>[]; // 表格数据
@@ -62,7 +62,7 @@ export type PageEventsProps = {
 export type TableBuilder = {
 	columns: Column[];
 	style?: CSSProperties;
-	paginationProps?: TablePaginationConfig;
+	props?: TableProps;
 };
 
 export type EditorSchema = {
