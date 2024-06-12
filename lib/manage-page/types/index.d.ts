@@ -11,7 +11,7 @@ export type MPTitleConfig = {
     text: string;
     style?: CSSProperties;
 };
-export type SeacherFn = (model: Record<string, any>) => void;
+export type SeacherFn = (model: Record<string, any>) => void | Promise<void>;
 export type Paginator = {
     current?: number;
     pageSize?: number;
@@ -24,12 +24,12 @@ export type FetchDataFn = (props: FetchDataFnProps) => PageRecords | Promise<Pag
 export type DeleteFnProps = {
     record: Record<string, any>;
 } & PageEventsProps;
-export type DeleteDataFn = (props: DeleteFnProps) => void;
+export type DeleteDataFn = (props: DeleteFnProps) => void | Promise<void>;
 export type EditDataFnProps = {
     record: Record<string, any>;
     close: () => void;
 } & PageEventsProps;
-export type EditDataFn = (props: EditDataFnProps) => void;
+export type EditDataFn = (props: EditDataFnProps) => void | Promise<void>;
 export type SearcherSchema = {
     style?: CSSProperties;
     items: DyFormItem[];

@@ -274,7 +274,7 @@ export type FormConfig = {
     } | boolean;
     init?: Record<string, any>;
     allowDirectClose?: boolean;
-    submit?: (values: Record<string, any>, close: () => void) => void;
+    submit?: (values: Record<string, any>, close: () => void) => void | Promise<void>;
     style?: CSSProperties;
     draggable?: boolean;
     title?: string;
