@@ -1,6 +1,6 @@
 import { CSSProperties } from 'vue';
 import { Column, DyForm, DyFormItem, FuncCustomBtn, ModalClickFn } from '../../types';
-import { ButtonProps, TablePaginationConfig } from 'ant-design-vue';
+import { ButtonProps, TableProps } from 'ant-design-vue';
 
 export type PageRecords = {
     data: Record<string, any>[];
@@ -42,7 +42,7 @@ export type PageEventsProps = {
 export type TableBuilder = {
     columns: Column[];
     style?: CSSProperties;
-    paginationProps?: TablePaginationConfig;
+    props?: TableProps;
 };
 export type EditorSchema = {
     schema: DyForm;

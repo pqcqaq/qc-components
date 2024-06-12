@@ -24,6 +24,7 @@
 			}"
 		>
 			<DynamicForm
+				class="seacher-form"
 				:schema="formSchema"
 				v-model="searchModel"
 				:disabled="disabled"
@@ -60,6 +61,7 @@
 			}"
 		>
 			<EasyTable
+				class="list-table"
 				:data="data"
 				:schema="tableSchema"
 				:enable-deep-clone="enableDeepClone"
@@ -160,6 +162,43 @@ if (
 	props.schema.handleDelete !== undefined ||
 	props.schema.handleEdit !== undefined
 ) {
+	const getBtns = (record: Record<string, any> | undefined) => {
+		const btns = [];
+		if (props.schema.handleEdit !== undefined) {
+			btns.push({
+				text: props.schema.handleEdit!.text || "编辑",
+				onClick: () => {
+					handleEdit(record);
+				},
+				props: {
+					type: "primary",
+					size: "small",
+					...props.schema.handleEdit!.btnProps,
+				},
+			});
+		}
+		if (props.schema.handleDelete !== undefined) {
+			btns.push({
+				text: props.schema.handleDelete!.text || "删除",
+				onClick: async () => {
+					await props.schema.handleDelete!.deleteData?.({
+						record: {
+							...record,
+						},
+						doRefresh: fetchData,
+						doSearch,
+						doReset,
+					});
+				},
+				props: {
+					type: "primary",
+					size: "small",
+					danger: true,
+					...props.schema.handleDelete!.btnProps,
+				},
+			});
+		}
+	};
 	tableSchema.columns.push({
 		header: "管理",
 		body: {
@@ -168,40 +207,7 @@ if (
 				return {
 					component: TableButtons,
 					props: {
-						btns: [
-							{
-								text: props.schema.handleEdit!.text || "编辑",
-								onClick: () => {
-									handleEdit(record);
-								},
-								props: {
-									type: "primary",
-									size: "small",
-									...props.schema.handleEdit!.btnProps,
-								},
-							},
-							{
-								text: props.schema.handleDelete!.text || "删除",
-								onClick: async () => {
-									await props.schema.handleDelete!.deleteData?.(
-										{
-											record: {
-												...record,
-											},
-											doRefresh: fetchData,
-											doSearch,
-											doReset,
-										}
-									);
-								},
-								props: {
-									type: "primary",
-									size: "small",
-									danger: true,
-									...props.schema.handleDelete!.btnProps,
-								},
-							},
-						],
+						btns: getBtns(record),
 					},
 				};
 			},
