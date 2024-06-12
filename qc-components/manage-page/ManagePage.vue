@@ -81,7 +81,7 @@ import { DyForm } from "../dynamic-form/types";
 import { defineAsyncComponent, ref, reactive } from "vue";
 import { TableSchema } from "../types";
 import { ManagePageSchema } from "./types";
-import { TableProps, message } from "ant-design-vue";
+import { message } from "ant-design-vue";
 import { useFullScreenDyForm } from "../dynamic-form";
 const DynamicForm = defineAsyncComponent(
 	() => import("../dynamic-form/DynamicForm.vue")
