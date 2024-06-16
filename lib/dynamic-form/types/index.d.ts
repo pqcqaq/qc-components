@@ -8,7 +8,7 @@ export type Options = Array<{
     value: string | number;
     disabled?: boolean;
     class?: string;
-    style?: Partial<CSSStyleDeclaration>;
+    style?: CSSProperties;
     payload?: Record<string, any>;
 }>;
 export type DefaultOptions = SelectProps["options"];
@@ -67,7 +67,7 @@ export type DyFormItem = {
     field: string;
     component: InnerComponent | Component;
     componentProps?: {
-        style?: Partial<CSSStyleDeclaration>;
+        style?: CSSProperties;
         className?: string;
         type?: string;
         allowClear?: boolean;
@@ -111,7 +111,7 @@ export type DyFormItem = {
         defaultValue?: string | number | string[] | number[] | null;
         popupClassName?: string;
         dropdownMatchSelectWidth?: boolean;
-        dropdownStyle?: Partial<CSSStyleDeclaration>;
+        dropdownStyle?: CSSProperties;
         fieldNames?: TreeSelectProps["fieldNames"];
         filterTreeNode?: TreeSelectProps["filterTreeNode"];
         getPopupContainer?: TreeSelectProps["getPopupContainer"];
@@ -152,7 +152,7 @@ export type DyFormItem = {
             maxCount?: number;
             maxPopoverPlacement?: "top" | "bottom";
             maxPopoverTrigger?: "hover" | "click" | "focus";
-            maxStyle?: Partial<CSSStyleDeclaration>;
+            maxStyle?: CSSProperties;
             size?: "small" | "default" | "large" | number | {
                 xs: number;
                 sm: number;
@@ -180,7 +180,7 @@ export type DyFormItem = {
         disabledDate?: (currentDate: Dayjs) => boolean;
         mode?: "time" | "date" | "month" | "year" | "decade" | "multiple" | "tags" | "combobox";
         picker?: "date" | "week" | "month" | "quarter" | "year";
-        popupStyle?: Partial<CSSStyleDeclaration>;
+        popupStyle?: CSSProperties;
         presets?: {
             label: Slot;
             value: Dayjs;
@@ -197,7 +197,7 @@ export type DyFormItem = {
         className?: string;
         label?: string;
         rules?: Rule[];
-        style?: Partial<CSSStyleDeclaration>;
+        style?: CSSProperties;
         required?: boolean | ((values: Record<string, any>) => boolean);
         hidden?: boolean | ((values: Record<string, any>) => boolean);
         autoLink?: boolean;
@@ -221,7 +221,7 @@ export type DyFormItem = {
     };
     value?: string | number | boolean | string[] | number[] | File | File[] | Record<string, any> | dayjs.Dayjs | null;
     next?: (modelValue: Record<string, any> | string | number | boolean | File | string[] | number[] | File[]) => DyForm | undefined | null;
-    nextFormStyle?: Partial<CSSStyleDeclaration>;
+    nextFormStyle?: CSSProperties;
     onShow?: (modelValue: Record<string, any>) => boolean;
 };
 export type DyTitleConfig = {
@@ -254,6 +254,7 @@ export type DyForm = {
             span: number;
             offset?: number;
         };
+        style?: CSSProperties;
     };
     formEvent?: {
         finish?: () => void;

@@ -1,3 +1,5 @@
+import { CSSProperties } from 'vue';
+
 type AutoInputList = {
     label?: string;
     value: string;
@@ -6,7 +8,7 @@ declare const _default: import('vue').DefineComponent<__VLS_TypePropsToRuntimePr
     title?: string | undefined;
     value: string | undefined;
     fetchList: (() => Promise<AutoInputList[]> | AutoInputList[]) | AutoInputList[] | undefined;
-    style?: Partial<CSSStyleDeclaration> | undefined;
+    style?: CSSProperties | undefined;
     enableSplit?: boolean | undefined;
     splitWord?: string | undefined;
     placeholder?: string | undefined;
@@ -16,7 +18,7 @@ declare const _default: import('vue').DefineComponent<__VLS_TypePropsToRuntimePr
     title?: string | undefined;
     value: string | undefined;
     fetchList: (() => Promise<AutoInputList[]> | AutoInputList[]) | AutoInputList[] | undefined;
-    style?: Partial<CSSStyleDeclaration> | undefined;
+    style?: CSSProperties | undefined;
     enableSplit?: boolean | undefined;
     splitWord?: string | undefined;
     placeholder?: string | undefined;

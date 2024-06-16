@@ -1,7 +1,13 @@
 <template>
 	<div>
 		<template v-if="props.schema.title">
-			<div class="title">
+			<div
+				class="title"
+				:style="{
+					'font-size': '20px',
+					'font-weight': 'bold',
+				}"
+			>
 				<template v-if="typeof props.schema.title === 'string'">
 					<div
 						style="
@@ -28,6 +34,14 @@
 			:disabled="loading || props.disabled"
 			:class="props.schema.className || 'dynamic-form'"
 			v-on="{ ...props.schema.formEvent, onNull: () => {} }"
+			:style="
+				props.schema.formProps?.layout == 'inline'
+					? {
+							gap: '10px',
+							...props.schema.formProps?.style,
+					  }
+					: props.schema.formProps?.style
+			"
 		>
 			<div
 				class="items"
@@ -71,7 +85,11 @@
 				>
 					<div
 						class="subForms"
-						:style="(item.nextFormStyle || {}) as StyleValue"
+						:style="(item.nextFormStyle ||
+								{
+								'margin-left': '24px',
+								width: '100%',
+						}) as StyleValue"
 					>
 						<DynamicForm
 							:schema="
@@ -407,4 +425,3 @@ defineExpose({
 	validateThenGetModel,
 });
 </script>
-<style lang="scss" scoped src="./assets/css/dy-form.scss"></style>

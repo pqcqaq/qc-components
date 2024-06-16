@@ -16,7 +16,7 @@ export type Options = Array<{
 	value: string | number;
 	disabled?: boolean;
 	class?: string;
-	style?: Partial<CSSStyleDeclaration>;
+	style?: CSSProperties;
 	payload?: Record<string, any>;
 }>;
 
@@ -115,7 +115,7 @@ export type DyFormItem = {
 	field: string;
 	component: InnerComponent | Component;
 	componentProps?: {
-		style?: Partial<CSSStyleDeclaration>;
+		style?: CSSProperties;
 		className?: string;
 		type?: string;
 		allowClear?: boolean;
@@ -156,7 +156,7 @@ export type DyFormItem = {
 		defaultValue?: string | number | string[] | number[] | null;
 		popupClassName?: string;
 		dropdownMatchSelectWidth?: boolean;
-		dropdownStyle?: Partial<CSSStyleDeclaration>;
+		dropdownStyle?: CSSProperties;
 		fieldNames?: TreeSelectProps["fieldNames"];
 		filterTreeNode?: TreeSelectProps["filterTreeNode"];
 		getPopupContainer?: TreeSelectProps["getPopupContainer"];
@@ -201,7 +201,7 @@ export type DyFormItem = {
 			maxCount?: number;
 			maxPopoverPlacement?: "top" | "bottom";
 			maxPopoverTrigger?: "hover" | "click" | "focus";
-			maxStyle?: Partial<CSSStyleDeclaration>;
+			maxStyle?: CSSProperties;
 			size?:
 				| "small"
 				| "default"
@@ -241,7 +241,7 @@ export type DyFormItem = {
 			| "tags"
 			| "combobox";
 		picker?: "date" | "week" | "month" | "quarter" | "year";
-		popupStyle?: Partial<CSSStyleDeclaration>;
+		popupStyle?: CSSProperties;
 		presets?: { label: Slot; value: Dayjs }[];
 		customProps?: {
 			[T: string]: any;
@@ -255,7 +255,7 @@ export type DyFormItem = {
 		className?: string;
 		label?: string;
 		rules?: Rule[];
-		style?: Partial<CSSStyleDeclaration>;
+		style?: CSSProperties;
 		required?: boolean | ((values: Record<string, any>) => boolean);
 		hidden?: boolean | ((values: Record<string, any>) => boolean);
 		autoLink?: boolean;
@@ -293,7 +293,7 @@ export type DyFormItem = {
 			| number[]
 			| File[]
 	) => DyForm | undefined | null;
-	nextFormStyle?: Partial<CSSStyleDeclaration>;
+	nextFormStyle?: CSSProperties;
 	onShow?: (modelValue: Record<string, any>) => boolean;
 };
 
@@ -322,6 +322,7 @@ export type DyForm = {
 		validateOnRuleChange?: boolean;
 		validateTrigger?: string | string[];
 		wrapperCol?: { span: number; offset?: number };
+		style?: CSSProperties;
 	};
 	formEvent?: {
 		finish?: () => void;

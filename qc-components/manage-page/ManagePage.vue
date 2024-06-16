@@ -299,5 +299,3 @@ const handleAdd = async () => {
 	});
 };
 </script>
-
-<style scoped lang="scss" src="./assets/css/base.scss"></style>

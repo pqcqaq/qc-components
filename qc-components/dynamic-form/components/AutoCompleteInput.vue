@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from "vue";
+import { CSSProperties, computed, onMounted, ref } from "vue";
 
 type AutoInputList = {
 	label?: string;
@@ -33,7 +33,7 @@ const props = defineProps<{
 		| (() => Promise<AutoInputList[]> | AutoInputList[])
 		| AutoInputList[]
 		| undefined;
-	style?: Partial<CSSStyleDeclaration>;
+	style?: CSSProperties;
 	enableSplit?: boolean;
 	splitWord?: string;
 	placeholder?: string;

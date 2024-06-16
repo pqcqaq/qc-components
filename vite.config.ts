@@ -9,6 +9,7 @@ import { AntDesignVueResolver } from "unplugin-vue-components/resolvers";
 import VueSetupExtend from "vite-plugin-vue-setup-extend";
 import libCss from "vite-plugin-libcss";
 import fs from "fs";
+import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 
 function getComponentEntries(baseDir: string) {
 	const entries: string[] = [];
@@ -55,7 +56,8 @@ export default defineConfig(({ command, mode }) => {
 				],
 			}),
 			VueSetupExtend(),
-			libCss(),
+			// libCss(),
+			cssInjectedByJsPlugin(),
 		],
 		//设置别名
 		resolve: {
@@ -82,13 +84,18 @@ export default defineConfig(({ command, mode }) => {
 						const path = info.facadeModuleId;
 						const out = path
 							?.replace(
-								"D:/Develop/Coding/VueDevelop/qc-components/qc-components/",
+								(__dirname + "/qc-components/").replace(
+									/\\/g,
+									"/"
+								),
 								""
 							)
 							.replace("/index.ts", "");
 						console.log("path", out);
 						return out + "/index.js";
 					}, // 生成的文件名，保留目录结构
+					chunkFileNames: "static/assets/js/[name]-[hash].js",
+					assetFileNames: "static/assets/[ext]/[name]-[hash].[ext]",
 					globals: {
 						vue: "Vue",
 					},
@@ -96,7 +103,8 @@ export default defineConfig(({ command, mode }) => {
 				},
 			},
 			cssCodeSplit: true,
-			exclude: [join(__dirname, "src/**/*")],
+			exclude: [join(__dirname, "src")],
+			sourcemap: "hidden",
 		},
 	};
 });
