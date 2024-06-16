@@ -11,5 +11,3 @@ type PropsType = {
 const props = defineProps<PropsType>();
 
 </script>
-
-<style scoped></style>

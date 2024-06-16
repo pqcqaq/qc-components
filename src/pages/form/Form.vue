@@ -27,12 +27,12 @@
 
 <script lang="ts" setup>
 // import DynamicForm from "../../../dynamic-form/src/DynamicForm.vue";
-import { useFullScreenDyForm } from "../../../qc-components";
+import { useFullScreenDyForm } from "../../../qc-components/dynamic-form";
 // import { useFullScreenDyForm } from "../../../dynamic-form/src";
-import { DynamicForm } from "../../../qc-components";
+import DynamicForm from "../../../qc-components/dynamic-form";
 // import { useFullScreenDyForm } from "qc-components/lib/dynamic-form/hooks/useFullScreenDyForm";
 import { Ref, ref } from "vue";
-import { DyForm, DyFormItem } from "../../../qc-components";
+import { DyForm, DyFormItem } from "../../../qc-components/types";
 import { message } from "ant-design-vue";
 import {
 	schema as formSchema,

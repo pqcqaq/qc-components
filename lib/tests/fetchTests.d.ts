@@ -3,4 +3,4 @@ export type Result<T> = {
     data: T;
     message: string;
 };
-export declare const request: <T = any>(config: import('..').FetchConfig) => Promise<T>;
+export declare const request: <T = any>(config: import('../types').FetchConfig) => Promise<T>;

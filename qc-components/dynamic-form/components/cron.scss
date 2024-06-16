@@ -1,0 +1,50 @@
+#changeContab {
+	.language {
+		position: absolute;
+		right: 25px;
+		z-index: 1;
+	}
+	.ant-tabs-tabpane {
+		padding: 20px;
+	}
+	.tabBody {
+		.ant-row {
+			margin: 15px 0;
+			.long {
+				.ant-select {
+					width: 350px;
+				}
+			}
+			.ant-input-number {
+				width: 110px;
+			}
+			.ant-select {
+				width: 350px;
+			}
+		}
+	}
+
+	.value-warp {
+		width: 100%;
+		text-align: center;
+		padding: 15px;
+		position: relative;
+		border-top: 1px solid #e8e8e8;
+		.value {
+			font-size: 18px;
+			vertical-align: middle;
+			margin-right: 20px;
+		}
+		.ant-btn + .ant-btn {
+			margin-left: 10px;
+		}
+	}
+	.btn-wrap {
+		padding-top: 15px;
+		border-top: 1px solid #e8e8e8;
+		text-align: right;
+		.ant-btn + .ant-btn {
+			margin-left: 10px;
+		}
+	}
+}

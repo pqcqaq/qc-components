@@ -110,7 +110,6 @@ import type { DyForm, FuncCustomBtn, ModalClickFn } from "../types";
 import DynamicForm from "../DynamicForm.vue";
 import { Modal } from "ant-design-vue";
 import { CloseOutlined } from "@ant-design/icons-vue";
-import "./style.scss";
 
 const AButton = defineAsyncComponent(() => import("ant-design-vue/es/button"));
 
@@ -332,3 +331,4 @@ const checker = async () => {
 	);
 };
 </script>
+<style scoped lang="scss" src="./style.scss"></style>

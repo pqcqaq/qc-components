@@ -11,4 +11,4 @@ EasyTable.install = function (Vue: App) {
 	Vue.component(EasyTable.name || "", EasyTable);
 };
 
-export { EasyTable };
+export default EasyTable;

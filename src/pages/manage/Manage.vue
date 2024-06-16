@@ -5,8 +5,8 @@
 </template>
 
 <script setup lang="ts">
-import { ManagePage } from "../../../qc-components";
-import { EditorSchema, ManagePageSchema } from "../../../qc-components";
+import ManagePage from "../../../lib/manage-page";
+import { EditorSchema, ManagePageSchema } from "../../../lib/types";
 import Tags from "../table/components/Tags.vue";
 
 let datas = [

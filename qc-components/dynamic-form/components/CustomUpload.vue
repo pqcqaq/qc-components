@@ -144,18 +144,6 @@ const beforeUpload: UploadProps["beforeUpload"] = (
 	);
 };
 </script>
-<style scoped>
-.avatar-uploader > .ant-upload {
-	width: 128px;
-	height: 128px;
-}
-.ant-upload-select-picture-card i {
-	font-size: 32px;
-	color: #999;
-}
+<style scoped lang="scss" src="./upload.scss">
 
-.ant-upload-select-picture-card .ant-upload-text {
-	margin-top: 8px;
-	color: #666;
-}
 </style>

@@ -1,6 +1,6 @@
 import { message } from "ant-design-vue";
 // import { DyForm, Options } from "../../../../dynamic-form/src";
-import { DyForm, Options } from "../../../../qc-components";
+import { DyForm, Options } from "../../../../qc-components/types";
 // import { Slot, VNode } from "vue";
 
 const getOption = async () => {

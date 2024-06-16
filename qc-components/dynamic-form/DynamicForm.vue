@@ -407,13 +407,4 @@ defineExpose({
 	validateThenGetModel,
 });
 </script>
-<style lang="scss" scoped>
-.title {
-	font-size: 20px;
-	font-weight: bold;
-}
-.subForms {
-	margin-left: 24px;
-	width: 100%;
-}
-</style>
+<style lang="scss" scoped src="./assets/css/dy-form.scss"></style>

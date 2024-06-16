@@ -11,4 +11,4 @@ ManagePage.install = function (Vue: App) {
 	Vue.component(ManagePage.name || "", ManagePage);
 };
 
-export { ManagePage };
+export default ManagePage;

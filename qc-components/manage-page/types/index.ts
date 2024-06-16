@@ -6,7 +6,7 @@ import {
 	FuncCustomBtn,
 	ModalClickFn,
 } from "../../types";
-import { ButtonProps, TablePaginationConfig, TableProps } from "ant-design-vue";
+import { ButtonProps, TableProps } from "ant-design-vue";
 
 export type PageRecords = {
 	data: Record<string, any>[]; // 表格数据

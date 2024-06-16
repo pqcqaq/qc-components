@@ -300,8 +300,4 @@ const handleAdd = async () => {
 };
 </script>
 
-<style scoped lang="scss">
-:deep(.dynamic-form) {
-	gap: 10px;
-}
-</style>
+<style scoped lang="scss" src="./assets/css/base.scss"></style>
