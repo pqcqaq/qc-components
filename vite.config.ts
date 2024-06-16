@@ -12,7 +12,8 @@ import fs from "fs";
 import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 
 function getComponentEntries(baseDir: string) {
-	const entries: string[] = [join(__dirname, "./qc-components/index.ts")];
+	// const entries: string[] = [join(__dirname, "./qc-components/index.ts")];
+	const entries: string[] = [];
 	fs.readdirSync(baseDir).forEach((dir) => {
 		const componentPath = path.join(baseDir, dir);
 		if (fs.statSync(componentPath).isDirectory()) {
