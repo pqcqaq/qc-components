@@ -58,7 +58,9 @@ export default defineConfig(({ command, mode }) => {
 			}),
 			VueSetupExtend(),
 			// libCss(),
-			cssInjectedByJsPlugin(),
+			cssInjectedByJsPlugin({
+				relativeCSSInjection: true,
+			}),
 		],
 		//设置别名
 		resolve: {
