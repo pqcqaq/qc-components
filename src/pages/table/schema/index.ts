@@ -1,5 +1,5 @@
 import { TablePaginationConfig } from "ant-design-vue";
-import { TableSchema, createSimpleTable } from "../../../../qc-components/easy-table";
+import { TableSchema, createSimpleTable } from "../../../../lib/easy-table";
 import Tags from "../components/Tags.vue";
 import Icon from "../components/Icon.vue";
 import { SmileOutlined } from "@ant-design/icons-vue";
