@@ -10,6 +10,7 @@ import VueSetupExtend from "vite-plugin-vue-setup-extend";
 import libCss from "vite-plugin-libcss";
 import fs from "fs";
 import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
+import QcComponentsResolver from "./qc-components/plugins/unplugin";
 
 function getComponentEntries(baseDir: string) {
 	const entries: string[] = [join(__dirname, "./qc-components/index.ts")];
